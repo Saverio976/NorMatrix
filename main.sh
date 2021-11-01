@@ -6,20 +6,13 @@
 ## execute all shell script in src/
 ##
 
-if [[ "$1" -eq "" ]]
-then
-    PREFIX=$PWD
-else
-    PREFIX=$1
-fi
-
-echo "check folder : $PREFIX"
-
+echo "check folder : $PWD"
+echo ""
 echo "check useless file :"
-src/useless_file.sh $PREFIX
-echo "number of useless file : `src/useless_file.sh | wc -l`"
+NorMatrix/src/useless_file.sh $PWD
+echo "number of useless file : `NorMatrix/src/useless_file.sh | wc -l`"
 echo "check no more than 80 char"
-src/count_columns.sh $PREFIX
-echo "number of lines > 80 char : `src/count_columns.sh | wc -l`"
+NorMatrix/src/count_columns.sh $PWD
+echo "number of lines > 80 char : `NorMatrix/src/count_columns.sh | wc -l`"
 
 exit 0
