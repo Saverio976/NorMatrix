@@ -14,3 +14,5 @@ find $1 -name '*.git*' -prune -o \
         \! -name '*.h' -a \
         \! -name '*.sh' \
         -print \)
+
+exit 0

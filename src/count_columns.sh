@@ -7,3 +7,5 @@
 ##
 
 grep -e ".\{80,\}" -H -n -r -I --exclude-dir=tests $1
+
+exit 0

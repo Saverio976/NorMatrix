@@ -21,3 +21,5 @@ echo "number of useless file : `src/useless_file.sh | wc -l`"
 echo "check no more than 80 char"
 src/count_columns.sh $PREFIX
 echo "number of lines > 80 char : `src/count_columns.sh | wc -l`"
+
+exit 0
