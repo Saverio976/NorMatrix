@@ -6,6 +6,7 @@
 ## check on each lines of files found if > 80
 ##
 
-grep -e ".\{80,\}" -H -n -r -I --exclude-dir=tests $1
+grep -e ".\{80,\}" -H -n -r -I --exclude-dir=tests --exclude-dir=.git \
+        --exclude-dir=.github $1
 
 exit 0
