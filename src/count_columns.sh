@@ -7,6 +7,6 @@
 ##
 
 grep -e ".\{80,\}" -H -n -r -I --exclude-dir=tests --exclude-dir=.git \
-        --exclude-dir=.github $1
+        --exclude-dir=.github --exclude-dir=NorMatrix $1
 
 exit 0
