@@ -21,7 +21,7 @@ LIBC_FUNC	=	-e 'printf(' -e 'memset(' \
 
 # ----------------------------------------------------------------------------
 
-all: columns libc_func trling_newline solo_space two_space
+all: columns libc_func trling_newline solo_space two_space usls_file
 
 columns:
 	@    echo -e $(CYAN)check colums:$(RESET)
@@ -31,29 +31,36 @@ columns:
 	  echo -e $(GREEN)no columns more than 80 char$(RESET)
 
 libc_func:
-	@    echo -e $(CYAN)check libc func$(RESET)
+	@    echo -e $(CYAN)check libc func:$(RESET)
 	@grep $(LIBC_FUNC) -w -H -n -r -I --exclude-dir=tests \
 	  --exclude-dir=.git --exclude-dir=.github \
 	  --exclude-dir=NorMatrix $(PATH_CHECK) && exit 1 || \
 	  echo -e $(GREEN)no libc functions$(RESET)
 
 trling_newline:
-	@    echo -e $(CYAN)check trailing new line$(RESET)
+	@    echo -e $(CYAN)check trailing new line:$(RESET)
 	@grep -e "\n\n$$" -e "\n\n\n" -H -n -r -I --exclude-dir=tests \
 	  --exclude-dir=.git --exclude-dir=.github \
 	  --exclude-dir=NorMatrix $(PATH_CHECK) && exit 1 || \
 	  echo -e $(GREEN)no trailing new line$(RESET)
 
 solo_space:
-	@    echo -e $(CYAN)check solo space on line$(RESET)
+	@    echo -e $(CYAN)check solo space on line:$(RESET)
 	@grep -e " " -x -H -n -r -I --exclude-dir=tests \
 	  --exclude-dir=.git --exclude-dir=.github \
 	  -exclude-dir=NorMatrix $(PATH_CHECK) && exit 1 || \
 	  echo -e $(GREEN)no space solo$(RESET)
 
 two_space:
-	@echo -e $(CYAN)two space next each other$(RESET)
+	@echo -e $(CYAN)two space next each other:$(RESET)
 	@grep -e '.*[a-zA-Z0-9]  .*' -x -H -n -r -I --exclude-dir=tests \
 	  --exclude-dir=.git --exclude-dir=.github \
 	  -exclude=NorMatrix --exclude=Makefile $(PATH_CHECK) && exit 1 || \
 	  echo -e $(GREEN)no two space$(RESET)
+
+usls_file:
+	@echo -e $(CYAN)useless file:$(RESET)
+	@find $(PATH_CHECK) -type f -a \( -name '*.o' -o -name '*.gc' \
+	  -o -name '*.a' -o -name '*.so' -o -name '*~' -o -name '*.d' \) | \
+	  grep . && exit 1 || \
+	  echo -e $(GREEN)no useless file$(RESET)
