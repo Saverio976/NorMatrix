@@ -3,19 +3,22 @@ check some norm for you
 
 ## checks :
 [x] 80 cols per line
-[~] trailing space
-[~] trailing newline
-[~] useless file
+
+[x] trailing space
+
+[x] trailing newline
+
 [x] libc function call
+
 [ ] ...
 
 ## run it as a github workflow
-in the repo root : 
+in the repo root :
 ```bash
 mkdir .github
 mkdir .github/workflows
 echo "
-name: Norm Check
+name: NorMatrix Check
 
 on: [push]
 
@@ -30,6 +33,6 @@ jobs:
       run: git clone https://github.com/Saverio976/NorMatrix
 
     - name: NorMatrix
-      run: NorMatrix/main.sh
-" > .github/workflows/norm_check.yml
+      run: make -C NorMatrix/ PATH_CHECK=$PWD
+" > .github/workflows/normatrix_check.yml
 ```
