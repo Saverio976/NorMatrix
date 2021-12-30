@@ -22,5 +22,5 @@ VPATH		=	$(MAIN)
 all:
 	@echo checkers : $(notdir $(CHECKERS))
 	@./$(MAIN) '$(FILES_TO_CHECK)' '$(CHECKERS)' && \
-		echo OK BRO || \
+		echo OK BRO && exit 0 || \
 		echo DUMB BRO && exit 1
