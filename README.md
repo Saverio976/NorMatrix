@@ -2,15 +2,14 @@
 check some norm for you
 
 ## checks :
-[x] 80 cols per line
 
-[x] trailing space
-
-[x] trailing newline
-
-[x] libc function call
-
-[ ] ...
+- [x] 80 cols per line
+- [x] space/tab alone (in a line)/(at the end of line)
+- [x] two newline at end of file
+- [x] two newline between function (between all buf chhhtt)
+- [x] libc function call (pr welcome to add some libc function always banned)
+- [x] nested branch more than 3 branch
+- [ ] ...
 
 ## run it as a github workflow
 in the repo root :
