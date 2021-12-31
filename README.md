@@ -35,3 +35,7 @@ jobs:
       run: make -C NorMatrix/ PATH_CHECK=$PWD
 " > .github/workflows/normatrix_check.yml
 ```
+
+### thanks
+
+chempa for his sample of file that dont follow the epitech norm
