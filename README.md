@@ -14,7 +14,7 @@ check some norm for you
 
 ## example if you run it as a github workflow
 this is not the latest normatrix but :
-[link](https://github.com/Saverio976/NorMatrix/runs/4674073068?check_suite_focus=true)
+[link](https://github.com/Saverio976/NorMatrix/runs/4675702867?check_suite_focus=true)
 
 ## run it as a github workflow
 in the repo root :
