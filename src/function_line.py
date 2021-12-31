@@ -16,7 +16,7 @@ while match_start != 0:
     tmp_str: str = filelines[match_start:match_end]
     number_line = tmp_str.count('\n') - 1
     if number_line > 20:
-        HAS_ERROR = 1
+        HAS_ERROR += 1
         line_index = filelines.index(tmp_str)
         line_n = filelines.count('\n', 0, match_start)
         print(

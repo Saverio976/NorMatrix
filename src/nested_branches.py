@@ -25,5 +25,5 @@ for i in range(len(lines)):
                 "for (" in lines[i - 1])):
             continue
         print(f"{file}:{i}: {line}", end='')
-        HAS_ERROR = 1
+        HAS_ERROR += 1
 exit(HAS_ERROR)

@@ -4,20 +4,23 @@
 
 # COLOUR
 RED='\033[0;31m'
+BOLDRED='\033[1;31m'
 CYAN='\033[0;36m'
 GREEN='\033[0;32m'
 RESET='\033[0m'
 
 FILE_HAS_ERROR=0
 HAS_ERROR=0
+LAST=0
 
 function process_file () {
 	FILE_HAS_ERROR=0
 	for CHECKER in $1; do
 		./$CHECKER $FILE
-		if [[ $? != 0 ]]; then
+		LAST=$(($?+0))
+		FILE_HAS_ERROR=$(($FILE_HAS_ERROR+$LAST))
+		if [[ $LAST != 0 ]]; then
 			echo -e $RED failed : $CHECKER $RESET
-			FILE_HAS_ERROR=$(($FILE_HAS_ERROR+1))
 		fi
 	done
 }
@@ -31,15 +34,20 @@ for FILE in $1; do
 		HAS_ERROR=$(($HAS_ERROR+1))
 	fi
 	if [[ $FILE == *.c || $FILE == *.h ]]; then
-		echo -e $CYAN file : $FILE $RESET
 		process_file "$2"
 		if [[ $FILE_HAS_ERROR != 0 ]]; then
-			echo -e $RED $FILE has $FILE_HAS_ERROR error.s $RESET
+			echo -e $BOLDRED -\> nope : $FILE : $FILE_HAS_ERROR err $RESET
 		else
-			echo -e $GREEN ok : $FILE $RESET
+			echo -e $GREEN -\> ok : $FILE $RESET
 		fi
 		HAS_ERROR=$(($HAS_ERROR+$FILE_HAS_ERROR))
 	fi
 done
 
-exit $HAS_ERROR
+if [[ $HAS_ERROR == 0 ]]; then
+	echo -e $GREEN [✓] You Have No Error GG Bro $RESET
+	exit 0
+else
+	echo -e $BOLDRED [x] You Have $HAS_ERROR error.s $RESET
+	exit 1
+fi
