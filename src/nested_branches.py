@@ -17,7 +17,8 @@ for i in range(len(lines)):
     else: condition = line.startswith(" " * 15)
     if condition:
         can_continue = (line.startswith(" " * 16) and line.endswith(");\n")) \
-            or line.endswith(") {\n")
+            or line.endswith(") {\n") or ") ? " in line \
+            or ") ? " in lines[i - 1]
         if can_continue or (line.endswith(")\n") and (
                 "if (" in lines[i - 1] or
                 "while (" in lines[i - 1] or
