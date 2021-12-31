@@ -23,6 +23,9 @@ function process_file () {
 }
 
 for FILE in $1; do
+	if [[ $FILE == *NorMatrix* ]]; then
+		continue
+	fi
 	if [[ $FILE == *.c || $FILE == *.h ]]; then
 		echo -e $CYAN file : $FILE $RESET
 		process_file "$2"
