@@ -3,7 +3,7 @@ import sys
 
 HAS_ERROR = 0
 
-file = sys.argv[1];
+file = sys.argv[1]
 with open(file) as f: filelines: str = f.read()
 
 try:
