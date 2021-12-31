@@ -26,6 +26,10 @@ for FILE in $1; do
 	if [[ $FILE == *NorMatrix* ]]; then
 		continue
 	fi
+	if [[ $FILE == *.o || $FILE == *.a || $FILE == *.gcno || $FILE == *.gcda ]]; then
+		echo -e $RED WTF file : $FILE $RESET
+		HAS_ERROR=$(($HAS_ERROR+1))
+	fi
 	if [[ $FILE == *.c || $FILE == *.h ]]; then
 		echo -e $CYAN file : $FILE $RESET
 		process_file "$2"
