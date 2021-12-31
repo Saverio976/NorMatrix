@@ -21,7 +21,7 @@ in the repo root :
 ```bash
 mkdir .github
 mkdir .github/workflows
-echo "
+echo '
 name: NorMatrix Check
 
 on: [push]
@@ -38,7 +38,7 @@ jobs:
 
     - name: NorMatrix
       run: make -C NorMatrix/ PATH_CHECK=$PWD
-" > .github/workflows/normatrix_check.yml
+' > .github/workflows/normatrix_check.yml
 ```
 
 ## Contribute
