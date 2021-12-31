@@ -9,6 +9,7 @@ check some norm for you
 - [x] two newline between function (between all buf chhhtt)
 - [x] libc function call (pr welcome to add some libc function always banned)
 - [x] nested branch more than 3 branch
+- [x] no more than 20 lines per function
 - [ ] ...
 
 ## example if you run it as a github workflow
