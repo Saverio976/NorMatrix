@@ -8,3 +8,19 @@ int a(void)
                 a = 5;
     return a;
 }
+
+int calcult_lenth(int b, int c, int d)
+{
+    return (b + c + d);
+}
+
+int b(void)
+{
+    int a = 0;
+
+    if (1 == 0)
+        if (2 == 1)
+            calcult_lenth(
+                    a, 5, 6);
+    return (a);
+}
