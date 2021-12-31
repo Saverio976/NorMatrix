@@ -41,6 +41,12 @@ jobs:
 " > .github/workflows/normatrix_check.yml
 ```
 
+## Contribute
+if you want to add some checkers, in python, or bash, add a file in src/ 
+folder with a filename clear enouth. If there is one error or more, exit with
+status code 1, else status code 0. You must say the file and this line if
+ possible
+
 ### thanks
 
 chempa for his sample of file that dont follow the epitech norm
