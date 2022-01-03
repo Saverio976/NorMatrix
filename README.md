@@ -13,6 +13,7 @@ check some norm for you
 - [x] comma with no space after
 - [x] end of parenthesis with a open curly bracket next `){`
 - [x] star char `*` like this `char* buf`
+- [x] preprocessors indentations (`#if..`, `#endif`)
 - [ ] ...
 
 ## example if you run it as a github workflow
