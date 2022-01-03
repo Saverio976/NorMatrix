@@ -10,6 +10,8 @@ check some norm for you
 - [x] libc function call (pr welcome to add some libc function always banned)
 - [x] nested branch more than 3 branch
 - [x] no more than 20 lines per function
+- [x] comma with no space after
+- [x] end of parenthesis with a open curly bracket next '){'
 - [ ] ...
 
 ## example if you run it as a github workflow
@@ -42,10 +44,13 @@ jobs:
 ```
 
 ## Contribute
-if you want to add some checkers, in python, or bash, add a file in src/ 
-folder with a filename clear enouth. If there is one error or more, exit with
-status code 1, else status code 0. You must say the file and this line if
- possible
+if you want to add some checkers (in python, bash, or node),
+add a file in src/ folder with a filename clear enouth.
+
+if the filename is `test.sh`, the file wiil be executed like this `./src/test.sh {file to check}`
+
+If there is one error or more, exit with the number of error, else 
+status code 0. You must print the filename and the line where the error is
 
 ### thanks
 
