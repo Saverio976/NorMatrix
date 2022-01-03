@@ -18,6 +18,7 @@ check some norm for you
 ## example if you run it as a github workflow
 this is not the latest normatrix but :
 [link](https://github.com/Saverio976/NorMatrix/runs/4694219038?check_suite_focus=true)
+(this workflow pass well, but it will not if you copy the code below)
 
 ## run it as a github workflow
 in the repo root :
