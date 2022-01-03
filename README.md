@@ -11,12 +11,13 @@ check some norm for you
 - [x] nested branch more than 3 branch
 - [x] no more than 20 lines per function
 - [x] comma with no space after
-- [x] end of parenthesis with a open curly bracket next '){'
+- [x] end of parenthesis with a open curly bracket next `){`
+- [x] star char `*` like this `char* buf`
 - [ ] ...
 
 ## example if you run it as a github workflow
 this is not the latest normatrix but :
-[link](https://github.com/Saverio976/NorMatrix/runs/4675702867?check_suite_focus=true)
+[link](https://github.com/Saverio976/NorMatrix/runs/4694219038?check_suite_focus=true)
 
 ## run it as a github workflow
 in the repo root :
