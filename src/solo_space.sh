@@ -1,5 +1,4 @@
 #!/bin/bash
-HAS_ERROR=0
 NB_ERROR=`grep -e " \{1,\}" -e ".* " -e $'\t\{1,\}' -e $'.*\t' -x -I $1 -c`
 
 if [[ $NB_ERROR == 0 ]]; then
