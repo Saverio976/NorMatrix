@@ -14,6 +14,7 @@ check some norm for you
 - [x] end of parenthesis with a open curly bracket next `){`
 - [x] star char `*` like this `char* buf`
 - [x] preprocessors indentations (`#if..`, `#endif`)
+- [x] multiple statements
 - [ ] ...
 
 ## example if you run it as a github workflow
