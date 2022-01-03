@@ -23,4 +23,4 @@ all:
 	@echo checkers : $(notdir $(CHECKERS))
 	@./$(MAIN) '$(FILES_TO_CHECK)' '$(CHECKERS)' && \
 		echo OK BRO && exit 0 || \
-		echo DUMB BRO && exit 1
+		echo "DUMB BRO ($(PATH_CHECK))" && exit 1
