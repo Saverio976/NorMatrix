@@ -15,7 +15,7 @@ CHECKERS	=	$(shell find src/ \( -type f \! -name main.sh \))
 
 MAIN		=	src/main.sh
 
-VPATH		=	$(MAIN)
+VPATH		=	$(MAIN) $(CHECKERS) $(FILES_TO_CHECK)
 
 # ----------------------------------------------------------------------------
 
