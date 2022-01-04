@@ -43,7 +43,7 @@ jobs:
       run: git clone https://github.com/Saverio976/NorMatrix
 
     - name: NorMatrix
-      run: make -C NorMatrix/ PATH_CHECK=.
+      run: make -C NorMatrix/ PATH_CHECK=$PWD
 ' > .github/workflows/normatrix_check.yml
 ```
 
