@@ -1,13 +1,16 @@
 #!/bin/bash
-grep -e "\(.*;\)\{2,\}" -H -n $1 > .tmp.txt
-grep -v -e 'for' .tmp.txt > .tmp.tmp.txt
+TMP=.tmp.txt
+TMPTMP=.tmp.tmp.txt
 
-NB_ERROR=`cat .tmp.tmp.txt | wc -l`
+grep -e "\(.*;\)\{2,\}" -H -n $1 > $TMP
+grep -v -e 'for' $TMP > $TMPTMP
+
+NB_ERROR=`cat $TMPTMP | wc -l`
 if [[ $NB_ERROR == 0 ]]; then
-	rm .tmp.txt .tmp.tmp.txt
+	rm $TMP $TMPTMP
 	exit 0
 else
-	cat .tmp.tmp.txt
-	rm .tmp.txt .tmp.tmp.txt
+	cat $TMPTMP
+	rm $TMP $TMPTMP
 	exit $((NB_ERROR+0))
 fi
