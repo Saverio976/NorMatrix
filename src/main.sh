@@ -9,6 +9,9 @@ CYAN='\033[0;36m'
 GREEN='\033[0;32m'
 RESET='\033[0m'
 
+
+FILES_TO_CHECK=`find $1 -type f`
+
 FILE_HAS_ERROR=0
 HAS_ERROR=0
 LAST=0
@@ -25,8 +28,8 @@ function process_file () {
 	done
 }
 
-for FILE in $1; do
-	if [[ $FILE == *NorMatrix* ]]; then
+for FILE in $FILES_TO_CHECK; do
+	if [[ $FILE == *NorMatrix* || $FILE == *.git/* ]]; then
 		continue
 	fi
 	if [[ $FILE == *.o || $FILE == *.a || $FILE == *.gcno || $FILE == *.gcda ]]; then
