@@ -11,6 +11,8 @@ RESET='\033[0m'
 
 
 FILES_TO_CHECK=`find $1 -type f`
+CURRENT_INDEX=0
+MAX_INDEX=``
 
 FILE_HAS_ERROR=0
 HAS_ERROR=0
@@ -33,8 +35,21 @@ for FILE in $FILES_TO_CHECK; do
 		continue
 	fi
 	if [[ $FILE == *.o || $FILE == *.a || $FILE == *.gcno || $FILE == *.gcda ]]; then
+		continue
+	fi
+	if [[ $FILE == *.c || $FILE == *.h ]]; then
+		MAX_INDEX=$(($MAX_INDEX+1))
+	fi
+done
+
+for FILE in $FILES_TO_CHECK; do
+	if [[ $FILE == *NorMatrix* || $FILE == *.git/* ]]; then
+		continue
+	fi
+	if [[ $FILE == *.o || $FILE == *.a || $FILE == *.gcno || $FILE == *.gcda ]]; then
 		echo -e $RED WTF file : $FILE $RESET
 		HAS_ERROR=$(($HAS_ERROR+1))
+		continue
 	fi
 	if [[ $FILE == *.c || $FILE == *.h ]]; then
 		process_file "$2"
@@ -44,6 +59,8 @@ for FILE in $FILES_TO_CHECK; do
 			echo -e $GREEN -\> ok : $FILE $RESET
 		fi
 		HAS_ERROR=$(($HAS_ERROR+$FILE_HAS_ERROR))
+		echo -e $CYAN ..[file n° $CURRENT_INDEX / $MAX_INDEX] $RESET
+		CURRENT_INDEX=$(($CURRENT_INDEX+1))
 	fi
 done
 
