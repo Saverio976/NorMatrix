@@ -14,7 +14,7 @@ for i in range(len(filelines)):
         TAB_NB += 4
     elif " ".join(line.split()).startswith("#endif"):
         TAB_NB -= 4
-    elif not line.startswith(" " * TAB_NB):
+    elif " ".join(line.split()).startswith('#') and not line.startswith(" " * TAB_NB):
         print(f"{file}:{i}: {line[:-1]} (preprocessors directiv need 4 space after an #if)")
         HAS_ERROR += 1
     if TAB_NB < 0:
