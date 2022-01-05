@@ -2,8 +2,17 @@
 TMP=.tmp.txt
 TMPTMP=.tmp.tmp.txt
 
-grep -e "\(.*;\)\{2,\}" -H -n $1 > $TMP
-grep -v -e 'for' $TMP > $TMPTMP
+cat $1 > $TMP
+sed '/\/\*/,/\*\//d' $TMP > $TMPTMP
+cat $TMPTMP > $TMP
+
+for I in 0..3
+do
+	grep -e "\(.*;\)\{2,\}" -H -n $TMP > $TMPTMP
+	grep -v -e 'for' $TMPTMP > $TMP
+	grep -v -e '".*;.*"' $TMP > $TMPTMP
+	grep -v -e '//.*;.*"' $TMPTMP > $TMP
+done
 
 NB_ERROR=`cat $TMPTMP | wc -l`
 if [[ $NB_ERROR == 0 ]]; then
