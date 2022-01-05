@@ -56,6 +56,8 @@ if the filename is `test.sh`, the file wiil be executed like this `./src/test.sh
 If there is one error or more, exit with the number of error, else 
 status code 0. You must print the filename and the line where the error is
 
+[more preicse information on the file : CONTRIBUTING.md]
+
 ### thanks
 
 chempa for his sample of file that dont follow the epitech norm
