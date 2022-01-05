@@ -1,3 +1,4 @@
+#!/bin/bash
 function assert_err_code () {
 	if [[ $1 == 0 ]]; then
 		exit 1
