@@ -11,7 +11,7 @@ ifndef PATH_CHECK
 PATH_CHECK	=	..
 endif
 
-CHECKERS	=	$(shell find src/ \( -type f \! -name main.sh \))
+CHECKERS	=	$(shell find src/ \( -type f \! -name main.sh -executable \))
 
 MAIN		=	src/main.sh
 
