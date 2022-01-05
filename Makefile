@@ -19,8 +19,15 @@ VPATH		=	$(MAIN) $(CHECKERS) $(FILES_TO_CHECK)
 
 # ----------------------------------------------------------------------------
 
-all:
+all:	up
 	@echo checkers : $(notdir $(CHECKERS))
 	@./$(MAIN) '$(PATH_CHECK)' '$(CHECKERS)' && \
 		echo OK BRO && exit 0 || \
 		echo "DUMB BRO ($(PATH_CHECK))" && exit 1
+
+update:
+	@git fetch || echo not a git repository, please uodate yourself && exit 1
+	@git pull
+
+up:
+	@git pull || exit 0
