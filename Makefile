@@ -33,3 +33,6 @@ update:
 
 up:
 	@git pull || exit 0
+
+tests_run:
+	./tests/fn_tests/fn_tests.sh

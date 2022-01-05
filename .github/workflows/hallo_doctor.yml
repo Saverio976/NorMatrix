@@ -24,3 +24,12 @@ jobs:
 
     - name: NorMatrix
       run: ./.github/workflows/exec_files_not_in_main_clone.sh
+
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+    - name: tests
+      run: make tests_run
