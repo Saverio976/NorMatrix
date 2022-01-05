@@ -1,0 +1,26 @@
+name: Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  ok_code:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: NorMatrix
+      run: make PATH_CHECK=tests/ok_code/
+
+  bad_code:
+    runs-one: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: NorMatrix
+      run: ./.github/workflows/exec_files_not_in_main_clone.sh
