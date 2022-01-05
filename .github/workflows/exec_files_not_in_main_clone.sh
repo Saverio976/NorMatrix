@@ -2,9 +2,13 @@ git clone https://github.com/Saverio976/NorMatrix
 
 CHECKERS=`diff -q src/ NorMatrix/src/ | grep -v -e 'NorMatrix' | cut -d' ' -f4`
 
-echo new checkers : $CHECKERS
-
-make CHECKERS="$CHECKERS" PATH_CHECK=tests/bad_code/
+if [[ "$CHECKERS" == "" ]]; then
+	echo no new checkers
+	exit 0
+else
+	echo new checkers : $CHECKERS
+	make CHECKERS="$CHECKERS" PATH_CHECK=tests/bad_code/
+fi
 
 if [[ $? == 0 ]]; then
 	echo Why Did You Say It Is A Good Code
