@@ -1,3 +1,3 @@
 #!/bin/bash
 
-make -C $(dirname "$0") PATH_CHECK="$1" -s
+make -C $(dirname "$0") PATH_CHECK="$PWD" -s

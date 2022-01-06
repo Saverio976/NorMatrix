@@ -47,6 +47,20 @@ jobs:
 ' > .github/workflows/normatrix_check.yml
 ```
 
+## run it with an alias
+with this, you will can just write `normatrix` in a shell and it will check
+the norm for your current working directory
+
+if you are using bash shell:
+```bash
+echo alias normatrix="$PWD/exec.sh" >> $HOME/.bashrc
+```
+if you are using zsh shell:
+```
+echo alias normatrix="$PWD/exec.sh" >> $HOME/.zshrc
+```
+else, handle thsi yourself bruh
+
 ## Contribute
 if you want to add some checkers (in python, bash, or node),
 add a file in src/ folder with a filename clear enouth.
