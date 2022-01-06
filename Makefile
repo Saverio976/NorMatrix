@@ -28,8 +28,8 @@ all:	up
 		echo "DUMB BRO ($(PATH_CHECK))" && exit 1
 
 update:
-	@git fetch || echo not a git repository, please uodate yourself && exit 1
-	@git pull
+	@git pull || \
+		echo not a git repository, please uodate yourself
 
 up:
 	@git pull || exit 0
