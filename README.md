@@ -56,7 +56,7 @@ if you are using bash shell:
 echo alias normatrix="$PWD/exec.sh" >> $HOME/.bashrc
 ```
 if you are using zsh shell:
-```
+```bash
 echo alias normatrix="$PWD/exec.sh" >> $HOME/.zshrc
 ```
 else, handle thsi yourself bruh
