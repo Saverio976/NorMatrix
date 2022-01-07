@@ -20,6 +20,8 @@ git clone --branch python-rewrite https://github.com/Saverio976/NorMatrix.git
 - [x] star char `*` like this `char* buf`
 - [x] preprocessors indentations (`#if..`, `#endif`)
 - [x] multiple statements
+- [x] 5 functions per file
+- [x] filename of source code only snake\_case
 - [ ] ...
 
 ## example if you run it as a github workflow
