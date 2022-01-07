@@ -22,6 +22,38 @@ this is not the latest normatrix but :
 [link](https://github.com/Saverio976/NorMatrix/runs/4702369332?check_suite_focus=true)
 (this workflow pass well, but it will not if you copy the code below)
 
+## doc
+#### Makefile
+```
+USAGE:
+	make [-C path/to/NorMatrix] [rule] [VAR=VALUE]
+DESCRIPTION:
+	check the norm!
+ARGS:
+	-C path/to/NorMatrix		if you are on another working directory
+					than NorMatrix, add this.
+
+	rule				the rule to execute ('all', 'update',
+					'up', 'tests_run'). If you dont say
+					any rule, it will do the 'all' rule.
+
+	VAR=VALUE			to set a different value for a
+					specific var. Allow to change the
+					directory to check.
+					you will probably do:
+					make -C path/NorMatrix PATH_CHECK=$PWD
+```
+#### exec.sh
+```
+USAGE:
+	./exec.sh
+DESCRIPTION:
+	call the makefile for the all rule with PATH_CHECK to your current
+	working directory
+ARGS:
+	NO
+```
+
 ## run it as a github workflow
 in the repo root :
 ```bash
