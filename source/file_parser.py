@@ -1,22 +1,6 @@
 import re
 from enum import Enum
 
-class CFileParse:
-    def __init__(self, filepath, name):
-        self.basename = filepath[len(name) + 1:]
-        self.filepath = filepath
-        self.real_filelines = []
-        self.sub_filelines = []
-        self.sub_parsedline = []
-        self.real_parsedline = []
-
-    def get_filelines(self):
-        with open(self.filepath) as fd:
-            lines = fd.read()
-        self.real_filelines = lines.split('\n')
-        lines = re.sub(r'".+?"', '', lines)
-        self.sub_filelines = lines.split('\n')
-
 class TypeLine(Enum):
     FUNCTION = 1
     MACRO = 2
@@ -25,6 +9,23 @@ class TypeLine(Enum):
     GLOBAL = 5
     COMMENT = 6
     NONE = 7
+
+class CFileParse:
+    def __init__(self, filepath, name):
+        """an object of a file 'parsed'"""
+        self.basename = filepath[len(name) + 1:] # the relative path
+        self.filepath = filepath # the absolute path
+        self.real_filelines: list[str] = [] # list of each line
+        self.sub_filelines: list[str] = [] # list of each line without str ("text here will be removed")
+        self.sub_parsedline: list[tuple[TypeLine, str]] = []# sub_filelines but with the type line
+        self.real_parsedline: list[tuple[TypeLine, str]] = []# real_filelines but with the type line
+
+    def get_filelines(self):
+        with open(self.filepath) as fd:
+            lines = fd.read()
+        self.real_filelines = lines.split('\n')
+        lines = re.sub(r'".+?"', '', lines)
+        self.sub_filelines = lines.split('\n')
 
 def get_status(lines: str) -> int:
     reg = [
