@@ -55,22 +55,22 @@ for i in range(len(FILES_TO_CHECK)):
     else:
         color.print_color("green", f" -> yes: {parse.basename}")
 
-average = {}
+average_dict = {}
 for elem in STATS:
-    if elem[0] not in average.keys():
-        average[elem[0]] = elem[1]
+    if elem[0] not in average_dict.keys():
+        average_dict[elem[0]] = elem[1]
     else:
-        average[elem[0]] += elem[1]
-average = sum(average.values()) / len(STATS)
+        average_dict[elem[0]] += elem[1]
+average = sum(average_dict.values()) / len(FILES_TO_CHECK)
 nb_major = len([elem for elem in STATS if elem[2] == 0])
 nb_minor = len([elem for elem in STATS if elem[2] == 1])
 nb_info = len([elem for elem in STATS if elem[2] == 2])
-color.print_color("cyan", f"\naverage number of error per file: {average}")
+color.print_color("cyan", f"\nnumber of file checked: {len(STATS)}")
+color.print_color("cyan", f"average number of error per file: {average}")
 color.print_color("cyan", f"number of MAJOR: {nb_major} = {-3 * nb_major}")
 color.print_color("cyan", f"number of MINOR: {nb_minor} = {-1 * nb_minor}")
 color.print_color("cyan", f"number of INFO: {nb_info}")
 color.print_color("cyan", f"note : {-3 * nb_major + -1 * nb_minor}")
-color.print_color("cyan", f"number of file checked: {len(STATS)}")
 
 if NB_ERROR == 0:
     color.print_color("green", "OK BRO")
