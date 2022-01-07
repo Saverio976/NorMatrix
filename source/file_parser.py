@@ -15,10 +15,10 @@ class CFileParse:
         """an object of a file 'parsed'"""
         self.basename = filepath[len(name) + 1:] # the relative path
         self.filepath = filepath # the absolute path
-        self.real_filelines: list[str] = [] # list of each line
-        self.sub_filelines: list[str] = [] # list of each line without str ("text here will be removed")
-        self.sub_parsedline: list[tuple[TypeLine, str]] = []# sub_filelines but with the type line
-        self.real_parsedline: list[tuple[TypeLine, str]] = []# real_filelines but with the type line
+        self.real_filelines list = [] # list of each line (list[str])
+        self.sub_filelines = [] # list of each line without str ("text here will be removed") (list[str])
+        self.sub_parsedline = [] # sub_filelines but with the type line (list[tuple[TypeLine, str]])
+        self.real_parsedline = [] # real_filelines but with the type line (list[tuple[TypeLine, str]])
 
     def get_filelines(self):
         with open(self.filepath) as fd:

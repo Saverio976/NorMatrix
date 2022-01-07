@@ -30,7 +30,7 @@ for root, _, files in os.walk(PWD):
             FILES_TO_CHECK.append(filepath)
 
 NB_ERROR = 0
-STATS: list[tuple[str, int]] = []
+STATS = []
 
 color.print_color("green", "NorMatrix!")
 color.print_color("cyan", f"directory to check: {PWD}\n")
