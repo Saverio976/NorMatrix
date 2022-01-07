@@ -1,6 +1,9 @@
 # NorMatrix
 check some norm for you
 
+# caution:
+merge from python-rewrite will comming soon
+
 ## checks :
 
 - [x] 80 cols per line
