@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 from source.file_parser import CFileParse
 from source.file_parser import TypeLine
 import re
