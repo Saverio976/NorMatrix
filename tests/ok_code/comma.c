@@ -1,9 +1,9 @@
-int b(int c, int d)
+int func(int c, int d)
 {
     return c + d;
 }
 
-int a(int h)
+int func2(int h)
 {
-    return b(h, h);
+    return func(h, h);
 }

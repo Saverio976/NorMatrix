@@ -1,4 +1,3 @@
-
 name: NorMatrix Check
 
 on: [push]
@@ -14,4 +13,4 @@ jobs:
       run: git clone https://github.com/Saverio976/NorMatrix
 
     - name: NorMatrix
-      run: make -C NorMatrix/ PATH_CHECK=tests/ && exit 1 || exit 0
+      run: ./main.py && exit 1 || exit 0

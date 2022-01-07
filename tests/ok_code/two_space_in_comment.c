@@ -1,4 +1,4 @@
-char *a(void)
+char *func(void)
 {
     static char buf[] = "  k    ";
 

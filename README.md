@@ -23,33 +23,12 @@ this is not the latest normatrix but :
 (this workflow pass well, but it will not if you copy the code below)
 
 ## doc
-#### Makefile
+#### main.py
 ```
 USAGE:
-	make [-C path/to/NorMatrix] [rule] [VAR=VALUE]
+	main.py
 DESCRIPTION:
-	check the norm!
-ARGS:
-	-C path/to/NorMatrix		if you are on another working directory
-					than NorMatrix, add this.
-
-	rule				the rule to execute ('all', 'update',
-					'up', 'tests_run'). If you dont say
-					any rule, it will do the 'all' rule.
-
-	VAR=VALUE			to set a different value for a
-					specific var. Allow to change the
-					directory to check.
-					you will probably do:
-					make -C path/NorMatrix PATH_CHECK=$PWD
-```
-#### exec.sh
-```
-USAGE:
-	./exec.sh
-DESCRIPTION:
-	call the makefile for the all rule with PATH_CHECK to your current
-	working directory
+	check the norm! in the current working directory
 ARGS:
 	NO
 ```
@@ -75,7 +54,7 @@ jobs:
       run: git clone https://github.com/Saverio976/NorMatrix
 
     - name: NorMatrix
-      run: make -C NorMatrix/ PATH_CHECK=$PWD
+      run: ./main.py
 ' > .github/workflows/normatrix_check.yml
 ```
 
@@ -85,25 +64,16 @@ the norm for your current working directory
 
 if you are using bash shell:
 ```bash
-echo alias normatrix="$PWD/exec.sh" >> $HOME/.bashrc
+echo alias normatrix="$PWD/main.py" >> $HOME/.bashrc
 ```
 if you are using zsh shell:
 ```bash
-echo alias normatrix="$PWD/exec.sh" >> $HOME/.zshrc
+echo alias normatrix="$PWD/main.py" >> $HOME/.zshrc
 ```
-else, handle thsi yourself bruh
+else, handle this yourself bruh
 
 ## Contribute
-if you want to add some checkers (in python, bash, or node),
-add a file in src/ folder with a filename clear enouth.
-
-if the filename is `test.sh`, the file wiil be executed like this `./src/test.sh {file to check}`
-
-If there is one error or more, exit with the number of error, else 
-status code 0. You must print the filename and the line where the error is
-
 [more preicse information on the file : CONTRIBUTING.md]
 
 ### thanks
-
 chempa for his sample of file that dont follow the epitech norm
