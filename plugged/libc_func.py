@@ -16,7 +16,7 @@ def check(file: CFileParse) -> int:
         line = file.sub_parsedline[i]
         if line[0] != TypeLine.COMMENT:
             if check_libcfunc(line[1]):
-                print("{file.basename}:{i + 1}: no libc func")
+                print(f"{file.basename}:{i + 1}: no libc func")
                 nb_error += 1
     return nb_error
 
