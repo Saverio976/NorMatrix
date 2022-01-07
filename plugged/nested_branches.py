@@ -1,7 +1,7 @@
 from source.file_parser import CFileParse
 from source.file_parser import TypeLine
 
-def check(file: CFileParse) -> int:
+def check(file: CFileParse) -> (int, int):
     nb_error = 0
     in_switch = False
     for i in range(len(file.sub_parsedline)):
@@ -23,4 +23,4 @@ def check(file: CFileParse) -> int:
                 continue
             print(f"{file.basename}:{i + 1}: maybe too many branch ?")
             nb_error += 1
-    return nb_error
+    return (nb_error, 1)

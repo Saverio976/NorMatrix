@@ -2,7 +2,7 @@ from source.file_parser import CFileParse
 from source.file_parser import TypeLine
 import re
 
-def check(file: CFileParse) -> int:
+def check(file: CFileParse) -> (int, int):
     nb_error = 0
     for i in range(len(file.real_parsedline)):
         line = file.real_parsedline[i]
@@ -14,4 +14,4 @@ def check(file: CFileParse) -> int:
             if ll.split() == [] and (ll.startswith(' ') or ll.startswith('\t')):
                 print(f"{file.basename}:{i + 1}: extra space at start of line")
                 nb_error += 1
-    return nb_error
+    return (nb_error, 1)

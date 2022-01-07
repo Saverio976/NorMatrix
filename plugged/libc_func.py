@@ -10,7 +10,7 @@ def check_libcfunc(line: str) -> bool:
             return True
     return False
 
-def check(file: CFileParse) -> int:
+def check(file: CFileParse) -> (int, int):
     nb_error = 0
     for i in range(len(file.sub_parsedline)):
         line = file.sub_parsedline[i]
@@ -18,5 +18,5 @@ def check(file: CFileParse) -> int:
             if check_libcfunc(line[1]):
                 print(f"{file.basename}:{i + 1}: no libc func")
                 nb_error += 1
-    return nb_error
+    return (nb_error, 0)
 

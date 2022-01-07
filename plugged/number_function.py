@@ -1,7 +1,7 @@
 from source.file_parser import CFileParse
 from source.file_parser import TypeLine
 
-def check(file: CFileParse) -> int:
+def check(file: CFileParse) -> (int, int):
     number_func = 0
     last_is_in_func = False
     for line in file.sub_parsedline:
@@ -12,5 +12,5 @@ def check(file: CFileParse) -> int:
             last_is_in_func = False
     if number_func > 5:
         print(f"{file.basename}: only five function per file ({number_func} > 5)")
-        return 1
-    return 0
+        return (1, 0)
+    return (0, 0)

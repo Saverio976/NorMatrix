@@ -1,7 +1,7 @@
 from source.file_parser import CFileParse
 from source.file_parser import TypeLine
 
-def check(file: CFileParse) -> int:
+def check(file: CFileParse) -> (int, int):
     nb_error = 0
     TAB_NB = 0
     filelines = file.sub_filelines
@@ -18,4 +18,4 @@ def check(file: CFileParse) -> int:
             print(f"{file.basename}:{i + 1}: need an #if.. before an #endif ({line})")
             nb_error += 1
             TAB_NB = 0
-    return nb_error
+    return (nb_error, 1)

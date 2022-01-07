@@ -1,7 +1,7 @@
 from source.file_parser import CFileParse
 from source.file_parser import TypeLine
 
-def check(file: CFileParse) -> int:
+def check(file: CFileParse) -> (int, int):
     nb_error = 0
     nb_line = 0
     line_index_func = 0
@@ -22,4 +22,4 @@ def check(file: CFileParse) -> int:
             is_in_func[1] = True
         if is_in_func[1] and not file.sub_parsedline[i][1].startswith('}'):
             nb_line += 1
-    return nb_error
+    return (nb_error, 0)

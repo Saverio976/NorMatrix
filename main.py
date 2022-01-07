@@ -30,27 +30,46 @@ for root, _, files in os.walk(PWD):
             FILES_TO_CHECK.append(filepath)
 
 NB_ERROR = 0
-NB_LAST_ERROR = 0
+STATS: list[tuple[str, int]] = []
 
 color.print_color("green", "NorMatrix!")
 color.print_color("cyan", f"directory to check: {PWD}\n")
 
 for i in range(len(FILES_TO_CHECK)):
     file = FILES_TO_CHECK[i]
-    NB_LAST_ERROR = 0
+    LAST_NB_ERROR = 0
     parse: file_parser.CFileParse = file_parser.parse(file, PWD)
     color.print_color("cyan", f"file [{parse.basename}] n°{i + 1}/{len(FILES_TO_CHECK)}...")
     for checker_name in list_checkers:
+        info = (0, 3)
         try:
             checker = import_module(f"plugged.{checker_name}")
-            NB_LAST_ERROR += checker.check(parse)
+            info = checker.check(parse)
         except Exception as e:
             print(f"ERROR: \n{e}")
-    NB_ERROR += NB_LAST_ERROR
-    if NB_LAST_ERROR != 0:
-        color.print_color("boldred", f" -> nope: {parse.basename} ({NB_LAST_ERROR})")
+        LAST_NB_ERROR += info[0]
+        if info[0] != 0: STATS.append((parse.basename, info[0], info[1]))
+    if LAST_NB_ERROR != 0:
+        color.print_color("boldred", f" -> nope: {parse.basename} ({LAST_NB_ERROR})")
+        NB_ERROR += LAST_NB_ERROR
     else:
         color.print_color("green", f" -> yes: {parse.basename}")
+
+average = {}
+for elem in STATS:
+    if elem[0] not in average.keys():
+        average[elem[0]] = elem[1]
+    else:
+        average[elem[0]] += elem[1]
+average = sum(average.values()) / len(STATS)
+nb_major = len([elem for elem in STATS if elem[2] == 0])
+nb_minor = len([elem for elem in STATS if elem[2] == 1])
+nb_info = len([elem for elem in STATS if elem[2] == 2])
+color.print_color("cyan", f"\naverage number of error per file: {average}")
+color.print_color("cyan", f"number of MAJOR: {nb_major}")
+color.print_color("cyan", f"number of MINOR: {nb_minor}")
+color.print_color("cyan", f"number of INFO: {nb_info}")
+color.print_color("cyan", f"number of file checked: {len(STATS)}")
 
 if NB_ERROR == 0:
     color.print_color("green", "OK BRO")
