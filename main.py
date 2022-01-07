@@ -48,7 +48,7 @@ for i in range(len(FILES_TO_CHECK)):
         except Exception as e:
             print(f"ERROR: \n{e}")
         LAST_NB_ERROR += info[0]
-        if info[0] != 0: STATS.append((parse.basename, info[0], info[1]))
+        if info[0] != 0: STATS.extend([(parse.basename, 1, info[1]) for _ in range(info[0])])
     if LAST_NB_ERROR != 0:
         color.print_color("boldred", f" -> nope: {parse.basename} ({LAST_NB_ERROR})")
         NB_ERROR += LAST_NB_ERROR
@@ -66,9 +66,10 @@ nb_major = len([elem for elem in STATS if elem[2] == 0])
 nb_minor = len([elem for elem in STATS if elem[2] == 1])
 nb_info = len([elem for elem in STATS if elem[2] == 2])
 color.print_color("cyan", f"\naverage number of error per file: {average}")
-color.print_color("cyan", f"number of MAJOR: {nb_major}")
-color.print_color("cyan", f"number of MINOR: {nb_minor}")
+color.print_color("cyan", f"number of MAJOR: {nb_major} = {-3 * nb_major}")
+color.print_color("cyan", f"number of MINOR: {nb_minor} = {-1 * nb_minor}")
 color.print_color("cyan", f"number of INFO: {nb_info}")
+color.print_color("cyan", f"note : {-3 * nb_major + -1 * nb_minor}")
 color.print_color("cyan", f"number of file checked: {len(STATS)}")
 
 if NB_ERROR == 0:
