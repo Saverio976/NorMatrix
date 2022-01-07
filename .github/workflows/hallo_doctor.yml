@@ -2,9 +2,9 @@ name: Check
 
 on:
   push:
-    branches: [main]
+    branches: [python-rewrite]
   pull_request:
-    branches: [main]
+    branches: [python-rewrite]
 
 jobs:
   ok_code:
