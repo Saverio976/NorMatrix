@@ -14,7 +14,7 @@ def check(file: CFileParse) -> int:
             TAB_NB -= 4
         elif " ".join(line.split()).startswith('#') and not line.startswith(" " * TAB_NB):
             print(f"{file.basename}:{i + 1}: #... need 4 space after an #if ({line})")
-            HAS_ERROR += 1
+            nb_error += 1
         if TAB_NB < 0:
             print(f"{file.basename}:{i + 1}: need an #if.. before an #endif ({line})")
             nb_error += 1

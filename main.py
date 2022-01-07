@@ -35,9 +35,11 @@ NB_LAST_ERROR = 0
 color.print_color("green", "NorMatrix!")
 color.print_color("cyan", f"directory to check: {PWD}\n")
 
-for file in FILES_TO_CHECK:
+for i in range(len(FILES_TO_CHECK)):
+    file = FILES_TO_CHECK[i]
     NB_LAST_ERROR = 0
     parse: file_parser.CFileParse = file_parser.parse(file, PWD)
+    color.print_color("cyan", f"file [{parse.basename}] n°{i + 1}/{len(FILES_TO_CHECK)}...")
     for checker_name in list_checkers:
         try:
             checker = import_module(f"plugged.{checker_name}")

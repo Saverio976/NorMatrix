@@ -24,6 +24,7 @@ class CFileParse:
         with open(self.filepath) as fd:
             lines = fd.read()
         self.real_filelines = lines.split('\n')
+        lines = re.sub(r'".+?" ', '', lines)
         lines = re.sub(r'".+?"', '', lines)
         self.sub_filelines = lines.split('\n')
 
