@@ -1,6 +1,11 @@
 # NorMatrix
 check some norm for you
 
+## install:
+```bash
+git clone --branch python-rewrite https://github.com/Saverio976/NorMatrix.git
+```
+
 ## checks :
 
 - [x] 80 cols per line
@@ -51,7 +56,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: clone NorMatrix
-      run: git clone https://github.com/Saverio976/NorMatrix
+      run: git clone --branch python-rewrite https://github.com/Saverio976/NorMatrix.git
 
     - name: NorMatrix
       run: ./NorMatrix/main.py
