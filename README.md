@@ -54,7 +54,7 @@ jobs:
       run: git clone https://github.com/Saverio976/NorMatrix
 
     - name: NorMatrix
-      run: ./main.py
+      run: ./NorMatrix/main.py
 ' > .github/workflows/normatrix_check.yml
 ```
 
