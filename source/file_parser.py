@@ -35,10 +35,8 @@ def get_status(lines: str) -> int:
         '(typedef ){0,1}(struct )(\w{1,} ){0,1}{\n {4}\w{1,} \w{1,};(\n {4}\w{1,} \w{1,};){0,}\n}( \w{1,}){0,1};',
         '(typedef ){0,1}(enum )(\w{1,} ){0,1}{\n {4}\w{1,} \w{1,};(\n {4}\w{1,} \w{1,};){0,}\n}( \w{1,}){0,1};',
         '(static ){0,1}(const ){0,1}\w{1,} \*{0,}\w{1,}(\[[0-9]{0,}\]){0,1} = ((\w{0,})|({\n{0,1} {0,}\w{0,}(,\n{0,1} {0,}\w{0,}){0,})|)\n{0,1}}{0,1};',
-        '^\/\*(.*?\n{0,}){0,}\*\/',
-        '^\W{1,}\/\*(.*?\n{0,}){0,}\*\/'
-        '^\/\/',
-        '^\W{1,}\/\/'
+        '^( ){0,}?\/\*(.*\n{0,}?){0,}?\*\/',
+        '^( ){0,}?\/\/'
     ]
     status = [
         TypeLine.FUNCTION,
@@ -48,8 +46,6 @@ def get_status(lines: str) -> int:
         TypeLine.GLOBAL,
         TypeLine.COMMENT,
         TypeLine.COMMENT,
-        TypeLine.COMMENT,
-        TypeLine.COMMENT
     ]
     for i in range(len(reg)):
         res = re.search(reg[i], lines, re.MULTILINE)

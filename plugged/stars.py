@@ -8,6 +8,7 @@ def check(file: CFileParse) -> (int, int):
         line = file.sub_parsedline[i]
         if line[0] != TypeLine.COMMENT:
             ll = re.sub("'.*?'", '', line[1])
+            ll = re.sub("\/\/.*", '', ll)
             m = re.search("\S\*", ll)
             if m != None:
                 ll = ll[m.start():]

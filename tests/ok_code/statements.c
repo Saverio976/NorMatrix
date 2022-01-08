@@ -1,2 +1,5 @@
-";";
+char *abc(void)
+{
+    return ";";
+}
 // ;

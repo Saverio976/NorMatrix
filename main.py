@@ -2,6 +2,11 @@
 import os
 import sys
 
+if len(sys.argv) >= 2:
+    if sys.argv[1] == "tests_run":
+        from tests.fn_tests import tests
+        exit(tests.main())
+
 from importlib import import_module
 
 from source import file_parser

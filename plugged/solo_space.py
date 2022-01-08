@@ -8,7 +8,7 @@ def check(file: CFileParse) -> (int, int):
         line = file.real_parsedline[i]
         if line[0] != TypeLine.COMMENT:
             ll = line[1]
-            if ll.endswith('\t') or ll.endswith(' '):
+            if ll.split() != [] and ll.endswith('\t') or ll.endswith(' '):
                 print(f"{file.basename}:{i + 1}: extra space at end of line")
                 nb_error += 1
             if ll.split() == [] and (ll.startswith(' ') or ll.startswith('\t')):
