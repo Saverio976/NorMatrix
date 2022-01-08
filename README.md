@@ -1,7 +1,7 @@
 # NorMatrix
 check some norm for you
 
-![tests: ](https://github.com/Saverio976/NorMatrix/actions/workflows/hallo_doctor.yml/badge.svg?event=push)
+![uuntu-latest , windows-latest, macos-latest, (python3.7, python3.8, python3.9, python3.10)](https://github.com/Saverio976/NorMatrix/actions/workflows/hallo_doctor.yml/badge.svg?event=push)
 
 ## install:
 ```bash
