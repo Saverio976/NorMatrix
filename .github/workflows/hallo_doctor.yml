@@ -32,3 +32,30 @@ jobs:
 
     - name: Tests
       run: ./exec.sh tests_run
+
+  all_with_strategy:
+    stategy:
+      fail-fats: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: [3.7, 3.8, 3.9, "3.10"]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: get repo
+        uses: actions/checkout@v2
+
+      - name: python version
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: OK_CODE
+        run: cd tests/ok_code && ../../main.py
+
+      - name: BAD_CODE
+        run: ./github/workflows/exec_files_not_in_main_clone.sh
+
+      - name: TESTS
+        run: ./main.py tests_run
