@@ -1,6 +1,8 @@
 # NorMatrix
 check some norm for you
 
+![tests: ](https://github.com/Saverio976/NorMatrix/actions/workflows/hallo_doctor.yml/badge.svg?event=push)
+
 ## install:
 ```bash
 git clone https://github.com/Saverio976/NorMatrix.git
