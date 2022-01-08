@@ -1,7 +1,7 @@
 int abc(
                 int a,
                 int b
-       )
+        )
 {
     // if (a == b)
         // if (b == a)
@@ -10,5 +10,3 @@ int abc(
                     // return a + b;
     return a + b;
 }
-
-
