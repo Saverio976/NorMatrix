@@ -28,8 +28,9 @@ def check(file: CFileParse) -> (int, int):
                     or line.endswith(") {") or ") ? " in line \
                     or ") ? " in line
                 if can_continue or (line.endswith(")") and ( \
-                        "if (" in line or "while (" in line or \
-                        "for (" in line)):
+                        "if (" in file.sub_parsedline[i - 1][1] or \
+                        "while (" in file.sub_parsedline[i - 1][1] or \
+                        "for (" in file.sub_parsedline[i - 1][1])):
                     continue
                 print(f"{file.basename}:{i + 1}: maybe too many branch ?")
                 nb_error += 1
