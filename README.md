@@ -33,11 +33,39 @@ this is not the latest normatrix but :
 #### main.py
 ```
 USAGE:
-	main.py
+	./main.py [tests\_run]
 DESCRIPTION:
 	check the norm! in the current working directory
 ARGS:
-	NO
+	NO		check the norm
+	tests_run	run internal tests of NorMatrix
+```
+#### exec.sh
+(this file exists only to keep compatibility to older version)
+```
+USAGE
+	./exec.sh [tests\_run]
+DESCRIPTION:
+	check the norm! in the current working directory
+	(call main.py)
+ARGS:
+	NO		check the norm
+	tests_run	run internal tests of NorMatrix
+```
+#### Makefile
+(this file exists only to keep compatibility to older version)
+```
+USAGE:
+	make -C path/to/NorMatrix PATH_CHECK=$PWD
+DESCRIPTION:
+	check the norm! in the current working directory
+	(call main.py)
+ARGS:
+	-C path/to/NorMatrix 	run the makefile that is in path/to/NorMatrix
+				instead of the one where you are
+
+	PATH_CHECK=$PWD		check the norm in your current working
+				directory
 ```
 
 ## run it as a github workflow
