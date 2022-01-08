@@ -15,6 +15,8 @@ def check(file: CFileParse) -> (int, int):
                 last_is_no = True
             else:
                 last_is_no = False
+        else:
+            last_is_no = False
     if len(file.sub_parsedline) < 2:
         return (nb_error, 1)
     if file.sub_parsedline[-1][1] == '' and file.sub_parsedline[-2][1] == '':
