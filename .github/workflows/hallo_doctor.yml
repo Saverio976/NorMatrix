@@ -55,7 +55,7 @@ jobs:
         run: cd tests/ok_code && ../../main.py
 
       - name: BAD_CODE
-        run: ./github/workflows/exec_files_not_in_main_clone.sh
+        run: ./.github/workflows/exec_files_not_in_main_clone.sh
 
       - name: TESTS
         run: ./main.py tests_run
