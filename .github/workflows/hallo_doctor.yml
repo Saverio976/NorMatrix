@@ -34,7 +34,7 @@ jobs:
       run: ./exec.sh tests_run
 
   all_with_strategy:
-    stategy:
+    strategy:
       fail-fats: false
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
