@@ -28,7 +28,7 @@ class CFileParse:
         lines = re.sub(r'".+?"', '', lines)
         self.sub_filelines = lines.split('\n')
 
-def get_status(lines: str) -> int:
+def get_status(lines: str) -> (TypeLine, str):
     reg = [
         '\w{1,}(\*){0,} (\*){0,}\w{1,}\(((void)|(\n{0,1} *\w{1,}(\*){0,} (\*){0,}\w{1,}(, {0,1}\n{0,1} *\w{1,}(\*){0,} (\*){0,}\w{1,}){0,3})\n{0,1} {0,})\)\n{\n(.*\n)*?}',
         ' {0,}#\w{1,}.*',
