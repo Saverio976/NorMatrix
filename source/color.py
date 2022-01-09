@@ -5,7 +5,7 @@ BLUE = '\033[0;34m'
 GREEN = '\033[0;32m'
 RESET = '\033[0m'
 
-def print_color(color: str, message):
+def print_color(color: str, message) -> None:
     choice = {
         "red": RED,
         "boldred": BOLDRED,

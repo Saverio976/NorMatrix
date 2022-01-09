@@ -1,6 +1,6 @@
 from source import color
 
-def print_stats(stats: list, files: list):
+def print_stats(stats: list, files: list) -> None:
     average_dict = {}
     for elem in stats:
         if elem[0] not in average_dict.keys():
