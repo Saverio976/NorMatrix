@@ -18,7 +18,7 @@ def check(file: CFileParse) -> (int, int):
         if line[0] != TypeLine.COMMENT:
             ll = re.sub('\/\/.*', '', line[1])
             ok, func = check_libcfunc(ll)
-            if check_libcfunc(ll):
+            if ok:
                 print(f"{file.basename}:{i + 1}: no libc func ({func})")
                 nb_error += 1
     return (nb_error, 0)
