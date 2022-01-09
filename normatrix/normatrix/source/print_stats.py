@@ -1,4 +1,7 @@
-from source import color
+try:
+    from normatrix.source import color
+except:
+    from normatrix.normatrix.source import color
 
 def print_stats(stats: list, files: list) -> None:
     average_dict = {}

@@ -13,12 +13,24 @@ class TypeLine(Enum):
 class CFileParse:
     def __init__(self, filepath, name):
         """an object of a file 'parsed'"""
-        self.basename = filepath[len(name) + 1:] # the relative path
-        self.filepath = filepath # the absolute path
-        self.real_filelines = [] # list of each line (list[str])
-        self.sub_filelines = [] # list of each line without str ("text here will be removed") (list[str])
-        self.sub_parsedline = [] # sub_filelines but with the type line (list[tuple[TypeLine, str]])
-        self.real_parsedline = [] # real_filelines but with the type line (list[tuple[TypeLine, str]])
+        # the relative path
+        # : str
+        self.basename = filepath[len(name) + 1:]
+        # the absolute path
+        # : str
+        self.filepath = filepath
+        # list of each line
+        # : list[str]
+        self.real_filelines = []
+        # list of each line without str ("text here will be removed")
+        # : list[str]
+        self.sub_filelines = []
+        # sub_filelines but with the type line
+        # : list[tuple[TypeLine, str]]
+        self.sub_parsedline = []
+        # real_filelines but with the type line
+        # : list[tuple[TypeLine, str]]
+        self.real_parsedline = []
 
     def get_filelines(self):
         with open(self.filepath) as fd:

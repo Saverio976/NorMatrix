@@ -1,6 +1,11 @@
-from source.file_parser import CFileParse
-from source.file_parser import TypeLine
-from source.config import LIBC_BANNED_FUNC
+try:
+    from normatrix.source.file_parser import CFileParse
+    from normatrix.source.file_parser import TypeLine
+    from normatrix.source.config import LIBC_BANNED_FUNC
+except:
+    from normatrix.normatrix.source.file_parser import CFileParse
+    from normatrix.normatrix.source.file_parser import TypeLine
+    from normatrix.normatrix.source.config import LIBC_BANNED_FUNC
 
 import re
 

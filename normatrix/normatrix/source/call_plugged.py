@@ -1,5 +1,9 @@
-from source import color
-from source import file_parser
+try:
+    from normatrix.source import color
+    from normatrix.source import file_parser
+except:
+    from normatrix.normatrix.source import color
+    from normatrix.normatrix.source import file_parser
 
 from importlib import import_module
 from inspect import signature
@@ -8,7 +12,10 @@ def get_modules(list_checkers: list) -> list:
     checkers = []
     for mod in list_checkers:
         try:
-            check = import_module(f'plugged.{mod}')
+            try:
+                check = import_module(f'normatrix.plugged.{mod}')
+            except:
+                check = import_module(f'normatrix.normatrix.plugged.{mod}')
             sign = signature(check.check)
             if len(sign.parameters.keys()) != 1:
                 raise ValueError
@@ -25,7 +32,7 @@ def itter_mod(file: file_parser.CFileParse, checkers: list) -> (list, int):
         try:
             info = mod.check(file)
         except Exception as e:
-            print(f"ERROR: {e}")
+            print(f"ERROR: {mod.__name__}:{mod.__file__}: {e}")
         info_type = type(info).__name__
         if (info_type == "list" or info_type == "tuple") and \
                 len(info) > 0 and type(info[0]).__name__ == "int":

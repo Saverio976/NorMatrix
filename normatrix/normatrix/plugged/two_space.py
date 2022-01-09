@@ -1,5 +1,9 @@
-from source.file_parser import CFileParse
-from source.file_parser import TypeLine
+try:
+    from normatrix.source.file_parser import CFileParse
+    from normatrix.source.file_parser import TypeLine
+except:
+    from normatrix.normatrix.source.file_parser import CFileParse
+    from normatrix.normatrix.source.file_parser import TypeLine
 
 import re
 

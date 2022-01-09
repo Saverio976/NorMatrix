@@ -1,3 +1,23 @@
+Metadata-Version: 2.1
+Name: normatrix
+Version: 0.1.5
+Summary: UNKNOWN
+Home-page: https://github.com/Saverio976/NorMatrix
+Author: Saverio
+Author-email: personnex976@gmail.com
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/Saverio976/NorMatrix/issues/new/choose
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Environment :: Console
+Classifier: Programming Language :: C
+Classifier: Topic :: Software Development :: Quality Assurance
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
 # NorMatrix
 check some norm for you
 
@@ -148,3 +168,5 @@ jobs:
 
 ### thanks
 chempa for his sample of file that dont follow the epitech norm
+
+
