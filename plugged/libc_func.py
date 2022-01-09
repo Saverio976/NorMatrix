@@ -1,22 +1,24 @@
 from source.file_parser import CFileParse
 from source.file_parser import TypeLine
+from source.config import LIBC_BANNED_FUNC
+
 import re
 
-def check_libcfunc(line: str) -> bool:
-    s = ['printf', 'memset', 'stcpy', 'strcat']
-    for elem in s:
+def check_libcfunc(line: str) -> (bool, str):
+    for elem in LIBC_BANNED_FUNC:
         m = re.search(f"\W{elem}\(", line)
         if m != None:
-            return True
-    return False
+            return (True, elem)
+    return (False, "")
 
 def check(file: CFileParse) -> (int, int):
     nb_error = 0
     for i in range(len(file.sub_parsedline)):
         line = file.sub_parsedline[i]
         if line[0] != TypeLine.COMMENT:
-            if check_libcfunc(line[1]):
-                print(f"{file.basename}:{i + 1}: no libc func")
+            ll = re.sub('\/\/.*', '', line[1])
+            ok, func = check_libcfunc(ll)
+            if check_libcfunc(ll):
+                print(f"{file.basename}:{i + 1}: no libc func ({func})")
                 nb_error += 1
     return (nb_error, 0)
-

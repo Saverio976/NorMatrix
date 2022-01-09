@@ -1,5 +1,6 @@
 from source.file_parser import CFileParse
 from source.file_parser import TypeLine
+
 import os
 
 def check(file: CFileParse) -> (int, int):

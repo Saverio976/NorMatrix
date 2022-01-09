@@ -1,5 +1,6 @@
 from source.file_parser import CFileParse
 from source.file_parser import TypeLine
+
 import re
 
 def check_non_comment_line(file: CFileParse, line: str, i: int, IS_IN_COMMENT: bool, nb_error: int):
