@@ -1,9 +1,11 @@
 try:
     from normatrix.source import color
     from normatrix.source import file_parser
+    from normatrix import plugged
 except:
     from normatrix.normatrix.source import color
     from normatrix.normatrix.source import file_parser
+    from normatrix.normatrix import plugged
 
 from importlib import import_module
 from inspect import signature
@@ -79,10 +81,7 @@ def itter_mod(checkers: list, pwd) -> (list, int):
 
 def main():
     pwd = ""
-    list_checkers = []
-    for file in os.listdir('plugged'):
-        if file.endswith('.py'):
-            list_checkers.append(file[:-3])
+    list_checkers = plugged.__all__
     checkers = get_modules(list_checkers)
     stats, nb_error = itter_mod(checkers, pwd)
     if nb_error == 0:
