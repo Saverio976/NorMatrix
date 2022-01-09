@@ -13,8 +13,11 @@ def print_stats(stats: list, files: list):
     nb_info = len([elem for elem in stats if elem[2] == 2])
     color.print_color("cyan", f"\nnumber of file checked: {len(files)}")
     color.print_color("cyan", f"average number of error per file: {average}")
-    color.print_color("cyan", f"number of MAJOR: {nb_major} = {-3 * nb_major}")
-    color.print_color("cyan", f"number of MINOR: {nb_minor} = {-1 * nb_minor}")
-    color.print_color("cyan", f"number of INFO: {nb_info}")
-    color.print_color("cyan", f"note : {-3 * nb_major + -1 * nb_minor}")
-
+    color.print_color("red", f"number of MAJOR: {nb_major} = {-3 * nb_major}")
+    color.print_color("blue", f"number of MINOR: {nb_minor} = {-1 * nb_minor}")
+    color.print_color("green", f"number of INFO: {nb_info}")
+    note = -3 * nb_major + -1 * nb_minor
+    if note == 0 or note == -0:
+        color.print_color("green", f"note: -0")
+    else:
+        color.print_color("red", f"note : {note}")
