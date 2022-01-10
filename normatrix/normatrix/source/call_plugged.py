@@ -46,7 +46,7 @@ def call_plugged(files: list, list_checkers: list, pwd: str) -> (list, int):
     nb_error = 0
     stats = []
     checkers = get_modules(list_checkers)
-    for i, file in enumerate(files)):
+    for i, file in enumerate(files):
         parse: file_parser.CFileParse = file_parser.parse(file, pwd)
         color.print_color("cyan", f"file [{parse.basename}] n°{i + 1}/{len(files)}...")
         curr_stat, last_nb_error = itter_mod(parse, checkers)

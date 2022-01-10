@@ -59,7 +59,7 @@ def get_status(lines: str) -> (TypeLine, str):
         TypeLine.ENUM,
         TypeLine.GLOBAL
     ]
-    for i, regex in enumerate(reg)):
+    for i, regex in enumerate(reg):
         res = re.search(regex, lines, re.MULTILINE)
         if res != None and res.start() <= len(lines.split('\n')[0]):
             return (status[i], lines[res.start():res.end()])
