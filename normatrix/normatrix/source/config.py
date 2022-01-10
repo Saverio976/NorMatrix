@@ -5,3 +5,9 @@ LIBC_BANNED_FUNC = [
         'strcat',
         'calloc'
 ]
+
+BAD_FILE_EXTENSION = [
+        '.a',
+        '.o',
+        '.so'
+]
