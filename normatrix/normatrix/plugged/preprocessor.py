@@ -7,7 +7,7 @@ def check(file: CFileParse) -> (int, int):
     nb_error = 0
     TAB_NB = 0
     filelines = file.sub_filelines
-    for i, line in enumerate(filelines)):
+    for i, line in enumerate(filelines):
         if " ".join(line.split()).startswith("#if"):
             TAB_NB += 4
         elif " ".join(line.split()).startswith("#endif"):

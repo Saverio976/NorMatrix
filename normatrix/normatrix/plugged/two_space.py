@@ -27,7 +27,7 @@ def check(file: CFileParse) -> (int, int):
     IS_IN_COMMENT = False
     nb_error = 0
     filelines = file.sub_filelines
-    for i, line in enumerate(filelines)):
+    for i, line in enumerate(filelines):
         if IS_IN_COMMENT:
             try:
                 line.index('*/')

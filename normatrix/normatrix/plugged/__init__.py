@@ -1,4 +1,4 @@
-"""all plugging called to check norm for a C file"""
+"""All plugging called to check norm for a C file."""
 __all__ = [
     "columns",
     "comma",

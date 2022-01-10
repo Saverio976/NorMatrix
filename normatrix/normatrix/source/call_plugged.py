@@ -14,7 +14,7 @@ def get_modules(list_checkers: list) -> list:
         try:
             try:
                 check = import_module(f'normatrix.plugged.{mod}')
-            except:
+            except ModuleNotFoundError:
                 check = import_module(f'normatrix.normatrix.plugged.{mod}')
             sign = signature(check.check)
             if len(sign.parameters.keys()) != 1:

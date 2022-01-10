@@ -17,5 +17,5 @@ def check(file: CFileParse) -> (int, int):
                 ll.index('){')
                 print(f"{file.basename}:{i + 1}: need a space between '){{'")
                 nb_error += 1
-                except ValueError: pass
+            except ValueError: pass
     return (nb_error, 1)

@@ -1,2 +1,2 @@
-"""check the Epitech C Coding Style"""
+"""Check the Epitech C Coding Style."""
 __all__ = ['plugged', 'source']
