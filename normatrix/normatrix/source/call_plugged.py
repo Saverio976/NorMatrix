@@ -21,7 +21,7 @@ def get_modules(list_checkers: list) -> list:
                 raise ValueError
             checkers.append(check)
         except:
-            color.print_color("red", f"bad puggin: pplugged/{mod}")
+            color.print_color("red", f"bad pluggin: plugged/{mod}")
     return checkers
 
 def itter_mod(file: file_parser.CFileParse, checkers: list) -> (list, int):
