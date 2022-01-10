@@ -18,14 +18,14 @@ def get_modules(list_checkers: list) -> list:
         try:
             try:
                 check = import_module(f'normatrix.plugged.{mod}')
-            except:
+            except ModuleNotFoundError:
                 check = import_module(f'normatrix.normatrix.plugged.{mod}')
             sign = signature(check.check)
             if len(sign.parameters.keys()) != 1:
                 raise ValueError
             checkers.append(check)
-        except:
-            color.print_color("red", f"bad puggin: pplugged/{mod}")
+        except Exception as e:
+            color.print_color("red", f"bad puggin: plugged/{mod}/{e}")
     return checkers
 
 def get_parsed_files_for_tests(checker, pwd) -> list:
