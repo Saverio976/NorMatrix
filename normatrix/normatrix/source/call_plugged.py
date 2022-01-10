@@ -20,8 +20,8 @@ def get_modules(list_checkers: list) -> list:
             if len(sign.parameters.keys()) != 1:
                 raise ValueError
             checkers.append(check)
-        except:
-            color.print_color("red", f"bad pluggin: plugged/{mod}")
+        except Exception as e:
+            color.print_color("red", f"bad pluggin: plugged::{mod}::error::{e}")
     return checkers
 
 def itter_mod(file: file_parser.CFileParse, checkers: list) -> (list, int):
