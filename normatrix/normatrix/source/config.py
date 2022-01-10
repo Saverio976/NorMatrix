@@ -9,5 +9,9 @@ LIBC_BANNED_FUNC = [
 BAD_FILE_EXTENSION = [
         '.a',
         '.o',
-        '.so'
+        '.so',
+        '.gch',
+        '~',
+        '#',
+        '.d'
 ]
