@@ -1,7 +1,7 @@
 try:
     from normatrix.source import color
     from normatrix.source.config import BAD_FILE_EXTENSION
-except:
+except ModuleNotFoundError:
     from normatrix.normatrix.source import color
     from normatrix.normatrix.source.config import BAD_FILE_EXTENSION
 

@@ -1,11 +1,7 @@
 try:
     from normatrix.source.file_parser import CFileParse
-    from normatrix.source.file_parser import TypeLine
-except:
+except ModuleNotFoundError:
     from normatrix.normatrix.source.file_parser import CFileParse
-    from normatrix.normatrix.source.file_parser import TypeLine
-
-import re
 
 def check_non_comment_line(file: CFileParse, line: str, i: int, IS_IN_COMMENT: bool, nb_error: int):
     separator = [chr(k) for k in range(ord('a'), ord('z')+1)] + \
@@ -22,7 +18,7 @@ def check_non_comment_line(file: CFileParse, line: str, i: int, IS_IN_COMMENT: b
             line[e:].index("  ")
             nb_error += 1
             print(f"{file.basename}:{i + 1}: two space alone ({line[e:]})")
-        except: pass
+        except ValueError: pass
     else:
         IS_IN_COMMENT = True
     return (IS_IN_COMMENT, nb_error)
@@ -31,13 +27,12 @@ def check(file: CFileParse) -> (int, int):
     IS_IN_COMMENT = False
     nb_error = 0
     filelines = file.sub_filelines
-    for i in range(len(filelines)):
-        line: str = filelines[i]
+    for i, line in enumerate(filelines)):
         if IS_IN_COMMENT:
             try:
                 line.index('*/')
                 IS_IN_COMMENT = False
-            except: pass
+            except ValueError: pass
         else:
             IS_IN_COMMENT, nb_error = check_non_comment_line(file, line, i, IS_IN_COMMENT, nb_error)
     return (nb_error, 1)

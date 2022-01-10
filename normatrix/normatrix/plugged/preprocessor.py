@@ -1,16 +1,13 @@
 try:
     from normatrix.source.file_parser import CFileParse
-    from normatrix.source.file_parser import TypeLine
-except:
+except ModuleNotFoundError:
     from normatrix.normatrix.source.file_parser import CFileParse
-    from normatrix.normatrix.source.file_parser import TypeLine
 
 def check(file: CFileParse) -> (int, int):
     nb_error = 0
     TAB_NB = 0
     filelines = file.sub_filelines
-    for i in range(len(filelines)):
-        line: str = filelines[i]
+    for i, line in enumerate(filelines)):
         if " ".join(line.split()).startswith("#if"):
             TAB_NB += 4
         elif " ".join(line.split()).startswith("#endif"):

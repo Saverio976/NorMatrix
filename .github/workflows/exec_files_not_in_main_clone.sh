@@ -1,12 +1,13 @@
+#!/bin/bash
 git clone https://github.com/Saverio976/NorMatrix
 
-CHECKERS=`diff -q src/ NorMatrix/src/ | grep -v -e 'NorMatrix' | cut -d' ' -f4`
+CHECKERS=$(diff -q src/ NorMatrix/src/ | grep -v -e 'NorMatrix' | cut -d' ' -f4)
 
 if [[ "$CHECKERS" == "" ]]; then
 	echo no new checkers
 	exit 0
 else
-	echo new checkers : $CHECKERS
+	echo new checkers : "$CHECKERS"
 	make CHECKERS="$CHECKERS" PATH_CHECK=tests/bad_code/
 fi
 

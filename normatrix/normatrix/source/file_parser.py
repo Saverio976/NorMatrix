@@ -12,7 +12,7 @@ class TypeLine(Enum):
 
 class CFileParse:
     def __init__(self, filepath, name):
-        """an object of a file 'parsed'"""
+        """An object of a file 'parsed'."""
         # the relative path
         # : str
         self.basename = filepath[len(name) + 1:]
@@ -59,8 +59,8 @@ def get_status(lines: str) -> (TypeLine, str):
         TypeLine.ENUM,
         TypeLine.GLOBAL
     ]
-    for i in range(len(reg)):
-        res = re.search(reg[i], lines, re.MULTILINE)
+    for i, regex in enumerate(reg)):
+        res = re.search(regex, lines, re.MULTILINE)
         if res != None and res.start() <= len(lines.split('\n')[0]):
             return (status[i], lines[res.start():res.end()])
     return (TypeLine.NONE, lines.split('\n')[0])

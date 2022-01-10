@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 try:
     from normatrix.source.main import main
-except:
+except ModuleNotFoundError:
     from normatrix.normatrix.source.main import main
 main()

@@ -1,9 +1,7 @@
 try:
     from normatrix.source.file_parser import CFileParse
-    from normatrix.source.file_parser import TypeLine
-except:
+except ModuleNotFoundError:
     from normatrix.normatrix.source.file_parser import CFileParse
-    from normatrix.normatrix.source.file_parser import TypeLine
 
 import os
 

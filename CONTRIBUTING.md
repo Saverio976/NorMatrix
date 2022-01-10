@@ -2,15 +2,15 @@
 
 ## add a file in the plugged/ folder
 
-### file requirements:
-- have a function named `check` that take a source.file\_parser.CFileParse object
+### file requirements
+-   have a function named `check` that take a source.file\_parser.CFileParse object
 as parameter
 
-- this function return a tuple :
+-   this function return a tuple :
 first the number of error in the file
 second the type of error (0 for major, 1 for minor, 2, for info)
 
-- example
+-   example
 ```py
 try:
     from normatrix.source.file_parser import CFileParse
@@ -47,7 +47,7 @@ __all__ = [
 ]
 ```
 
-## it is done ?
+## it is done
 you can now create a pull request !
 
-## thanks to help!
+## thanks to help

@@ -1,17 +1,13 @@
 import os
 import sys
 
-from importlib import import_module
-
 try:
-    from normatrix.source import file_parser
     from normatrix.source import color
     from normatrix.source import get_file_to_check
     from normatrix.source import print_stats
     from normatrix.source import call_plugged
     from normatrix import plugged
-except:
-    from normatrix.normatrix.source import file_parser
+except ModuleNotFoundError:
     from normatrix.normatrix.source import color
     from normatrix.normatrix.source import get_file_to_check
     from normatrix.normatrix.source import print_stats

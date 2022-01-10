@@ -1,7 +1,7 @@
 try:
     from normatrix.source.file_parser import CFileParse
     from normatrix.source.file_parser import TypeLine
-except:
+except ModuleNotFoundError:
     from normatrix.normatrix.source.file_parser import CFileParse
     from normatrix.normatrix.source.file_parser import TypeLine
 
@@ -17,5 +17,5 @@ def check(file: CFileParse) -> (int, int):
                 ll.index('){')
                 print(f"{file.basename}:{i + 1}: need a space between '){{'")
                 nb_error += 1
-            except: pass
+                except ValueError: pass
     return (nb_error, 1)

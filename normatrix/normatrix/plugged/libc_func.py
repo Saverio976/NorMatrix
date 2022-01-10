@@ -2,7 +2,7 @@ try:
     from normatrix.source.file_parser import CFileParse
     from normatrix.source.file_parser import TypeLine
     from normatrix.source.config import LIBC_BANNED_FUNC
-except:
+except ModuleNotFoundError:
     from normatrix.normatrix.source.file_parser import CFileParse
     from normatrix.normatrix.source.file_parser import TypeLine
     from normatrix.normatrix.source.config import LIBC_BANNED_FUNC

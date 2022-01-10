@@ -7,12 +7,12 @@ fi
 
 if [[ "$1" != "tests_run" ]]; then
 	echo "USAGE:"
-	echo "\t$0 [tests_run]"
+	echo -e "\t$0 [tests_run]"
 	echo "DESCRIPTION:"
-	echo "\tcheck norm!"
+	echo -e "\tcheck norm!"
 	echo "ARGS:"
-	echo "\tNO ARGS:\tcheck the norm in your current working directory"
-	echo "\ttests_run:\ttests the norm checker"
+	echo -e "\tNO ARGS:\tcheck the norm in your current working directory"
+	echo -e "\ttests_run:\ttests the norm checker"
 	exit 0
 fi
 

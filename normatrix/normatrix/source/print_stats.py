@@ -1,6 +1,6 @@
 try:
     from normatrix.source import color
-except:
+except ModuleNotFoundError:
     from normatrix.normatrix.source import color
 
 def print_stats(stats: list, files: list) -> None:
@@ -21,6 +21,6 @@ def print_stats(stats: list, files: list) -> None:
     color.print_color("green", f"number of INFO: {nb_info}")
     note = -3 * nb_major + -1 * nb_minor
     if note == 0 or note == -0:
-        color.print_color("green", f"note: -0")
+        color.print_color("green", "note: -0")
     else:
         color.print_color("red", f"note : {note}")

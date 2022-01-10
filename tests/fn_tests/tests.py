@@ -2,7 +2,7 @@ try:
     from normatrix.source import color
     from normatrix.source import file_parser
     from normatrix import plugged
-except:
+except ModuleNotFoundError:
     from normatrix.normatrix.source import color
     from normatrix.normatrix.source import file_parser
     from normatrix.normatrix import plugged
@@ -34,7 +34,7 @@ def get_parsed_files_for_tests(checker, pwd) -> list:
     files.append(os.path.basename(checker.__file__)[:-3])
     files.append(os.path.basename(checker.__file__)[:-3])
     if files[0] == "snake_case":
-        files[0] = f"tests/bad_code/SnakeKase.c"
+        files[0] = "tests/bad_code/SnakeKase.c"
     else:
         files[0] = f"tests/bad_code/{files[0]}.c"
     files[1] = f"tests/ok_code/{files[1]}.c"
@@ -80,10 +80,9 @@ def itter_mod(checkers: list, pwd) -> (list, int):
     return (stats, nb_error)
 
 def main():
-    pwd = ""
     list_checkers = plugged.__all__
     checkers = get_modules(list_checkers)
-    stats, nb_error = itter_mod(checkers, pwd)
+    stats, nb_error = itter_mod(checkers, "")
     if nb_error == 0:
         color.print_color("green", "NorMatrix [OK]")
         return 0
