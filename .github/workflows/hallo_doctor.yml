@@ -12,6 +12,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
 
     - name: NorMatrix
       run: cd tests/ok_code && ../../main.py
@@ -21,6 +25,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
 
     - name: NorMatrix
       run: ./.github/workflows/exec_files_not_in_main_clone.sh
@@ -29,6 +37,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
 
     - name: Tests
       run: ./exec.sh tests_run
