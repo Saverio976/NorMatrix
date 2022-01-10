@@ -17,7 +17,7 @@ def check(file: CFileParse) -> (int, int):
             m = re.search("\S\*", ll)
             if m != None:
                 ll = ll[m.start():]
-            if m != None and ll[0] != '*' and ll[0] != '(' and ll[0] != '/':
+            if m != None and ll[0] not in "*(/[":
                 print(f"{file.basename}:{i + 1}: need a space before a * ({ll})")
                 nb_error += 1
     return (nb_error, 1)
