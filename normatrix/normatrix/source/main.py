@@ -37,12 +37,12 @@ def main():
     color.print_color("green", "NorMatrix!")
     color.print_color("cyan", f"directory to check: {PWD}\n")
 
-    FILES_TO_CHECK = get_file_to_check.get_file_to_check(PWD)
-
-    NB_ERROR = 0
-    STATS = []
+    stats, FILES_TO_CHECK = get_file_to_check.get_file_to_check(PWD)
 
     STATS, NB_ERROR = call_plugged.call_plugged(FILES_TO_CHECK, list_checkers, PWD)
+
+    STATS.extend(stats)
+    NB_ERROR += len(stats)
 
     print_stats.print_stats(STATS, FILES_TO_CHECK)
 
