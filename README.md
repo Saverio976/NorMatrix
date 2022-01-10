@@ -9,10 +9,10 @@ check some norm for you
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/2ca7ba5d6a9e4619bd0cab7ae82ae7e1)](https://www.codacy.com/gh/Saverio976/NorMatrix/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Saverio976/NorMatrix&amp;utm_campaign=Badge_Grade)
 
-![GitHub repo size](https://img.shields.io/github/repo-size/USER/REPOSITORY?style=plastic)
-![GitHub language count](https://img.shields.io/github/languages/count/USER/REPOSITORY?style=plastic)
-![GitHub top language](https://img.shields.io/github/languages/top/USER/REPOSITORY?style=plastic)
-![GitHub last commit](https://img.shields.io/github/last-commit/USER/REPOSITORY?color=red&style=plastic)
+![GitHub repo size](https://img.shields.io/github/repo-size/Saverio976/NorMatrix?style=plastic)
+![GitHub language count](https://img.shields.io/github/languages/count/Saverio976/NorMatrix?style=plastic)
+![GitHub top language](https://img.shields.io/github/languages/top/Saverio976/NorMatrix?style=plastic)
+![GitHub last commit](https://img.shields.io/github/last-commit/Saverio976/NorMatrix?color=red&style=plastic)
 
 ## install
 ### with pipy
