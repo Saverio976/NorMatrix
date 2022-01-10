@@ -1,6 +1,8 @@
 # NorMatrix
 check some norm for you
 
+[![PyPI version](https://badge.fury.io/py/hyperas.svg)](https://badge.fury.io/py/normatrix)
+
 ![ubntu-latest , windows-latest, macos-latest, (python3.7, python3.8, python3.9, python3.10)](https://github.com/Saverio976/NorMatrix/actions/workflows/hallo_doctor.yml/badge.svg?event=push)
 
 [![NorMatrix Check](https://github.com/Saverio976/NorMatrix/actions/workflows/normatrix_check.yml/badge.svg)](https://github.com/Saverio976/NorMatrix/actions/workflows/normatrix_check.yml)
