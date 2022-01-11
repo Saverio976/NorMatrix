@@ -23,6 +23,7 @@ tests_run:
 
 fclean:
 	rm -rf dist/*
+	rm -rf $(shell find . -name '__pycache__')
 
 build: fclean build-test build-prod
 
