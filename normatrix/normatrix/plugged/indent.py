@@ -13,7 +13,7 @@ def check(file: CFileParse) -> (int, int):
             continue
         nb_space = 0
         len_l = len(line[1])
-        while len_l > 0 and line[1][nb_space] == ' ' and nb_space < len_l:
+        while len_l > 0 and nb_space < len_l and line[1][nb_space] == ' ':
             nb_space += 1
         if nb_space % 4 != 0:
             print(f"{file.basename}:{i + 1}: always four indent in source code")
