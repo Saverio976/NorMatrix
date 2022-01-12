@@ -1,5 +1,6 @@
 import os
 import sys
+import argparse
 
 try:
     from normatrix.source import color
@@ -14,37 +15,62 @@ except ModuleNotFoundError:
     from normatrix.normatrix.source import call_plugged
     from normatrix.normatrix import plugged
 
-def main():
-    if len(sys.argv) >= 2:
-        if sys.argv[1] == "tests_run":
-            from tests.fn_tests import tests
-            exit(tests.main())
+def call_argparse():
+    parser = argparse.ArgumentParser(prog='python -m normatrix',
+            description='The C Epitech Coding Style Norm Checker',
+            epilog='source: https://github.com/Saverio976/NorMatrix')
+    parser.add_argument('paths', metavar='paths', nargs='*',
+            help='list of path to check (default: the current working directory)')
+    parser.add_argument('--tests-run', action='store_const', dest='action',
+            const='tests', default='norm',
+            help='if you want to execute the tests (default: execute the norm checker)')
+    result = parser.parse_args()
+    if result.paths == []:
+        result.paths.append(os.getcwd())
+    return result
 
-    PWD: str = os.environ.get('PWD', None)
-    if PWD == None:
-        exit(84)
-
-    NORMATRIX_SOURCE = os.path.dirname(sys.argv[0])
-    if NORMATRIX_SOURCE == '':
-        NORMATRIX_SOURCE = '.'
-    os.chdir(NORMATRIX_SOURCE)
+def check_norm_path(pwd: str):
     list_checkers = plugged.__all__
 
-    color.print_color("green", "NorMatrix!")
-    color.print_color("cyan", f"directory to check: {PWD}\n")
+    color.print_color("green", "\nNorMatrix!")
+    color.print_color("cyan", f"directory to check: {pwd}\n")
 
-    stats, FILES_TO_CHECK = get_file_to_check.get_file_to_check(PWD)
+    stats, files_to_check = get_file_to_check.get_file_to_check(pwd)
 
-    STATS, NB_ERROR = call_plugged.call_plugged(FILES_TO_CHECK, list_checkers, PWD)
+    STATS, NB_ERROR = call_plugged.call_plugged(files_to_check, list_checkers, pwd)
 
     STATS.extend(stats)
     NB_ERROR += len(stats)
 
-    print_stats.print_stats(STATS, FILES_TO_CHECK)
+    print_stats.print_stats(STATS, files_to_check)
 
     if NB_ERROR == 0:
         color.print_color("green", "OK BRO")
-        exit(0)
+        return 0
     else:
         color.print_color("red", f"DUMB BRO ({NB_ERROR} error{'' if NB_ERROR == 0 else 's'})")
-        exit(NB_ERROR)
+        return NB_ERROR
+
+def switch_between_status(result):
+    if result.action == 'tests':
+        try:
+            from tests.fn_tests import tests
+            exit(tests.main())
+        except ModuleNotFoundError:
+            print("You cannot perform this action")
+            exit(1)
+    if result.action == 'norm':
+        ret_code = 0
+        for path in result.paths:
+            if check_norm_path(path) != 0:
+                ret_code += 1
+        if ret_code != 0:
+            if len(result.paths) == 1:
+                exit(1)
+            print(f'\nYou Have {ret_code} folder that dont respect the norm')
+            exit(1)
+        exit(0)
+
+def main():
+    args = call_argparse()
+    switch_between_status(args)
