@@ -1,10 +1,6 @@
 name: Check
 
-on:
-  push:
-    branches: [python-rewrite]
-  pull_request:
-    branches: [python-rewrite]
+on: [push, pull_request]
 
 jobs:
   ok_code:
