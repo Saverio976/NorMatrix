@@ -26,8 +26,11 @@ def get_escape_regex(s: str, need: bool) -> str:
 
 def check_regex_operator(filename: str, l_nb: int, conf_op: list, line: str) -> int:
     nb_error = 0
+    new_line = line
+    if len(conf_op) == 4:
+        new_line = re.sub(conf_op[3], '', new_line)
     rex = get_escape_regex(conf_op[0], True)
-    new_line = re.sub(f"{rex}{get_escape_regex(conf_op[1], False)}", '', line)
+    new_line = re.sub(f"{rex}{get_escape_regex(conf_op[1], False)}", '', new_line)
     rex = get_escape_regex(conf_op[2], True)
     new_line = re.sub(f"{get_escape_regex(conf_op[1], False)}{rex}", '', new_line)
     if (new_line.endswith(conf_op[1])):
