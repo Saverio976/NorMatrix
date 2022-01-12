@@ -49,8 +49,5 @@ jobs:
       - name: OK_CODE
         run: ./main.py tests/ok_code/
 
-      - name: BAD_CODE
-        run: ./.github/workflows/exec_files_not_in_main_clone.sh
-
       - name: TESTS
         run: ./main.py --tests-run
