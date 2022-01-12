@@ -12,3 +12,13 @@ void *gh(int *i, char *ab)
     }
     return 0;
 }
+
+char **test(int **a)
+{
+    int **gsf = 0;
+    char **zfal = 0;
+
+    if (gsf == a)
+        return zfal;
+    return zfal;
+}
