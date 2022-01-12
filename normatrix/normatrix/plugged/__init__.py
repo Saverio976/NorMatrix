@@ -11,8 +11,8 @@ __all__ = [
     "preprocessor",
     "snake_case",
     "solo_space",
-    "stars",
     "statements",
     "trailing_newline",
-    "two_space"
+    "two_space",
+    "operators"
 ]
