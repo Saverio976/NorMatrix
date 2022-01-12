@@ -10,7 +10,8 @@ def print_stats(stats: list, files: list) -> None:
             average_dict[elem[0]] = elem[1]
         else:
             average_dict[elem[0]] += elem[1]
-    average = sum(average_dict.values()) / len(files)
+    if len(files) != 0:
+        average = sum(average_dict.values()) / len(files)
     nb_major = len([elem for elem in stats if elem[2] == 0])
     nb_minor = len([elem for elem in stats if elem[2] == 1])
     nb_info = len([elem for elem in stats if elem[2] == 2])
