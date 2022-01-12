@@ -14,10 +14,7 @@ jobs:
         python-version: '3.9'
 
     - name: NorMatrix
-      run: cd tests/ok_code && ../../main.py
-
-  bad_code:
-    runs-on: ubuntu-latest
+      run: ./main.py tests/ok_code/
 
     steps:
     - uses: actions/checkout@v2
@@ -39,7 +36,7 @@ jobs:
         python-version: '3.9'
 
     - name: Tests
-      run: ./exec.sh tests_run
+      run: ./exec.sh --tests-run
 
   all_with_strategy:
     strategy:
@@ -60,10 +57,10 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: OK_CODE
-        run: cd tests/ok_code && ../../main.py
+        run: ./main.py tests/ok_code/
 
       - name: BAD_CODE
         run: ./.github/workflows/exec_files_not_in_main_clone.sh
 
       - name: TESTS
-        run: ./main.py tests_run
+        run: ./main.py --tests-run
