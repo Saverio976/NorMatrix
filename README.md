@@ -1,7 +1,7 @@
 # NorMatrix
 check some norm for you
 
-![PyPI version](https://badge.fury.io/py/normatrix)
+[![PyPI version](https://badge.fury.io/py/normatrix.svg)](https://badge.fury.io/py/normatrix)
 
 ![windows+ubuntu+macos;3.9,3.10](https://github.com/Saverio976/NorMatrix/actions/workflows/hallo_doctor.yml/badge.svg?event=push)
 
