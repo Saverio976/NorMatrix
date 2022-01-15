@@ -24,13 +24,18 @@ def call_argparse():
     parser.add_argument('--tests-run', action='store_const', dest='action',
             const='tests', default='norm',
             help='if you want to execute the tests (default: execute the norm checker)')
+    parser.add_argument('--no-operators-pluggin', action='store_const',
+            dest='plug_operator_activ', const='no', default='yes',
+            help='remove the operators pluggin (because it print some false positiv for now)')
     result = parser.parse_args()
     if result.paths == []:
         result.paths.append(os.getcwd())
     return result
 
-def check_norm_path(pwd: str):
+def check_norm_path(pwd: str, plug_operator_activ: bool) -> int:
     list_checkers = plugged.__all__
+    if plug_operator_activ == False:
+        list_checkers.remove('operators')
 
     color.print_color("green", "\nNorMatrix!")
     color.print_color("cyan", f"directory to check: {pwd}\n")
@@ -62,7 +67,7 @@ def switch_between_status(result):
     if result.action == 'norm':
         ret_code = 0
         for path in result.paths:
-            if check_norm_path(path) != 0:
+            if check_norm_path(path, result.plug_operator_activ == 'yes') != 0:
                 ret_code += 1
         if ret_code != 0:
             if len(result.paths) == 1:
