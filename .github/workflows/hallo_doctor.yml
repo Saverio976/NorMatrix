@@ -28,6 +28,17 @@ jobs:
     - name: Tests
       run: ./exec.sh --tests-run
 
+  epitests-ok:
+    runs-on: ubuntu-latest
+    container: epitechcontent/epitest-docker:latest
+
+    steps:
+    - name: get repo
+      uses: actions/checkout@v2
+
+    - name: tests ok code
+      run: ./exec.sh tests/ok_code/
+
   all_with_strategy:
     strategy:
       fail-fast: false
