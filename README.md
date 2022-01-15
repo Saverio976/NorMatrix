@@ -1,17 +1,20 @@
 # NorMatrix
 check some norm for you
 
-[![PyPI version](https://badge.fury.io/py/hyperas.svg)](https://badge.fury.io/py/normatrix)
+![PyPI version](https://badge.fury.io/py/normatrix)
 
-![ubntu-latest , windows-latest, macos-latest, (python3.7, python3.8, python3.9, python3.10)](https://github.com/Saverio976/NorMatrix/actions/workflows/hallo_doctor.yml/badge.svg?event=push)
+![windows+ubuntu+macos;3.9,3.10](https://github.com/Saverio976/NorMatrix/actions/workflows/hallo_doctor.yml/badge.svg?event=push)
 
 [![NorMatrix Check](https://github.com/Saverio976/NorMatrix/actions/workflows/normatrix_check.yml/badge.svg)](https://github.com/Saverio976/NorMatrix/actions/workflows/normatrix_check.yml)
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/2ca7ba5d6a9e4619bd0cab7ae82ae7e1)](https://www.codacy.com/gh/Saverio976/NorMatrix/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Saverio976/NorMatrix&amp;utm_campaign=Badge_Grade)
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/Saverio976/NorMatrix?style=plastic)
+
 ![GitHub language count](https://img.shields.io/github/languages/count/Saverio976/NorMatrix?style=plastic)
+
 ![GitHub top language](https://img.shields.io/github/languages/top/Saverio976/NorMatrix?style=plastic)
+
 ![GitHub last commit](https://img.shields.io/github/last-commit/Saverio976/NorMatrix?color=red&style=plastic)
 
 ## install
@@ -24,11 +27,11 @@ echo $SHELL
 ```
 if you are using bash shell (the `echo` print /something/bash):
 ```bash
-echo alias normatrix="python -m normatrix" >> $HOME/.bashrc
+echo alias normatrix=\"python -m normatrix\" >> $HOME/.bashrc
 ```
 else if you are using zsh shell (the `echo` print /something/like/zsh):
 ```bash
-echo alias normatrix="python -m normatrix" >> $HOME/.zshrc
+echo alias normatrix=\"python -m normatrix\" >> $HOME/.zshrc
 ```
 else handle this yourself bruh;
 now you can just write `normatrix` on your shell
@@ -43,11 +46,11 @@ echo $SHELL
 ```
 if you are using bash shell (the `echo` print /something/bash):
 ```bash
-echo alias normatrix="$PWD/main.py" >> $HOME/.bashrc
+echo alias normatrix=\"$PWD/main.py\" >> $HOME/.bashrc
 ```
 else if you are using zsh shell (the `echo` print /something/like/zsh):
 ```bash
-echo alias normatrix="$PWD/main.py" >> $HOME/.zshrc
+echo alias normatrix=\"$PWD/main.py\" >> $HOME/.zshrc
 ```
 else handle this yourself bruh;
 now you can just write `normatrix` on your shell
@@ -68,6 +71,8 @@ now you can just write `normatrix` on your shell
 -   [x] multiple statements
 -   [x] 5 functions per file
 -   [x] filename of source code only snake\_case
+-   [x] no line break at end of file
+-   [x] 5+5 7/9 that need a space (but some false positiv goes in)
 -   [ ] ...
 
 ## example if you run it as a github workflow
@@ -79,36 +84,49 @@ this is not the latest normatrix but :
 ## doc
 ### (if you use pipy) python -m normatrix
 ```bash
-USAGE:
-	python -m normatrix [tests_run]
-DESCRIPTION:
-	check the norm! in the current working directory
-ARGS:
-	NO		check the norm
-	tests_run	run internal tests of NorMatrix
+usage: python -m normatrix [-h] [--tests-run] [--no-operators-pluggin] [paths ...]
+
+The C Epitech Coding Style Norm Checker
+
+positional arguments:
+  paths                 list of path to check (default: the current working directory)
+
+options:
+  -h, --help            show this help message and exit
+  --tests-run           if you want to execute the tests (default: execute the norm checker)
+  --no-operators-pluggin
+                        remove the operators pluggin (because it print some false positiv for now)
 ```
 ### (only from source) main.py
 ```bash
-USAGE:
-	./main.py [tests_run]
-DESCRIPTION:
-	check the norm! in the current working directory
-	(import normatrix.source.main and execute the main() func)
-ARGS:
-	NO		check the norm
-	tests_run	run internal tests of NorMatrix
+usage: ./main.py [-h] [--tests-run] [--no-operators-pluggin] [paths ...]
+
+The C Epitech Coding Style Norm Checker
+
+positional arguments:
+  paths                 list of path to check (default: the current working directory)
+
+options:
+  -h, --help            show this help message and exit
+  --tests-run           if you want to execute the tests (default: execute the norm checker)
+  --no-operators-pluggin
+                        remove the operators pluggin (because it print some false positiv for now)
 ```
 ### (only from source) exec.sh
 (this file exists only to keep compatibility to older version)
 ```bash
-USAGE
-	./exec.sh [tests_run]
-DESCRIPTION:
-	check the norm! in the current working directory
-	(call main.py)
-ARGS:
-	NO		check the norm
-	tests_run	run internal tests of NorMatrix
+usage: ./exec.sh [-h] [--tests-run] [--no-operators-pluggin] [paths ...]
+
+The C Epitech Coding Style Norm Checker
+
+positional arguments:
+  paths                 list of path to check (default: the current working directory)
+
+options:
+  -h, --help            show this help message and exit
+  --tests-run           if you want to execute the tests (default: execute the norm checker)
+  --no-operators-pluggin
+                        remove the operators pluggin (because it print some false positiv for now)
 ```
 ### (only from source) Makefile
 (this file exists only to keep compatibility to older version)
@@ -152,10 +170,10 @@ jobs:
 ```
 
 ## Contribute
-[more information on [CONTRIBUTNG.md](https://github.com/Saverio976/NorMatrix/blob/python-rewrite/CONTRIBUTING.md)]
+***[more information on [CONTRIBUTNG.md](https://github.com/Saverio976/NorMatrix/blob/python-rewrite/CONTRIBUTING.md)]***
 
 ### special thanks
 chempa for his sample of file that dont follow the epitech norm
 
 ### contributors
-[![Contributor](https://badges.pufler.dev/contributors/Saverio976/NorMatrix?size=50&padding=5&bots=true)]
+![Contributor](https://badges.pufler.dev/contributors/Saverio976/NorMatrix?size=50&padding=5&bots=true)
