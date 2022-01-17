@@ -9,6 +9,7 @@ class TypeLine(Enum):
     GLOBAL = 5
     COMMENT = 6
     NONE = 7
+    FUNC_PROTO = 8
 
 class CFileParse:
     def __init__(self, filepath, name):
@@ -44,23 +45,25 @@ def get_status(lines: str) -> (TypeLine, str):
     reg = [
         '^( ){0,}?\/\*(.*?\n{0,}){0,}\*\/',
         '^( ){0,}?\/\/.*',
-        '((\w{1,}(\*{0,}) ){1,}(\*){0,}\w{1,})\(((void)|((\w{1,} {0,}){1,}(\*){0,} (\*){0,}\w{1,}(\[\d{0,}\]){0,}(, {0,}(\n {0,}){0,1}){0,}){1,4})\)\n\{((.*)\n){1,}?\}',
         '^ {0,}#\w{1,}.*',
         '^(typedef ){0,1}(struct )(\w{1,} ){0,1}{\n {4}\w{1,} \w{1,};(\n {4}\w{1,} \w{1,};){0,}\n}( \w{1,}){0,1};',
         '^(typedef ){0,1}(enum )(\w{1,} ){0,1}{\n {4}\w{1,} \w{1,};(\n {4}\w{1,} \w{1,};){0,}\n}( \w{1,}){0,1};',
-        '^(static ){0,1}(const ){0,1}\w{1,} \*{0,}\w{1,}(\[[0-9]{0,}\]){0,1} = ((\w{0,})|({\n{0,1} {0,}\w{0,}(,\n{0,1} {0,}\w{0,}){0,})|)\n{0,1}}{0,1};'
+        '^(static ){0,1}(const ){0,1}\w{1,} \*{0,}\w{1,}(\[[0-9]{0,}\]){0,1} = ((\w{0,})|({\n{0,1} {0,}\w{0,}(,\n{0,1} {0,}\w{0,}){0,})|)\n{0,1}}{0,1};',
+        '^((\w{1,}?(\*{0,}?) ){1,}?(\*){0,}?\w{1,}?)\(((void)|((\w{1,}? {0,}?){1,}?(\*){0,}? (\*){0,}?\w{1,}?(\[\d{0,}?\]){0,}?(, {0,}?(\n {0,}){0,1}?){0,}?){1,4}?)\);',
+        '^((\w{1,}?(\*{0,}?) ){1,}?(\*){0,}?\w{1,}?)\(((void)|((\w{1,}? {0,}?){1,}?(\*){0,}? (\*){0,}?\w{1,}?(\[\d{0,}?\]){0,}?(, {0,}?(\n {0,}){0,1}?){0,}?){1,4}?)\)\n\{((.*)\n){1,}?\}'
     ]
     status = [
         TypeLine.COMMENT,
         TypeLine.COMMENT,
-        TypeLine.FUNCTION,
         TypeLine.MACRO,
         TypeLine.STRUCT,
         TypeLine.ENUM,
-        TypeLine.GLOBAL
+        TypeLine.GLOBAL,
+        TypeLine.FUNC_PROTO,
+        TypeLine.FUNCTION
     ]
     for i, regex in enumerate(reg):
-        res = re.search(regex, lines, re.MULTILINE)
+        res = re.search(regex, lines)
         if res != None and res.start() <= len(lines.split('\n')[0]):
             return (status[i], lines[res.start():res.end()])
     return (TypeLine.NONE, lines.split('\n')[0])
@@ -69,6 +72,7 @@ def parse(filepath: str, dirname: str) -> CFileParse:
     obj = CFileParse(filepath, dirname)
     obj.get_filelines()
     i = 0
+    print(obj.basename)
     while i < len(obj.sub_filelines):
         rest = "\n".join(obj.sub_filelines[i:])
         (status, lines) = get_status(rest)
