@@ -14,9 +14,9 @@ jobs:
         python-version: '3.9'
 
     - name: NorMatrix
-      run: ./main.py tests/ok_code/
+      run: ./main.py test/ok_code/
 
-  tests:
+  test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -37,7 +37,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: tests ok code
-      run: ./exec.sh tests/ok_code/
+      run: ./exec.sh test/ok_code/
 
   all_with_strategy:
     strategy:
@@ -58,7 +58,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: OK_CODE
-        run: ./main.py tests/ok_code/
+        run: ./main.py test/ok_code/
 
       - name: TESTS
         run: ./main.py --tests-run

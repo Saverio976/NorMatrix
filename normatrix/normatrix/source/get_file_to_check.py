@@ -21,7 +21,8 @@ def get_file_to_check(path: str) -> (list, list):
             filepath = os.path.join(root, file)
             ignore_normatrix = ('NorMatrix' in filepath and 'NorMatrix' in path) or \
                     'NorMatrix' not in filepath
-            ignore_folder = '.git' not in filepath and '.vscode' not in filepath
+            ignore_folder = '.git/' not in filepath and '.vscode/' not in filepath and \
+                    'tests/' not in filepath
             if ignore_normatrix and ignore_folder and (file.endswith('.c') or file.endswith('.h')):
                 files_to_check.append(filepath)
             elif ignore_normatrix and ignore_folder:

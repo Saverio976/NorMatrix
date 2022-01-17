@@ -59,7 +59,7 @@ def check_norm_path(pwd: str, plug_operator_activ: bool) -> int:
 def switch_between_status(result):
     if result.action == 'tests':
         try:
-            from tests.fn_tests import tests
+            from test.fn_tests import tests
             exit(tests.main())
         except ModuleNotFoundError:
             print("You cannot perform this action")

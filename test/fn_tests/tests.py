@@ -34,10 +34,10 @@ def get_parsed_files_for_tests(checker, pwd) -> list:
     files.append(os.path.basename(checker.__file__)[:-3])
     files.append(os.path.basename(checker.__file__)[:-3])
     if files[0] == "snake_case":
-        files[0] = "tests/bad_code/SnakeKase.c"
+        files[0] = "test/bad_code/SnakeKase.c"
     else:
-        files[0] = f"tests/bad_code/{files[0]}.c"
-    files[1] = f"tests/ok_code/{files[1]}.c"
+        files[0] = f"test/bad_code/{files[0]}.c"
+    files[1] = f"test/ok_code/{files[1]}.c"
     if os.path.exists(files[0]):
         true_files.append(file_parser.parse(files[0], pwd))
     if os.path.exists(files[1]):
