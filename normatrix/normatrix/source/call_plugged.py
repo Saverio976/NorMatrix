@@ -45,10 +45,11 @@ def itter_mod(file: file_parser.CFileParse, checkers: list) -> (list, int):
 def call_plugged(files: list, list_checkers: list, pwd: str) -> (list, int):
     nb_error = 0
     stats = []
+    nb_files_total = len(files)
     checkers = get_modules(list_checkers)
     for i, file in enumerate(files):
+        color.print_color("cyan", f"file [{file}] n°{i + 1}/{nb_files_total}...")
         parse: file_parser.CFileParse = file_parser.parse(file, pwd)
-        color.print_color("cyan", f"file [{parse.basename}] n°{i + 1}/{len(files)}...")
         curr_stat, last_nb_error = itter_mod(parse, checkers)
         if last_nb_error != 0:
             color.print_color("boldred", f" -> nope: {parse.basename} ({last_nb_error})")

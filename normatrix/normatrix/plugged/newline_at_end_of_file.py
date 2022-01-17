@@ -5,7 +5,6 @@ except ModuleNotFoundError:
 
 def check(file: CFileParse) -> (int, int):
     if file.real_parsedline[-1][1] != "":
-        print(f"{file.real_parsedline[-1][1]}")
         print(f"{file.basename}: need a line break at end of file")
         return (1, 2)
     else:

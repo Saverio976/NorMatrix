@@ -1,11 +1,11 @@
 try:
     from normatrix.source.file_parser import CFileParse
-    from normatrix.source.file_parser import TypeLine
+    from normatrix.source.config import TypeLine
     from normatrix.source.config import OPERATOR_LIST
     from normatrix.source.config import smart_match
 except ModuleNotFoundError:
     from normatrix.normatrix.source.file_parser import CFileParse
-    from normatrix.normatrix.source.file_parser import TypeLine
+    from normatrix.normatrix.source.config import TypeLine
     from normatrix.normatrix.source.config import OPERATOR_LIST
     from normatrix.normatrix.source.config import smart_match
 
