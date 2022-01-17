@@ -18,42 +18,54 @@ check some norm for you
 ![GitHub last commit](https://img.shields.io/github/last-commit/Saverio976/NorMatrix?color=red&style=plastic)
 
 ## install
+<details>
+  <summary>With Pipy</summary>
+
 ### with pipy
 ```bash
 pip install normatrix
 ```
+Now you can use it with `python3 -m normatrix` in your terminal
+
+And if you want to just write `normatrix` :
 ```bash
 echo $SHELL
 ```
-if you are using bash shell (the `echo` print /something/bash):
+if you are using bash shell (the `echo` print `/something/bash`):
 ```bash
-echo alias normatrix=\"python -m normatrix\" >> $HOME/.bashrc
+echo alias normatrix=\"python3 -m normatrix\" >> $HOME/.bashrc
 ```
-else if you are using zsh shell (the `echo` print /something/like/zsh):
+else if you are using zsh shell (the `echo` print `/something/like/zsh`):
 ```bash
-echo alias normatrix=\"python -m normatrix\" >> $HOME/.zshrc
+echo alias normatrix=\"python3 -m normatrix\" >> $HOME/.zshrc
 ```
 else handle this yourself bruh;
-now you can just write `normatrix` on your shell
+</details>
+
+<details>
+  <summary>From source</summary>
 
 ### from source
 ```bash
 git clone https://github.com/Saverio976/NorMatrix.git
 cd NorMatrix
 ```
+Now you can use it with `./path/to/folder/NorMatrix/main.py` in your terminal
+
+And if you want to just write `normatrix` :
 ```bash
 echo $SHELL
 ```
-if you are using bash shell (the `echo` print /something/bash):
+if you are using bash shell (the `echo` print `/something/bash`):
 ```bash
 echo alias normatrix=\"$PWD/main.py\" >> $HOME/.bashrc
 ```
-else if you are using zsh shell (the `echo` print /something/like/zsh):
+else if you are using zsh shell (the `echo` print `/something/like/zsh`):
 ```bash
 echo alias normatrix=\"$PWD/main.py\" >> $HOME/.zshrc
 ```
 else handle this yourself bruh;
-now you can just write `normatrix` on your shell
+</details>
 
 ## Current Checks
 
@@ -74,12 +86,6 @@ now you can just write `normatrix` on your shell
 -   [x] no line break at end of file
 -   [x] 5+5 7/9 that need a space (but some false positiv goes in)
 -   [ ] ...
-
-## example if you run it as a github workflow
-this is not the latest normatrix but :
-[link](https://github.com/Saverio976/NorMatrix/runs/4743596186?check_suite_focus=true)
-[![NorMatrix Check](https://github.com/Saverio976/NorMatrix/actions/workflows/normatrix_check.yml/badge.svg)](https://github.com/Saverio976/NorMatrix/actions/workflows/normatrix_check.yml)
-(this workflow pass well, but it will not if you copy the code below)
 
 ## doc
 ### (if you use pipy) python -m normatrix
@@ -144,7 +150,13 @@ ARGS:
 				directory
 ```
 
-## run it as a github workflow
+## example if you run it as a github workflow
+this is not the latest normatrix but :
+[link](https://github.com/Saverio976/NorMatrix/runs/4843598808?check_suite_focus=true)
+[![NorMatrix Check](https://github.com/Saverio976/NorMatrix/actions/workflows/normatrix_check.yml/badge.svg)](https://github.com/Saverio976/NorMatrix/actions/workflows/normatrix_check.yml)
+(this workflow pass well, but it will not if you copy the code below)
+
+## run it as a **github workflow**
 in the repo root :
 ```bash
 mkdir .github
@@ -160,6 +172,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+	
+    - name: set up python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
 
     - name: clone NorMatrix
       run: git clone https://github.com/Saverio976/NorMatrix.git
