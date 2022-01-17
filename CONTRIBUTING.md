@@ -8,16 +8,16 @@ as parameter
 
 -   this function return a tuple :
 first the number of error in the file
-second the type of error (0 for major, 1 for minor, 2, for info)
+second the type of error (0 for major, 1 for minor, 2 for info)
 
 -   example
 ```py
 try:
     from normatrix.source.file_parser import CFileParse
-    from normatrix.source.file_parser import TypeLine
+    from normatrix.source.config import TypeLine
 except:
     from normatrix.normatrix.source.file_parser import CFilePar
-    from normatrix.normatrix.source.file_parser import TypeLine
+    from normatrix.normatrix.source.config import TypeLine
 
 def check(file: CFileParse) -> (int, int):
     nb_error = 0
@@ -29,20 +29,7 @@ def check(file: CFileParse) -> (int, int):
 ```py
 __all__ = [
     "columns",
-    "comma",
-    "function_line",
-    "indent",
-    "libc_func",
-    "nested_branches",
-    "number_function",
-    "parenthesis",
-    "preprocessor",
-    "snake_case",
-    "solo_space",
-    "stars",
-    "statements",
-    "trailing_newline",
-    "two_space",
+    ....,
     "your_new_filename_here"
 ]
 ```
