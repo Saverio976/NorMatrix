@@ -9,7 +9,7 @@ def check(file: CFileParse) -> (int, int):
     nb_error = 0
     last_is_no = False
     for i in range(len(file.sub_parsedline) - 1):
-        if file.sub_parsedline[i][0] not in [TypeLine.COMMENT, TypeLine.EMPTY]:
+        if file.sub_parsedline[i][0] not in [TypeLine.COMMENT]:
             if last_is_no and file.sub_parsedline[i][1] == '':
                 nb_error += 1
                 print(f"{file.basename}:{i + 1}: no 2 newline between functions")

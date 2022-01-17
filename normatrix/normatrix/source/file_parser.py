@@ -50,6 +50,11 @@ def parse(filepath: str, dirname: str) -> CFileParse:
     obj.get_filelines()
     i = 0
     while i < len(obj.sub_filelines):
+        if obj.sub_filelines[i] == '':
+            obj.sub_parsedline.append((TypeLine.NONE, obj.sub_filelines[i]))
+            obj.real_parsedline.append((TypeLine.NONE, obj.real_filelines[i]))
+            i += 1
+            continue
         rest = "\n".join(obj.sub_filelines[i:])
         (status, lines) = get_status(rest)
         for line in lines.split('\n'):
