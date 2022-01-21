@@ -15,5 +15,6 @@ __all__ = [
     "trailing_newline",
     "two_space",
     "operators",
-    "newline_at_end_of_file"
+    "newline_at_end_of_file",
+    "subscriptor"
 ]
