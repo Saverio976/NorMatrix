@@ -85,6 +85,7 @@ else handle this yourself bruh;
 -   [x] filename of source code only snake\_case
 -   [x] no line break at end of file
 -   [x] 5+5 7/9 that need a space (but some false positiv goes in)
+-   [x] no space after [ and space  before ]
 -   [ ] ...
 
 ## doc
