@@ -57,15 +57,18 @@ def check_norm_path(pwd: str, plug_operator_activ: bool) -> int:
         return NB_ERROR
 
 def execute_tests():
+    print(__file__)
+    print(os.getcwd())
     dirr = os.path.dirname(__file__)
     dirr = dirr.split("/")
     dirr = os.path.join("/", *dirr[:-3])
     os.chdir(dirr)
+    print(os.getcwd())
     try:
         from test.fn_tests import tests
         exit(tests.main())
-    except ModuleNotFoundError:
-        print("You cannot perform this action")
+    except ModuleNotFoundError as e:
+        print(f"You cannot perform this action: {e}")
         exit(1)
 
 
