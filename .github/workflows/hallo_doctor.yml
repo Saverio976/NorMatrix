@@ -20,6 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
@@ -38,6 +39,9 @@ jobs:
 
     - name: tests ok code
       run: ./exec.sh test/ok_code/
+
+    - name: Tests
+      run: ./exec.sh --tests-run
 
   all_with_strategy:
     strategy:
