@@ -58,8 +58,9 @@ def check_norm_path(pwd: str, plug_operator_activ: bool) -> int:
 
 def execute_tests():
     dirr = os.path.dirname(__file__)
+    dirr = dirr.split("/")
+    dirr = os.path.join("/", *dirr[:-3])
     os.chdir(dirr)
-    os.chdir("../../../")
     try:
         from test.fn_tests import tests
         exit(tests.main())
