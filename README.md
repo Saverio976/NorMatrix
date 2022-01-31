@@ -100,7 +100,6 @@ positional arguments:
 
 options:
   -h, --help            show this help message and exit
-  --tests-run           if you want to execute the tests (default: execute the norm checker)
   --no-operators-pluggin
                         remove the operators pluggin (because it print some false positiv for now)
 ```
@@ -115,7 +114,6 @@ positional arguments:
 
 options:
   -h, --help            show this help message and exit
-  --tests-run           if you want to execute the tests (default: execute the norm checker)
   --no-operators-pluggin
                         remove the operators pluggin (because it print some false positiv for now)
 ```
@@ -131,7 +129,6 @@ positional arguments:
 
 options:
   -h, --help            show this help message and exit
-  --tests-run           if you want to execute the tests (default: execute the norm checker)
   --no-operators-pluggin
                         remove the operators pluggin (because it print some false positiv for now)
 ```
