@@ -21,9 +21,6 @@ def call_argparse():
             epilog='source: https://github.com/Saverio976/NorMatrix')
     parser.add_argument('paths', metavar='paths', nargs='*',
             help='list of path to check (default: the current working directory)')
-    parser.add_argument('--tests-run', action='store_const', dest='action',
-            const='tests', default='norm',
-            help='if you want to execute the tests (default: execute the norm checker)')
     parser.add_argument('--no-operators-pluggin', action='store_const',
             dest='plug_operator_activ', const='no', default='yes',
             help='remove the operators pluggin (because it print some false positiv for now)')
@@ -71,22 +68,16 @@ def execute_tests():
         print(f"You cannot perform this action: {e}")
         exit(1)
 
-
-def switch_between_status(result):
-    if result.action == 'tests':
-        execute_tests()
-    if result.action == 'norm':
-        ret_code = 0
-        for path in result.paths:
-            if check_norm_path(path, result.plug_operator_activ == 'yes') != 0:
-                ret_code += 1
-        if ret_code != 0:
-            if len(result.paths) == 1:
-                exit(1)
-            print(f'\nYou Have {ret_code} folder that dont respect the norm')
-            exit(1)
-        exit(0)
-
 def main():
     args = call_argparse()
-    switch_between_status(args)
+    result = args
+    ret_code = 0
+    for path in result.paths:
+        if check_norm_path(path, result.plug_operator_activ == 'yes') != 0:
+            ret_code += 1
+    if ret_code != 0:
+        if len(result.paths) == 1:
+            exit(1)
+        print(f'\nYou Have {ret_code} folder that dont respect the norm')
+        exit(1)
+    exit(0)
