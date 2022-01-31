@@ -56,14 +56,21 @@ def check_norm_path(pwd: str, plug_operator_activ: bool) -> int:
         color.print_color("red", f"DUMB BRO ({NB_ERROR} error{'' if NB_ERROR == 0 else 's'})")
         return NB_ERROR
 
+def execute_tests():
+    dirr = os.path.dirname(__file__)
+    os.chdir(dirr)
+    os.chdir("../../../")
+    try:
+        from test.fn_tests import tests
+        exit(tests.main())
+    except ModuleNotFoundError:
+        print("You cannot perform this action")
+        exit(1)
+
+
 def switch_between_status(result):
     if result.action == 'tests':
-        try:
-            from test.fn_tests import tests
-            exit(tests.main())
-        except ModuleNotFoundError:
-            print("You cannot perform this action")
-            exit(1)
+        execute_tests()
     if result.action == 'norm':
         ret_code = 0
         for path in result.paths:
