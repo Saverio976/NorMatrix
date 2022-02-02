@@ -3,7 +3,7 @@ check some norm for you
 
 [![PyPI version](https://badge.fury.io/py/normatrix.svg)](https://badge.fury.io/py/normatrix)
 
-[![python-version](https://img.shields.io/badge/python-%3E%3D3.7-green)]
+![python-version](https://img.shields.io/badge/python-%3E%3D3.7-green)
 
 ![windows+ubuntu+macos;3.9,3.10](https://github.com/Saverio976/NorMatrix/actions/workflows/hallo_doctor.yml/badge.svg?event=push)
 
