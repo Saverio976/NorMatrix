@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2022
+** h
+** File description:
+** h
+*/
+
 int a(int b)
 {
     if (b == b) {

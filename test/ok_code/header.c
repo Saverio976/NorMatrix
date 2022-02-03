@@ -1,12 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** h
+** hh
 ** File description:
-** h
+** hh
 */
-
-int abc(int a)
-{
-    //
-    return a;
-}

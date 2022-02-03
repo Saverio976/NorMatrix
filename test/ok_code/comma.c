@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2022
+** h
+** File description:
+** h
+*/
+
 int func(int c, int d)
 {
     return c + d;

@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2022
+** h
+** File description:
+** h
+*/
+
 char *func(void)
 {
     static char buf[] = "  k    ";

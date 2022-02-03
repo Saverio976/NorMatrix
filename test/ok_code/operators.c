@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2022
+** h
+** File description:
+** h
+*/
+
 void av(char *ab, char *ac)
 {
     if (&ab == &ac) {
