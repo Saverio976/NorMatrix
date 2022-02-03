@@ -16,5 +16,6 @@ __all__ = [
     "two_space",
     "operators",
     "newline_at_end_of_file",
-    "subscriptor"
+    "subscriptor",
+    "header"
 ]
