@@ -19,4 +19,7 @@ def check(file: CFileParse) -> (int, int):
             print(f"{file.basename}:{i + 1}: need an #if.. before an #endif ({line})")
             nb_error += 1
             TAB_NB = 0
+        if " ".join(line.split()).startswith('#define') and file.basename.endswith('.c'):
+            print(f"{file.basename}:{i + 1}: no define in .c ({line})")
+            nb_error += 1
     return (nb_error, 1)
