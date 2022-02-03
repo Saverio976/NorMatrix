@@ -88,6 +88,8 @@ else handle this yourself bruh;
 -   [x] no line break at end of file
 -   [x] 5+5 7/9 that need a space (but some false positiv goes in)
 -   [x] no space after [ and space  before ]
+-   [x] header
+-   [x] #define in .c
 -   [ ] ...
 
 ## doc
@@ -172,7 +174,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-	
+
     - name: set up python
       uses: actions/setup-python@v2
       with:
