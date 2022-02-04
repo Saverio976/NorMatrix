@@ -17,5 +17,6 @@ __all__ = [
     "operators",
     "newline_at_end_of_file",
     "subscriptor",
-    "header"
+    "header",
+    "nb_params"
 ]
