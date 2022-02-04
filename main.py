@@ -91,17 +91,28 @@ def itter_mod(checkers: list, pwd) -> (list, int):
     return (stats, nb_error)
 
 def test_main():
+    nb_ret = 0
     list_checkers = plugged.__all__
     checkers = get_modules(list_checkers)
     stats, nb_error = itter_mod(checkers, "")
     if nb_error == 0:
         color.print_color("green", "NorMatrix [OK]")
-        return 0
+        nb_ret = 0
     else:
         color.print_color("boldred", "NorMatrix [FAILED]")
         for file in stats:
             color.print_color("red", f"{file}")
-        return 1
+        nb_ret = 1
+    list_checkers = plugged.PREVIEW
+    checkers = get_modules(list_checkers)
+    stats, nb_error = itter_mod(checkers, "")
+    if nb_error == 0:
+        color.print_color("green", "Normatrix[preview] [OK]")
+    else:
+        color.print_color("boldred", "NorMatrix[preview] [FAILED]")
+        for file in stats:
+            color.print_color("red", f"{file}")
+    return nb_ret
 ##############################################################################
 
 if len(sys.argv) > 1 and sys.argv[1] == "--tests-run":
