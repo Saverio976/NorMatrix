@@ -106,6 +106,7 @@ options:
   -h, --help            show this help message and exit
   --no-operators-pluggin
                         remove the operators pluggin (because it print some false positiv for now)
+  --preview             add some plugin that are added recently
 ```
 ### (only from source) main.py
 ```bash
@@ -120,6 +121,7 @@ options:
   -h, --help            show this help message and exit
   --no-operators-pluggin
                         remove the operators pluggin (because it print some false positiv for now)
+  --preview             add some plugin that are added recently
 ```
 ### (only from source) exec.sh
 (this file exists only to keep compatibility to older version)
@@ -135,21 +137,22 @@ options:
   -h, --help            show this help message and exit
   --no-operators-pluggin
                         remove the operators pluggin (because it print some false positiv for now)
+  --preview             add some plugin that are added recently
 ```
 ### (only from source) Makefile
 (this file exists only to keep compatibility to older version)
 ```bash
 USAGE:
-	make -C path/to/NorMatrix PATH_CHECK=$PWD
+    make -C path/to/NorMatrix PATH_CHECK=$PWD
 DESCRIPTION:
-	check the norm! in the current working directory
-	(call main.py)
+    check the norm! in the current working directory
+    (call main.py)
 ARGS:
-	-C path/to/NorMatrix 	run the makefile that is in path/to/NorMatrix
-				instead of the one where you are
+    -C path/to/NorMatrix    run the makefile that is in path/to/NorMatrix
+                            instead of the one where you are
 
-	PATH_CHECK=$PWD		check the norm in your current working
-				directory
+    PATH_CHECK=$PWD	        check the norm in your current working
+                            directory
 ```
 
 ## example if you run it as a github workflow
