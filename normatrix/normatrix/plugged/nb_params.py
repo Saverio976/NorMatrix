@@ -7,28 +7,26 @@ except ModuleNotFoundError:
 
 import re
 
-reg_proto = re.compile('^(\w{1,} ){1,}(\w){1,}\((.*?\n{0,1}){0,}?\);')
-reg = re.compile('^(\w{1,} ){1,}(\w){1,}\((.*?\n{0,1}){0,}?\) {0,1}\n{0,1}\{')
+reg = re.compile('^(?!.*=)(\w{1,} {0,1}){2,}\((.*?\n{0,1}){0,}?\) {0,1}\n{0,1}\{')
 
 def get_only_func_decl(rest: str):
-    res = reg_proto.match(rest)
-    if res != None and res.start() <= len(rest.split('\n')[0]):
-        return ''
     res = reg.match(rest)
-    if res != None and res.start() <= len(rest.split('\n')[0]):
+    if res != None:
         return rest[res.start():res.end()]
     return ''
 
 def check(file: CFileParse) -> (int, int):
     nb_error = 0
-    i = 0
-    while i < len(file.sub_filelines):
-        rest = "\n".join(file.sub_filelines[i:])
-        lines = get_only_func_decl(rest)
-        n = lines.count(',') + 1
+    if file.basename.endswith('.h'):
+        return (0, 0)
+    for i, line in enumerate(file.sub_parsedline):
+        if line[0] == TypeLine.COMMENT:
+            continue
+        all_lines = file.sub_parsedline[i:]
+        rest_lines = "\n".join([x[1] for x in all_lines])
+        only_decl = get_only_func_decl(rest_lines)
+        n = only_decl.count(',') + 1
         if n > 4:
             print(f"{file.basename}:{i + 1}: too many arguments ({n} > 4)")
             nb_error += 1
-        for line in lines.split('\n'):
-            i += 1
     return (nb_error, 0)
