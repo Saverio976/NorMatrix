@@ -24,15 +24,20 @@ def call_argparse():
     parser.add_argument('--no-operators-pluggin', action='store_const',
             dest='plug_operator_activ', const='no', default='yes',
             help='remove the operators pluggin (because it print some false positiv for now)')
+    parser.add_argument('--preview', action='store_const',
+            dest='preview_plugins', const='yes', default='no',
+            help='add some plugin that are added recently')
     result = parser.parse_args()
     if result.paths == []:
         result.paths.append(os.getcwd())
     return result
 
-def check_norm_path(pwd: str, plug_operator_activ: bool) -> int:
+def check_norm_path(pwd: str, plug_operator_activ: bool, preview: bool) -> int:
     list_checkers = plugged.__all__
     if plug_operator_activ == False:
         list_checkers.remove('operators')
+    if preview:
+        list_checkers.extend(plugged.PREVIEW)
 
     color.print_color("green", "\nNorMatrix!")
     color.print_color("cyan", f"directory to check: {pwd}\n")
@@ -53,27 +58,14 @@ def check_norm_path(pwd: str, plug_operator_activ: bool) -> int:
         color.print_color("red", f"DUMB BRO ({NB_ERROR} error{'' if NB_ERROR == 0 else 's'})")
         return NB_ERROR
 
-def execute_tests():
-    print(__file__)
-    print(os.getcwd())
-    dirr = os.path.dirname(__file__)
-    dirr = dirr.split("/")
-    dirr = os.path.join("/", *dirr[:-3])
-    os.chdir(dirr)
-    print(os.getcwd())
-    try:
-        from test.fn_tests import tests
-        exit(tests.main())
-    except ModuleNotFoundError as e:
-        print(f"You cannot perform this action: {e}")
-        exit(1)
-
 def main():
     args = call_argparse()
     result = args
     ret_code = 0
+    is_preview = result.preview_plugins == "yes"
+    is_plugin_operator = result.plug_operator_activ == "yes"
     for path in result.paths:
-        if check_norm_path(path, result.plug_operator_activ == 'yes') != 0:
+        if check_norm_path(path, is_plugin_operator, is_preview) != 0:
             ret_code += 1
     if ret_code != 0:
         if len(result.paths) == 1:
