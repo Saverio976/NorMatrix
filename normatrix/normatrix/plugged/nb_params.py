@@ -7,9 +7,13 @@ except ModuleNotFoundError:
 
 import re
 
+reg_proto = re.compile('^(\w{1,} ){1,}(\w){1,}\((.*?\n{0,1}){0,}?\);')
 reg = re.compile('^(\w{1,} ){1,}(\w){1,}\((.*?\n{0,1}){0,}?\) {0,1}\n{0,1}\{')
 
 def get_only_func_decl(rest: str):
+    res = reg_proto.match(rest)
+    if res != None and res.start() <= len(rest.split('\n')[0]):
+        return ''
     res = reg.match(rest)
     if res != None and res.start() <= len(rest.split('\n')[0]):
         return rest[res.start():res.end()]
