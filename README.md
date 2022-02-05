@@ -93,6 +93,9 @@ else handle this yourself bruh;
 -   [ ] ...
 
 ## doc
+<details>
+  <summary>(if you use pipy) python -m normatrix</summary>
+
 ### (if you use pipy) python -m normatrix
 ```bash
 usage: python -m normatrix [-h] [--tests-run] [--no-operators-pluggin] [paths ...]
@@ -108,6 +111,11 @@ options:
                         remove the operators pluggin (because it print some false positiv for now)
   --preview             add some plugin that are added recently
 ```
+</details>
+
+<details>
+  <summary>(only from source) main.py</summary>
+
 ### (only from source) main.py
 ```bash
 usage: ./main.py [-h] [--tests-run] [--no-operators-pluggin] [paths ...]
@@ -123,6 +131,11 @@ options:
                         remove the operators pluggin (because it print some false positiv for now)
   --preview             add some plugin that are added recently
 ```
+</details>
+
+<details>
+  <summary>(only from source) exec.sh</summary>
+
 ### (only from source) exec.sh
 (this file exists only to keep compatibility to older version)
 ```bash
@@ -139,8 +152,14 @@ options:
                         remove the operators pluggin (because it print some false positiv for now)
   --preview             add some plugin that are added recently
 ```
+</details>
+
+<details>
+  <summary>(only from source) Makefile</summary>
+
 ### (only from source) Makefile
 (this file exists only to keep compatibility to older version)
+(if you can, move to another choice)
 ```bash
 USAGE:
     make -C path/to/NorMatrix PATH_CHECK=$PWD
@@ -154,12 +173,16 @@ ARGS:
     PATH_CHECK=$PWD	        check the norm in your current working
                             directory
 ```
+</details>
 
 ## example if you run it as a github workflow
 this is not the latest normatrix but :
-[link](https://github.com/Saverio976/NorMatrix/runs/4843598808?check_suite_focus=true)
-[![NorMatrix Check](https://github.com/Saverio976/NorMatrix/actions/workflows/normatrix_check.yml/badge.svg)](https://github.com/Saverio976/NorMatrix/actions/workflows/normatrix_check.yml)
-(this workflow pass well, but it will not if you copy the code below)
+
+link : [link](https://github.com/Saverio976/NorMatrix/runs/4843598808?check_suite_focus=true)
+
+state : [![NorMatrix Check](https://github.com/Saverio976/NorMatrix/actions/workflows/normatrix_check.yml/badge.svg)](https://github.com/Saverio976/NorMatrix/actions/workflows/normatrix_check.yml)
+
+(N.B. : this workflow pass well, but it will not if you copy the code below)
 
 ## run it as a **github workflow**
 in the repo root :
@@ -195,7 +218,8 @@ jobs:
 ***[more information on [CONTRIBUTNG.md](https://github.com/Saverio976/NorMatrix/blob/python-rewrite/CONTRIBUTING.md)]***
 
 ### special thanks
-chempa for his sample of file that dont follow the epitech norm
+-    chempa for his sample of file that dont follow the epitech norm
+-    and invisble testers that says "bha baah normatrix have a bug"
 
 ### contributors
 ![Contributor](https://badges.pufler.dev/contributors/Saverio976/NorMatrix?size=50&padding=5&bots=true)
