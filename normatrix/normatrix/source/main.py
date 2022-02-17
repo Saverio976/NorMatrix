@@ -7,12 +7,14 @@ try:
     from normatrix.source import get_file_to_check
     from normatrix.source import print_stats
     from normatrix.source import call_plugged
+    from normatrix.source import makefile
     from normatrix import plugged
 except ModuleNotFoundError:
     from normatrix.normatrix.source import color
     from normatrix.normatrix.source import get_file_to_check
     from normatrix.normatrix.source import print_stats
     from normatrix.normatrix.source import call_plugged
+    from normatrix.normatrix.source import makefile
     from normatrix.normatrix import plugged
 
 def call_argparse():
@@ -65,7 +67,12 @@ def main():
     is_preview = result.preview_plugins == "yes"
     is_plugin_operator = result.plug_operator_activ == "yes"
     for path in result.paths:
+        curr_ret_code = 0
         if check_norm_path(path, is_plugin_operator, is_preview) != 0:
+            curr_ret_code += 1
+        if makefile.check(path)[0] != 0:
+            curr_ret_code += 1
+        if curr_ret_code != 0:
             ret_code += 1
     if ret_code != 0:
         if len(result.paths) == 1:
