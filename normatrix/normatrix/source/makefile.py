@@ -24,11 +24,14 @@ def check(path: str) -> (int, int):
         ret = subprocess.run(["nm", exe], capture_output=True)
         if ret.returncode == 0:
             data = ret.stdout.decode("utf-8")
-            if "memset" in data:
+            if " memset" in data:
                 color.print_color("red", f"memset found in {exe} (maybe you use clang to compile and it use memset for some optimisation)")
                 nb_error += 1
             else:
                 color.print_color("green", f"ok : {str(exe)}")
         else:
             print(ret.stderr.decode("utf-8"))
+    ret = subprocess.run(["make", "-C", path, "fclean"], capture_output=True);
+    if ret.returncode != 0:
+        print(ret.stderr.decode("utf-8"))
     return (nb_error, 0)
