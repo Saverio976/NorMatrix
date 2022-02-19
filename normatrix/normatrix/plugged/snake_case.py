@@ -5,7 +5,7 @@ except ModuleNotFoundError:
 
 import os
 
-def check(file: CFileParse) -> (int, int):
+def check(context, file: CFileParse) -> (int, int):
     for char in os.path.basename(file.basename):
         if char in [chr(i) for i in range(ord('A'), ord('Z') + 1)]:
             print(f"{file.basename}: only lower case in file name")

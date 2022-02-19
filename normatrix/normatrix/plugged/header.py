@@ -9,7 +9,7 @@ def print_error(file: str) -> (int, int):
     print(f"{file}: bad header")
     return (1, 0)
 
-def check(file: CFileParse) -> (int, int):
+def check(context, file: CFileParse) -> (int, int):
     nb_error = 0
     lines = file.real_filelines[:6]
     if len(lines) != 6:

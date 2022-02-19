@@ -7,7 +7,7 @@ except ModuleNotFoundError:
 
 import re
 
-def check(file: CFileParse) -> (int, int):
+def check(context, file: CFileParse) -> (int, int):
     nb_error = 0
     for i, line in enumerate(file.sub_parsedline):
         if line[0] != TypeLine.COMMENT:

@@ -15,7 +15,7 @@ def get_only_func_decl(rest: str):
         return rest[res.start():res.end()]
     return ''
 
-def check(file: CFileParse) -> (int, int):
+def check(context, file: CFileParse) -> (int, int):
     nb_error = 0
     if file.basename.endswith('.h'):
         return (0, 0)

@@ -23,7 +23,7 @@ def check_non_comment_line(file: CFileParse, line: str, i: int, IS_IN_COMMENT: b
         IS_IN_COMMENT = True
     return (IS_IN_COMMENT, nb_error)
 
-def check(file: CFileParse) -> (int, int):
+def check(context, file: CFileParse) -> (int, int):
     IS_IN_COMMENT = False
     nb_error = 0
     filelines = file.sub_filelines

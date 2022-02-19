@@ -1,12 +1,12 @@
 try:
     from normatrix.source.file_parser import CFileParse
     from normatrix.source.config import TypeLine
-    from normatrix.source.config import OPERATOR_LIST
+    from normatrix.source.context import Context
     from normatrix.source.config import smart_match
 except ModuleNotFoundError:
     from normatrix.normatrix.source.file_parser import CFileParse
     from normatrix.normatrix.source.config import TypeLine
-    from normatrix.normatrix.source.config import OPERATOR_LIST
+    from normatrix.normatrix.source.context import Context
     from normatrix.normatrix.source.config import smart_match
 
 import re
@@ -42,13 +42,13 @@ def check_regex_operator(filename: str, l_nb: int, conf_op: list, line: str) -> 
     except ValueError: pass
     return nb_error
 
-def check(file: CFileParse) -> (int, int):
+def check(context: Context, file: CFileParse) -> (int, int):
     nb_error = 0
     for i, line in enumerate(file.sub_parsedline):
         if line[0] == TypeLine.COMMENT:
             continue
         ll = re.sub("'.*?'", '', line[1])
         ll = re.sub("\/\/.*", '', ll)
-        for conf in OPERATOR_LIST:
+        for conf in context.OPERATOR_LIST:
             nb_error += check_regex_operator(file.basename, i + 1, conf, ll)
     return (nb_error, 1)

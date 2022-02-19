@@ -7,7 +7,7 @@ except ModuleNotFoundError:
 
 import re
 
-def check(file: CFileParse) -> (int, int):
+def check(context, file: CFileParse) -> (int, int):
     nb_error = 0
     for i in range(len(file.sub_parsedline)):
         line = file.sub_parsedline[i]

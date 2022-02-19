@@ -6,6 +6,7 @@ try:
     from normatrix.source import color
     from normatrix.source import get_file_to_check
     from normatrix.source import print_stats
+    from normatrix.source.context import Context
     from normatrix.source import call_plugged
     from normatrix.source import makefile
     from normatrix import plugged
@@ -13,6 +14,7 @@ except ModuleNotFoundError:
     from normatrix.normatrix.source import color
     from normatrix.normatrix.source import get_file_to_check
     from normatrix.normatrix.source import print_stats
+    from normatrix.normatrix.source.context import Context
     from normatrix.normatrix.source import call_plugged
     from normatrix.normatrix.source import makefile
     from normatrix.normatrix import plugged
@@ -29,12 +31,15 @@ def call_argparse():
     parser.add_argument('--preview', action='store_const',
             dest='preview_plugins', const='yes', default='no',
             help='add some plugin that are added recently')
+    parser.add_argument('--conf', action='store_const',
+            dest='configs', const='yes', default='no',
+            help='tells if you have a .normatrix config file')
     result = parser.parse_args()
     if result.paths == []:
         result.paths.append(os.getcwd())
     return result
 
-def check_norm_path(pwd: str, plug_operator_activ: bool, preview: bool) -> int:
+def check_norm_path(pwd: str, context: Context, plug_operator_activ: bool, preview: bool) -> int:
     list_checkers = plugged.__all__
     if plug_operator_activ == False:
         list_checkers.remove('operators')
@@ -46,7 +51,7 @@ def check_norm_path(pwd: str, plug_operator_activ: bool, preview: bool) -> int:
 
     stats, files_to_check = get_file_to_check.get_file_to_check(pwd)
 
-    STATS, NB_ERROR = call_plugged.call_plugged(files_to_check, list_checkers, pwd)
+    STATS, NB_ERROR = call_plugged.call_plugged(context, files_to_check, list_checkers, pwd)
 
     STATS.extend(stats)
     NB_ERROR += len(stats)
@@ -68,7 +73,11 @@ def main():
     is_plugin_operator = result.plug_operator_activ == "yes"
     for path in result.paths:
         curr_ret_code = 0
-        if check_norm_path(path, is_plugin_operator, is_preview) != 0:
+        if result.configs == "yes":
+            context = Context(path)
+        else:
+            context = Context(None)
+        if check_norm_path(path, context, is_plugin_operator, is_preview) != 0:
             curr_ret_code += 1
         if makefile.check(path)[0] != 0:
             curr_ret_code += 1

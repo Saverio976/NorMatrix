@@ -5,7 +5,7 @@ except ModuleNotFoundError:
     from normatrix.normatrix.source.file_parser import CFileParse
     from normatrix.normatrix.source.config import TypeLine
 
-def check(file: CFileParse) -> (int, int):
+def check(context, file: CFileParse) -> (int, int):
     number_func = 0
     last_is_in_func = False
     for line in file.sub_parsedline:

@@ -1,8 +1,10 @@
 try:
     from normatrix.source import color
+    from normatrix.source.context import Context
     from normatrix.source import file_parser
 except ModuleNotFoundError:
     from normatrix.normatrix.source import color
+    from normatrix.normatrix.source.context import Context
     from normatrix.normatrix.source import file_parser
 
 from importlib import import_module
@@ -17,20 +19,20 @@ def get_modules(list_checkers: list) -> list:
             except ModuleNotFoundError:
                 check = import_module(f'normatrix.normatrix.plugged.{mod}')
             sign = signature(check.check)
-            if len(sign.parameters.keys()) != 1:
+            if len(sign.parameters.keys()) != 2:
                 raise ValueError
             checkers.append(check)
         except Exception as e:
             color.print_color("red", f"bad pluggin: plugged::{mod}::error::{e}")
     return checkers
 
-def itter_mod(file: file_parser.CFileParse, checkers: list) -> (list, int):
+def itter_mod(context: Context, file: file_parser.CFileParse, checkers: list) -> (list, int):
     stats = []
     nb_error = 0
     for mod in checkers:
         info = (0, 3)
         try:
-            info = mod.check(file)
+            info = mod.check(context, file)
         except Exception as e:
             print(f"ERROR: {mod.__name__}:{mod.__file__}: {e}")
         info_type = type(info).__name__
@@ -42,7 +44,7 @@ def itter_mod(file: file_parser.CFileParse, checkers: list) -> (list, int):
                 stats.extend(errors)
     return (stats, nb_error)
 
-def call_plugged(files: list, list_checkers: list, pwd: str) -> (list, int):
+def call_plugged(context: Context, files: list, list_checkers: list, pwd: str) -> (list, int):
     nb_error = 0
     stats = []
     nb_files_total = len(files)
@@ -50,7 +52,7 @@ def call_plugged(files: list, list_checkers: list, pwd: str) -> (list, int):
     for i, file in enumerate(files):
         color.print_color("cyan", f"file [{file}] n°{i + 1}/{nb_files_total}...")
         parse: file_parser.CFileParse = file_parser.parse(file, pwd)
-        curr_stat, last_nb_error = itter_mod(parse, checkers)
+        curr_stat, last_nb_error = itter_mod(context, parse, checkers)
         if last_nb_error != 0:
             color.print_color("boldred", f" -> nope: {parse.basename} ({last_nb_error})")
             nb_error += last_nb_error

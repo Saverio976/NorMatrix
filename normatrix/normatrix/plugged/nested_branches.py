@@ -7,7 +7,7 @@ except ModuleNotFoundError:
 
 import re
 
-def check(file: CFileParse) -> (int, int):
+def check(context, file: CFileParse) -> (int, int):
     nb_error = 0
     in_switch = False
     is_in_func = [False, False]
