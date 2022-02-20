@@ -90,6 +90,7 @@ else handle this yourself bruh;
 -   [x] no space after [ and space  before ]
 -   [x] header
 -   [x] #define in .c
+-   [x] make + check exe if the compiler add some banned function
 -   [ ] ...
 
 ## doc
@@ -98,18 +99,21 @@ else handle this yourself bruh;
 
 ### (if you use pipy) python -m normatrix
 ```bash
-usage: python -m normatrix [-h] [--tests-run] [--no-operators-pluggin] [paths ...]
+usage: python -m normatrix [-h] [--no-operators-pluggin] [--preview] [--conf] [paths ...]
 
 The C Epitech Coding Style Norm Checker
 
 positional arguments:
   paths                 list of path to check (default: the current working directory)
 
-options:
-  -h, --help            show this help message and exit
-  --no-operators-pluggin
-                        remove the operators pluggin (because it print some false positiv for now)
-  --preview             add some plugin that are added recently
+  options:
+    -h, --help            show this help message and exit
+    --no-operators-pluggin
+                          remove the operators pluggin (because it print some false positiv for now)
+    --preview             add some plugin that are added recently
+    --conf                tells if you have a .normatrix config file
+
+source: https://github.com/Saverio976/NorMatrix
 ```
 </details>
 
@@ -118,18 +122,21 @@ options:
 
 ### (only from source) main.py
 ```bash
-usage: ./main.py [-h] [--tests-run] [--no-operators-pluggin] [paths ...]
+usage: python -m normatrix [-h] [--no-operators-pluggin] [--preview] [--conf] [paths ...]
 
 The C Epitech Coding Style Norm Checker
 
 positional arguments:
   paths                 list of path to check (default: the current working directory)
 
-options:
-  -h, --help            show this help message and exit
-  --no-operators-pluggin
-                        remove the operators pluggin (because it print some false positiv for now)
-  --preview             add some plugin that are added recently
+  options:
+    -h, --help            show this help message and exit
+    --no-operators-pluggin
+                          remove the operators pluggin (because it print some false positiv for now)
+    --preview             add some plugin that are added recently
+    --conf                tells if you have a .normatrix config file
+
+source: https://github.com/Saverio976/NorMatrix
 ```
 </details>
 
@@ -139,18 +146,21 @@ options:
 ### (only from source) exec.sh
 (this file exists only to keep compatibility to older version)
 ```bash
-usage: ./exec.sh [-h] [--tests-run] [--no-operators-pluggin] [paths ...]
+usage: python -m normatrix [-h] [--no-operators-pluggin] [--preview] [--conf] [paths ...]
 
 The C Epitech Coding Style Norm Checker
 
 positional arguments:
   paths                 list of path to check (default: the current working directory)
 
-options:
-  -h, --help            show this help message and exit
-  --no-operators-pluggin
-                        remove the operators pluggin (because it print some false positiv for now)
-  --preview             add some plugin that are added recently
+  options:
+    -h, --help            show this help message and exit
+    --no-operators-pluggin
+                          remove the operators pluggin (because it print some false positiv for now)
+    --preview             add some plugin that are added recently
+    --conf                tells if you have a .normatrix config file
+
+source: https://github.com/Saverio976/NorMatrix
 ```
 </details>
 
@@ -174,6 +184,41 @@ ARGS:
                             directory
 ```
 </details>
+
+### configuration
+you can now configure what functions are banned, and what are not,
+
+or add some file extension that not be present when you do a normatrix.
+
+all you have to do is put a file `.normatrix.json` where is the folder that
+you want to check with this:
+
+`.normatrix.json`
+```json
+{
+    "banned": [],
+    "no-banned": [],
+    "no-extension": []
+}
+```
+
+just add inside `[]` string of what you want
+
+for example to no-banned memset (because you can use it)
+```json
+{
+    "no-banned": ["memset"]
+}
+```
+
+by default (and default configuration will be load before yours) there are somthing like this:
+```json
+{
+    "banned": ["printf", "memset", "strcpy", "strcat", "calloc"],
+    "no-banned": [],
+    "no-extension": [".a", ".o", ".so", ".gch", "~", "#", ".d"]
+}
+```
 
 ## example if you run it as a github workflow
 this is not the latest normatrix but :
