@@ -74,12 +74,12 @@ def main():
     for path in result.paths:
         curr_ret_code = 0
         if result.configs == "yes":
-            context = Context(path)
+            context = Context(os.path.join(path, ".normatrix.json"))
         else:
             context = Context(None)
         if check_norm_path(path, context, is_plugin_operator, is_preview) != 0:
             curr_ret_code += 1
-        if makefile.check(path)[0] != 0:
+        if makefile.check(context, path)[0] != 0:
             curr_ret_code += 1
         if curr_ret_code != 0:
             ret_code += 1

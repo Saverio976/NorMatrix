@@ -23,11 +23,15 @@ class Context:
                 data = json.load(file)
         except Exception as e:
             return None
-        ret = data.get("non banned functions", None)
+        ret = data.get("banned", None)
+        if ret != None:
+            for elem in ret:
+                self.LIBC_BANNED_FUNC.append(elem)
+        ret = data.get("no-banned", None)
         if ret != None:
             for elem in ret:
                 self.LIBC_BANNED_FUNC.remove(elem)
-        ret = data.get("bad file extension", None)
+        ret = data.get("no-extension", None)
         if ret != None:
             for elem in ret:
                 self.BAD_FILE_EXTENSION.append(elem)
