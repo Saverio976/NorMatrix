@@ -11,6 +11,8 @@ def check_non_comment_line(file: CFileParse, line: str, i: int, IS_IN_COMMENT: b
     line = line.split("/*")
     if len(line) == 1:
         line: str = line[0]
+        if line.endswith("\\"):
+            return (IS_IN_COMMENT, nb_error)
         e = 0
         while e < len(line) and line[e] not in separator:
             e += 1

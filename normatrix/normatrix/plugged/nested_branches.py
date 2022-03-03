@@ -28,14 +28,9 @@ def check(context, file: CFileParse) -> (int, int):
                 in_switch = False
             condition = line.startswith(" " * 20 if in_switch else " " * 15)
             if condition:
-                can_continue = (line.startswith(" " * 16) and \
-                        line.endswith(");")) \
-                    or line.endswith(") {") or ") ? " in line \
-                    or ") ? " in line
-                if can_continue or (line.endswith(")") and ( \
-                        "if (" in file.sub_parsedline[i - 1][1] or \
-                        "while (" in file.sub_parsedline[i - 1][1] or \
-                        "for (" in file.sub_parsedline[i - 1][1])):
+                can_continue = (line.startswith(" " * 16) and line.endswith(");")) or line.endswith(") {") or ") ? " in line or ") ? " in line
+                can_continue = can_continue or (i != 0 and file.real_parsedline[i - 1][1].endswith("\\"))
+                if can_continue or (line.endswith(")") and ("if (" in file.sub_parsedline[i - 1][1] or "while (" in file.sub_parsedline[i - 1][1] or "for (" in file.sub_parsedline[i - 1][1])):
                     continue
                 print(f"{file.basename}:{i + 1}: maybe too many branch ?")
                 nb_error += 1
