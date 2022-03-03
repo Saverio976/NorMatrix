@@ -11,8 +11,8 @@ def print_error(file: str) -> (int, int):
 
 def check(context, file: CFileParse) -> (int, int):
     nb_error = 0
-    lines = file.real_filelines[:6]
-    if len(lines) != 6:
+    lines = file.real_filelines[:]
+    if len(lines) < 6:
         return print_error(file.basename)
     if lines[0] != "/*":
         return print_error(file.basename)
@@ -22,8 +22,13 @@ def check(context, file: CFileParse) -> (int, int):
         return print_error(file.basename)
     if lines[3] != "** File description:":
         return print_error(file.basename)
-    if len(lines[4]) < 4 or not lines[4].startswith("** "):
+    i = 4
+    while i < len(lines) and lines[i] != "*/":
+        if len(lines[i]) < 4 or not lines[i].startswith("** "):
+            return print_error(file.basename)
+        i += 1
+    if i >= len(lines):
         return print_error(file.basename)
-    if lines[5] != "*/":
+    if lines[i] != "*/":
         return print_error(file.basename)
     return (0, 0)
