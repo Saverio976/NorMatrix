@@ -200,6 +200,7 @@ you want to check with this:
     "banned": [],
     "no-banned": [],
     "no-extension": []
+    "enable-preview": true
 }
 ```
 
@@ -218,6 +219,7 @@ by default (and default configuration will be load before yours) there are somth
     "banned": ["printf", "memset", "strcpy", "strcat", "calloc"],
     "no-banned": [],
     "no-extension": [".a", ".o", ".so", ".gch", "~", "#", ".d"]
+    "enable-preview": false
 }
 ```
 

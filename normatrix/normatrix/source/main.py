@@ -43,7 +43,7 @@ def check_norm_path(pwd: str, context: Context, plug_operator_activ: bool, previ
     list_checkers = plugged.__all__
     if plug_operator_activ == False:
         list_checkers.remove('operators')
-    if preview:
+    if preview or context.ENABLE_PREVIEW == True:
         list_checkers.extend(plugged.PREVIEW)
 
     color.print_color("green", "\nNorMatrix!")

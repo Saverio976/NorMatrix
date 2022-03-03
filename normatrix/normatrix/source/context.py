@@ -14,6 +14,7 @@ class Context:
         self.LIBC_BANNED_FUNC = LIBC_BANNED_FUNC
         self.BAD_FILE_EXTENSION = BAD_FILE_EXTENSION
         self.OPERATOR_LIST = OPERATOR_LIST
+        self.ENABLE_PREVIEW = False
         if conf_path != None:
             self.set_from_file(conf_path)
 
@@ -35,3 +36,6 @@ class Context:
         if ret != None:
             for elem in ret:
                 self.BAD_FILE_EXTENSION.append(elem)
+        ret = data.get("enable-preview", None)
+        if ret != None:
+            self.ENABLE_PREVIEW = bool(ret)
