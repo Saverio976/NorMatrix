@@ -13,9 +13,11 @@ try:
     from normatrix.source import color
     from normatrix.source import file_parser
     from normatrix import plugged
+    from normatrix.source.context import Context
 except ModuleNotFoundError:
     from normatrix.normatrix.source import color
     from normatrix.normatrix.source import file_parser
+    from normatrix.normatrix.source.context import Context
     from normatrix.normatrix import plugged
 
 from importlib import import_module
@@ -32,7 +34,7 @@ def get_modules(list_checkers: list) -> list:
             except ModuleNotFoundError:
                 check = import_module(f'normatrix.normatrix.plugged.{mod}')
             sign = signature(check.check)
-            if len(sign.parameters.keys()) != 1:
+            if len(sign.parameters.keys()) != 2:
                 raise ValueError
             checkers.append(check)
         except Exception as e:
@@ -56,10 +58,11 @@ def get_parsed_files_for_tests(checker, pwd) -> list:
     return true_files
 
 def check_with_mod(checker, pwd) -> (int, int):
+    context = Context(None)
     for file in get_parsed_files_for_tests(checker, pwd):
         info = (0, 3)
         try:
-            info = checker.check(file)
+            info = checker.check(context, file)
         except Exception as e:
             print(f"ERROR: {checker.__file__}: {e}")
         info_type = type(info).__name__
