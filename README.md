@@ -190,7 +190,8 @@ you can now configure what functions are banned, and what are not,
 
 or add some file extension that not be present when you do a normatrix.
 
-all you have to do is put a file `.normatrix.json` where is the folder that
+all you have to do is add `--conf` when execute normatrix and
+put a file `.normatrix.json` where is the folder that
 you want to check with this:
 
 `.normatrix.json`
