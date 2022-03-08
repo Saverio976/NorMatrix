@@ -232,8 +232,10 @@ example with nothing banned and no preview (preview = not stable check) check
 
 just add inside `[]` the string of what you want
 
+**other explanation with example**
+
 <details>
-  <summary>other explenation with example</summary>
+  <summary>other explanation with example</summary>
 
 - to no-banne memset (because you can use it)
 ```json
