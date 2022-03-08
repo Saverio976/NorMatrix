@@ -274,7 +274,7 @@ by default there are somthing like this:
 {
     "banned": ["printf", "memset", "strcpy", "strcat", "calloc"],
     "no-banned": [],
-    "extension": [".a", ".o", ".so", ".gch", "~", "#", ".d"]
+    "extension": [".a", ".o", ".so", ".gch", "~", "#", ".d"],
     "no-extension": [],
     "enable-preview": false
 }
