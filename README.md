@@ -24,11 +24,13 @@ check some norm for you
   <summary>With Pipy</summary>
 
 ### with pipy
+#### 1
 ```bash
 pip install normatrix
 ```
 Now you can use it with `python3 -m normatrix` in your terminal
 
+#### 2
 And if you want to just write `normatrix` :
 ```bash
 echo $SHELL
@@ -42,18 +44,32 @@ else if you are using zsh shell (the `echo` print `/something/like/zsh`):
 echo alias normatrix=\"python3 -m normatrix\" >> $HOME/.zshrc
 ```
 else handle this yourself bruh;
+
+#### 3
+to update it, you just have to run
+```bash
+pip install -U normatrix
+```
+
+#### 4
+to uninstall it (sad), run
+```bash
+pip uninstall normatrix
+```
 </details>
 
 <details>
   <summary>From source</summary>
 
 ### from source
+#### 1
 ```bash
 git clone https://github.com/Saverio976/NorMatrix.git
 cd NorMatrix
 ```
 Now you can use it with `./path/to/folder/NorMatrix/main.py` in your terminal
 
+#### 2
 And if you want to just write `normatrix` :
 ```bash
 echo $SHELL
@@ -67,6 +83,16 @@ else if you are using zsh shell (the `echo` print `/something/like/zsh`):
 echo alias normatrix=\"$PWD/main.py\" >> $HOME/.zshrc
 ```
 else handle this yourself bruh;
+#### 3
+to update it, just go where you have cloned normatrix
+run
+```bash
+git pull
+```
+
+#### 4
+to uninstall it (sad)
+Delete the folder
 </details>
 
 ## Current Checks
@@ -187,41 +213,74 @@ ARGS:
 
 ### configuration
 you can now configure what functions are banned, and what are not,
-
-or add some file extension that not be present when you do a normatrix.
+you can now configure what extension file are banned, and what are not,
 
 all you have to do is add `--conf` when execute normatrix and
-put a file `.normatrix.json` where is the folder that
-you want to check with this:
+put a file `.normatrix.json` where you execute `normatrix`
 
+example with nothing banned and no preview (preview = not stable check) check
 `.normatrix.json`
 ```json
 {
     "banned": [],
     "no-banned": [],
-    "no-extension": []
-    "enable-preview": true
+    "extension": [],
+    "no-extension": [],
+    "enable-preview": false
 }
 ```
 
-just add inside `[]` string of what you want
+just add inside `[]` the string of what you want
 
-for example to no-banned memset (because you can use it)
+<details>
+  <summary>other explenation with example</summary>
+
+- to no-banne memset (because you can use it)
 ```json
 {
     "no-banned": ["memset"]
 }
 ```
+- to banne my_printf (because you dont want to use it)
+```json
+{
+    "banned": ["my_printf"]
+}
+```
+- to no-banne \*.o file (because you dont need this warning)
+```json
+{
+    "no-extension": [".o"]
+}
+```
+- to banne \*.c file (because you want c fiel banned)
+```json
+{
+    "extension": [".c"]
+}
+```
+- to enable preview check by default
+```json
+{
+    "enable-preview": true
+}
+```
+</details>
 
-by default (and default configuration will be load before yours) there are somthing like this:
+by default there are somthing like this:
 ```json
 {
     "banned": ["printf", "memset", "strcpy", "strcat", "calloc"],
     "no-banned": [],
-    "no-extension": [".a", ".o", ".so", ".gch", "~", "#", ".d"]
+    "extension": [".a", ".o", ".so", ".gch", "~", "#", ".d"]
+    "no-extension": [],
     "enable-preview": false
 }
 ```
+this configuration will be added even if you add a `.normatrix.json` file
+and add the `--conf`.
+but if you want to remove `*.o`, just add it to the `no-extension`
+it will remove it from the default
 
 ## example if you run it as a github workflow
 this is not the latest normatrix but :
@@ -267,7 +326,7 @@ jobs:
 
 ### special thanks
 -    chempa for his sample of file that dont follow the epitech norm
--    and invisble testers that says "bha baah normatrix have a bug"
+-    and invisble testers that says **"bha baah normatrix have a bug"**
 
 ### contributors
 ![Contributor](https://badges.pufler.dev/contributors/Saverio976/NorMatrix?size=50&padding=5&bots=true)

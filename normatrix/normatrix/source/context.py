@@ -25,17 +25,37 @@ class Context:
         except Exception as e:
             return None
         ret = data.get("banned", None)
-        if ret != None:
-            for elem in ret:
-                self.LIBC_BANNED_FUNC.append(elem)
+        itter_append(self.LIBC_BANNED_FUNC, ret)
         ret = data.get("no-banned", None)
-        if ret != None:
-            for elem in ret:
-                self.LIBC_BANNED_FUNC.remove(elem)
+        itter_remove(self.LIBC_BANNED_FUNC, ret)
+        ret = data.get("extension", None)
+        itter_append(self.BAD_FILE_EXTENSION, ret)
         ret = data.get("no-extension", None)
-        if ret != None:
-            for elem in ret:
-                self.BAD_FILE_EXTENSION.append(elem)
+        itter_remove(self.BAD_FILE_EXTENSION, ret)
         ret = data.get("enable-preview", None)
         if ret != None:
             self.ENABLE_PREVIEW = bool(ret)
+
+def itter_remove(true_list: list, elems: list) -> None:
+    if elems == None:
+        return None
+    try:
+        for elem in elems:
+            try:
+                true_list.remove(elem)
+            except Exception as e:
+                print(e)
+    except Exception as e:
+        print(e)
+
+def itter_append(true_list: list, elems: list) -> None:
+    if elems == None:
+        return None
+    try:
+        for elem in elems:
+            try:
+                true_list.append(elem)
+            except Exception as e:
+                print(e)
+    except Exception as e:
+        print(e)
