@@ -10,11 +10,12 @@ except ModuleNotFoundError:
 import json
 
 class Context:
-    def __init__(self, conf_path):
+    def __init__(self, conf_path: str, only_error: str):
         self.LIBC_BANNED_FUNC = LIBC_BANNED_FUNC
         self.BAD_FILE_EXTENSION = BAD_FILE_EXTENSION
         self.OPERATOR_LIST = OPERATOR_LIST
         self.ENABLE_PREVIEW = False
+        self.only_error = True if only_error == 'yes' else False
         if conf_path != None:
             self.set_from_file(conf_path)
 

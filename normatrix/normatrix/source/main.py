@@ -66,6 +66,9 @@ def call_argparse():
     parser.add_argument('--conf', action='store_const',
             dest='configs', const='yes', default='no',
             help='tells if you have a .normatrix config file')
+    parser.add_argument('--only-error', action='store_const',
+            dest='only_error', const='yes', default='no',
+            help='print only bad files with errors')
     result = parser.parse_args()
     if result.paths == []:
         result.paths.append(os.getcwd())
@@ -98,17 +101,16 @@ def check_norm_path(pwd: str, context: Context, plug_operator_activ: bool, previ
         return NB_ERROR
 
 def main():
-    args = call_argparse()
-    result = args
+    result = call_argparse()
     ret_code = 0
     is_preview = result.preview_plugins == "yes"
     is_plugin_operator = result.plug_operator_activ == "yes"
     for path in result.paths:
         curr_ret_code = 0
         if result.configs == "yes":
-            context = Context(os.path.join(path, ".normatrix.json"))
+            context = Context(os.path.join(path, ".normatrix.json"), result.only_error)
         else:
-            context = Context(None)
+            context = Context(None, result.only_error)
         if check_norm_path(path, context, is_plugin_operator, is_preview) != 0:
             curr_ret_code += 1
         if makefile.check(context, path)[0] != 0:

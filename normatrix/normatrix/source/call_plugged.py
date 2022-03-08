@@ -50,13 +50,14 @@ def call_plugged(context: Context, files: list, list_checkers: list, pwd: str) -
     nb_files_total = len(files)
     checkers = get_modules(list_checkers)
     for i, file in enumerate(files):
-        color.print_color("cyan", f"file [{file}] n°{i + 1}/{nb_files_total}...")
+        if context.only_error == False:
+            color.print_color("cyan", f"file [{file}] n°{i + 1}/{nb_files_total}...")
         parse: file_parser.CFileParse = file_parser.parse(file, pwd)
         curr_stat, last_nb_error = itter_mod(context, parse, checkers)
         if last_nb_error != 0:
             color.print_color("boldred", f" -> nope: {parse.basename} ({last_nb_error})")
             nb_error += last_nb_error
             stats.extend(curr_stat)
-        else:
+        elif context.only_error == False:
             color.print_color("green", f" -> yes: {parse.basename}")
     return (stats, nb_error)
