@@ -19,10 +19,42 @@ except ModuleNotFoundError:
     from normatrix.normatrix.source import makefile
     from normatrix.normatrix import plugged
 
+FULL_DOC = """SOURCE:
+    https://github.com/Saverio976/NorMatrix
+
+UPDATE:
+    - if you install it with 'pip'
+        pip install -U normatrix
+    - if you install it with git
+        git pull
+    - other method:
+        (do it yourself)
+
+CONFIGS:
+    normatrix can read a special json file for configuration.
+    -> put a `.normatrix.json` file on the path where tou execute normatrix
+    -> execute normatrix whit `--conf` command line argument
+
+    default configuration file:
+        ```json
+        {
+            "banned": ["printf", "memset", "strcpy", "strcat", "calloc"],
+            "no-banned": [],
+            "extension": [".a", ".o", ".so", ".gch", "~", "#", ".d"],
+            "no-extension": [],
+            "enable-preview": false
+        }
+        ```
+
+    for further information read the README.md on
+    https://github.com/Saverio976/NorMatrix
+"""
+
 def call_argparse():
     parser = argparse.ArgumentParser(prog='python -m normatrix',
+            formatter_class=argparse.RawDescriptionHelpFormatter,
             description='The C Epitech Coding Style Norm Checker',
-            epilog='source: https://github.com/Saverio976/NorMatrix')
+            epilog=FULL_DOC)
     parser.add_argument('paths', metavar='paths', nargs='*',
             help='list of path to check (default: the current working directory)')
     parser.add_argument('--no-operators-pluggin', action='store_const',
