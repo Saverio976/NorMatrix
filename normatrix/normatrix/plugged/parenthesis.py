@@ -9,7 +9,10 @@ import re
 
 def check(context, file: CFileParse) -> (int, int):
     nb_error = 0
-    list_ok = ["do", "while", "for", "return", "if"]
+    list_ok = [
+            "do", "while", "for", "return", "if", "switch", "+",
+            "-", "/", "*", "=", "&", "|", ":", "?", ",", ";"
+    ]
     for i in range(len(file.sub_parsedline)):
         line = file.sub_parsedline[i]
         if line[0] != TypeLine.COMMENT:
@@ -17,6 +20,7 @@ def check(context, file: CFileParse) -> (int, int):
             if '){' in ll:
                 print(f"{file.basename}:{i + 1}: need a space between '){{'")
                 nb_error += 1
+        if line[0] == TypeLine.FUNCTION:
             for e, char in enumerate(ll, start=1):
                 if char == '(' and ll[e - 2] == ' ':
                     found = 0
