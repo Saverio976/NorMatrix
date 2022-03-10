@@ -32,4 +32,10 @@ def check(context, file: CFileParse) -> (int, int):
                     if found == 0:
                         print(f"{file.basename}:{i + 1}: no need space when function call")
                         nb_error += 1
+                if char == '(' and ll[e - 2] != ' ':
+                    found = 0
+                    for to_check in list_ok:
+                        if ll[e - len(to_check) - 1:e] == f"{to_check}(":
+                            print(f"{file.basename}:{i + 1}: need space for {to_check}")
+                            nb_error += 1
     return (nb_error, 1)

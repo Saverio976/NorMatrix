@@ -12,3 +12,10 @@ int abc(int abd)
     }
     return (a (4));
 }
+
+int def(int a)
+{
+    if(a = a) {
+        return(a);
+    }
+}
