@@ -26,7 +26,7 @@ def check(context, file: CFileParse) -> (int, int):
                 if char == '(' and ll[e - 2] == ' ':
                     found = 0
                     for to_check in list_ok:
-                        if ll[e - len(to_check) - 2:e] == f"{to_check} (":
+                        if ll[e - len(to_check) - 2:e] == f"{to_check} (" and to_check not in ["&", "*"]:
                             found = 1
                     if ll.strip().startswith('('):
                         found = 1
