@@ -5,8 +5,9 @@ except ModuleNotFoundError:
     from normatrix.normatrix.source.file_parser import CFileParse
     from normatrix.normatrix.source.config import TypeLine
 
-def check(context, file: CFileParse) -> (int, int):
+def check(context, file: CFileParse) -> (int, int, list):
     nb_error = 0
+    list_error = []
     nb_line = 0
     line_index_func = 0
     is_in_func = [False, False]
@@ -18,7 +19,7 @@ def check(context, file: CFileParse) -> (int, int):
             nb_line -= 1
             if nb_line > 20:
                 nb_error += nb_line - 20
-                print(f"{file.basename}:{line_index_func}: function number line ({nb_line} > 20)")
+                list_error.append((line_index_func, f"function number line ({nb_line} > 20)"))
             nb_line = 0
             is_in_func[0] = False
             is_in_func[1] = False
@@ -26,4 +27,4 @@ def check(context, file: CFileParse) -> (int, int):
             is_in_func[1] = True
         if is_in_func[1] and not file.sub_parsedline[i][1].startswith('}'):
             nb_line += 1
-    return (nb_error, 0)
+    return (nb_error, 0, list_error)

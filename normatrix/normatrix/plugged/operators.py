@@ -24,7 +24,7 @@ def get_escape_regex(s: str, need: bool) -> str:
         l = f'[{l}]'
     return l
 
-def check_regex_operator(filename: str, l_nb: int, conf_op: list, line: str) -> int:
+def check_regex_operator(filename: str, l_nb: int, conf_op: list, line: str, list_error: list) -> int:
     nb_error = 0
     new_line = line
     if len(conf_op) == 4:
@@ -37,18 +37,19 @@ def check_regex_operator(filename: str, l_nb: int, conf_op: list, line: str) -> 
         new_line = new_line[:-len(conf_op)]
     try:
         new_line.index(conf_op[1])
-        print(f"{filename}:{l_nb}: bad space for operator: {conf_op[1]}")
+        list_error.append((l_nb, f"bad space for operator: {conf_op[1]}"))
         nb_error += 1
     except ValueError: pass
     return nb_error
 
-def check(context: Context, file: CFileParse) -> (int, int):
+def check(context: Context, file: CFileParse) -> (int, int, list):
     nb_error = 0
+    list_error = []
     for i, line in enumerate(file.sub_parsedline):
         if line[0] == TypeLine.COMMENT:
             continue
         ll = re.sub("'.*?'", '', line[1])
         ll = re.sub("\/\/.*", '', ll)
         for conf in context.OPERATOR_LIST:
-            nb_error += check_regex_operator(file.basename, i + 1, conf, ll)
-    return (nb_error, 1)
+            nb_error += check_regex_operator(file.basename, i + 1, conf, ll, list_error)
+    return (nb_error, 1, list_error)

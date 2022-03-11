@@ -15,10 +15,11 @@ def get_only_func_decl(rest: str):
         return rest[res.start():res.end()]
     return ''
 
-def check(context, file: CFileParse) -> (int, int):
+def check(context, file: CFileParse) -> (int, int, list):
     nb_error = 0
+    list_error = []
     if file.basename.endswith('.h'):
-        return (0, 0)
+        return (0, 0, [])
     for i, line in enumerate(file.sub_parsedline):
         if line[0] == TypeLine.COMMENT:
             continue
@@ -28,6 +29,6 @@ def check(context, file: CFileParse) -> (int, int):
         only_decl = re.sub("\(\*\w*?\)\((.|\n)*?\)", "", only_decl)
         n = only_decl.count(',') + 1
         if n > 4:
-            print(f"{file.basename}:{i + 1}: too many arguments ({n} > 4)")
+            list_error.append((i + 1, f"too many arguments ({n} > 4)"))
             nb_error += 1
-    return (nb_error, 0)
+    return (nb_error, 0, list_error)

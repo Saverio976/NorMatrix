@@ -7,8 +7,9 @@ except ModuleNotFoundError:
 
 import re
 
-def check(context, file: CFileParse) -> (int, int):
+def check(context, file: CFileParse) -> (int, int, list):
     nb_error = 0
+    list_error = []
     for i in range(len(file.sub_parsedline)):
         line = file.sub_parsedline[i]
         if line[0] != TypeLine.COMMENT:
@@ -16,6 +17,6 @@ def check(context, file: CFileParse) -> (int, int):
             ll = re.sub("'(.)'", '', ll)
             m = re.search(",\S", ll)
             if m != None:
-                print(f"{file.basename}:{i + 1}: need a space after a comma ({ll[m.start():]})")
+                list_error.append((i + 1, f"need a space after a comma ({ll[m.start():]})"))
                 nb_error += 1
-    return (nb_error, 1)
+    return (nb_error, 1, list_error)

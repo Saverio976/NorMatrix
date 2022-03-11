@@ -18,14 +18,15 @@ def check_libcfunc(context: Context, line: str) -> (bool, str):
             return (True, elem)
     return (False, "")
 
-def check(context: Context, file: CFileParse) -> (int, int):
+def check(context: Context, file: CFileParse) -> (int, int, list):
     nb_error = 0
+    list_error = []
     for i in range(len(file.sub_parsedline)):
         line = file.sub_parsedline[i]
         if line[0] != TypeLine.COMMENT:
             ll = re.sub('\/\/.*', '', line[1])
             ok, func = check_libcfunc(context, ll)
             if ok:
-                print(f"{file.basename}:{i + 1}: no libc func ({func})")
+                list_error.append((i + 1, f"no libc func ({func})"))
                 nb_error += 1
-    return (nb_error, 0)
+    return (nb_error, 0, list_error)

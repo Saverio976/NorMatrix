@@ -7,10 +7,11 @@ except ModuleNotFoundError:
 
 import re
 
-def check(context, file: CFileParse) -> (int, int):
+def check(context, file: CFileParse) -> (int, int, list):
     nb_error = 0
     in_switch = False
     is_in_func = [False, False]
+    list_error = []
     for i in range(len(file.sub_parsedline)):
         line = file.sub_parsedline[i][1]
         line = re.sub("^( )*$", '', re.sub('\/\/.*', '', line))
@@ -32,6 +33,6 @@ def check(context, file: CFileParse) -> (int, int):
                 can_continue = can_continue or (i != 0 and file.real_parsedline[i - 1][1].endswith("\\"))
                 if can_continue or (line.endswith(")") and ("if (" in file.sub_parsedline[i - 1][1] or "while (" in file.sub_parsedline[i - 1][1] or "for (" in file.sub_parsedline[i - 1][1])):
                     continue
-                print(f"{file.basename}:{i + 1}: maybe too many branch ?")
+                list_error.append((i + 1, f"maybe too many branch ? ({line})"))
                 nb_error += 1
-    return (nb_error, 1)
+    return (nb_error, 1, list_error)
