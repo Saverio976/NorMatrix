@@ -137,7 +137,7 @@ positional arguments:
     --no-operators-pluggin
                           remove the operators pluggin (because it print some false positiv for now)
     --preview             add some plugin that are added recently
-    --conf                tells if you have a .normatrix config file
+    --conf                [deprecated] tells if you have a .normatrix config file
     --only-error          print only bad files with errors
     --output format       tell which output format to use [html, md, term_color]; for html the file is normatrix-result.htmk; for md the file is
                           normatrix-result.md
@@ -163,7 +163,7 @@ positional arguments:
     --no-operators-pluggin
                           remove the operators pluggin (because it print some false positiv for now)
     --preview             add some plugin that are added recently
-    --conf                tells if you have a .normatrix config file
+    --conf                [deprecated] tells if you have a .normatrix config file
     --only-error          print only bad files with errors
     --output format       tell which output format to use [html, md, term_color]; for html the file is normatrix-result.htmk; for md the file is
                           normatrix-result.md
@@ -190,7 +190,7 @@ positional arguments:
     --no-operators-pluggin
                           remove the operators pluggin (because it print some false positiv for now)
     --preview             add some plugin that are added recently
-    --conf                tells if you have a .normatrix config file
+    --conf                [depreacted] tells if you have a .normatrix config file
     --only-error          print only bad files with errors
     --output format       tell which output format to use [html, md, term_color]; for html the file is normatrix-result.htmk; for md the file is
                           normatrix-result.md
@@ -224,8 +224,7 @@ ARGS:
 you can now configure what functions are banned, and what are not,
 you can now configure what extension file are banned, and what are not,
 
-all you have to do is add `--conf` when execute normatrix and
-put a file `.normatrix.json` where you execute `normatrix`
+all you have to do is put a file `.normatrix.json` where you execute `normatrix`
 
 example with nothing banned and no preview (preview = not stable check) check
 `.normatrix.json`
@@ -289,14 +288,17 @@ by default there are somthing like this:
 }
 ```
 this configuration will be added even if you add a `.normatrix.json` file
-and add the `--conf`.
+
 but if you want to remove `*.o`, just add it to the `no-extension`
+
+or you can put `*.o` in a `.gitignore`
+
 it will remove it from the default
 
 ## example if you run it as a github workflow
 this is not the latest normatrix but :
 
-link : [link](https://github.com/Saverio976/NorMatrix/runs/4843598808?check_suite_focus=true)
+link : [link](https://github.com/Saverio976/NorMatrix/runs/5523744737?check_suite_focus=true)
 
 state : [![NorMatrix Check](https://github.com/Saverio976/NorMatrix/actions/workflows/normatrix_check.yml/badge.svg)](https://github.com/Saverio976/NorMatrix/actions/workflows/normatrix_check.yml)
 
