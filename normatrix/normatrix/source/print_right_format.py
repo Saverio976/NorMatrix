@@ -8,7 +8,8 @@ except ModuleNotFoundError:
 def print_right_format(context: Context, filepath: str, nb_total_err: int, list_error: list) -> None:
     if context.output_format in ["html", "md"]:
         file = open(context.output_file, "a")
-        print(f"**{filepath} | {nb_total_err} error.s**\n", file=file)
+        if context.only_error == False or nb_total_err != 0:
+            print(f"**{filepath} | {nb_total_err} error.s**\n", file=file)
     for err_line, err_msg in list_error:
         if context.output_format in ["html", "md"]:
             print(f"- {err_line}: {err_msg}\n", file=file)

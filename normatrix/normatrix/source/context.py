@@ -32,8 +32,12 @@ class Context:
                 data = file.readlines()
         except Exception:
             return
-        for line int data:
-            ll = line[1:] if line.startswith("*") else line
+        for line in data:
+            ll = line.strip()
+            ll = ll.replace("\n", "")
+            ll = ll[1:] if ll.startswith("*") else ll
+            if self.only_error == False:
+                print(f"ignore bad extension : {ll}")
             if ll in self.BAD_FILE_EXTENSION:
                 self.BAD_FILE_EXTENSION.remove(ll)
 
