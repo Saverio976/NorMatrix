@@ -106,7 +106,7 @@ def check_norm_path(pwd: str, context: Context, plug_operator_activ: bool, previ
     if NB_ERROR == 0:
         if context.output_format in ["html", "md"]:
             with open(context.output_file, "a") as file:
-                print("## Directory: {pwd} is **OK**", file=file)
+                print(f"## Directory: {pwd} is **OK**", file=file)
         elif context.output_format == "term_color":
             color.print_color("green", "OK BRO")
         return 0
