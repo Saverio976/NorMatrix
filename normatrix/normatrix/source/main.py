@@ -125,10 +125,7 @@ def main():
     is_plugin_operator = result.plug_operator_activ == "yes"
     for path in result.paths:
         curr_ret_code = 0
-        if result.configs == "yes":
-            context = Context(os.path.join(path, ".normatrix.json"), result.only_error, result.output_format)
-        else:
-            context = Context(None, result.only_error, result.output_format)
+        context = Context(path, result.only_error, result.output_format)
         if check_norm_path(path, context, is_plugin_operator, is_preview) != 0:
             curr_ret_code += 1
         if makefile.check(context, path)[0] != 0:

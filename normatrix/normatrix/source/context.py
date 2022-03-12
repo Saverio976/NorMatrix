@@ -8,27 +8,40 @@ except ModuleNotFoundError:
     from normatrix.normatrix.source.config import OPERATOR_LIST
 
 import json
+import os
 
 class Context:
-    def __init__(self, conf_path: str, only_error: str, output_format: str):
+    def __init__(self, path: str, only_error: str, output_format: str):
         self.LIBC_BANNED_FUNC = LIBC_BANNED_FUNC
         self.BAD_FILE_EXTENSION = BAD_FILE_EXTENSION
         self.OPERATOR_LIST = OPERATOR_LIST
         self.ENABLE_PREVIEW = False
         self.only_error = True if only_error == 'yes' else False
-        if conf_path != None:
-            self.set_from_file(conf_path)
+        if path != None:
+            self.set_from_file(os.path.join(path, ".normatrix.json"))
+            self.remove_gitignore(os.path.join(path, ".gitignore"))
         self.output_format = output_format
         if output_format in ["html", "md"]:
             self.output_file = "normatrix-result.md"
             file = open(self.output_file, "w")
             file.close()
 
+    def remove_gitignore(self, gitignore_path: str):
+        try:
+            with open(gitignore_path, "r") as file:
+                data = file.readlines()
+        except Exception:
+            return
+        for line int data:
+            ll = line[1:] if line.startswith("*") else line
+            if ll in self.BAD_FILE_EXTENSION:
+                self.BAD_FILE_EXTENSION.remove(ll)
+
     def set_from_file(self, path):
         try:
             with open(path, "r") as file:
                 data = json.load(file)
-        except Exception as e:
+        except Exception:
             return None
         ret = data.get("banned", None)
         itter_append(self.LIBC_BANNED_FUNC, ret)
