@@ -58,7 +58,7 @@ def get_parsed_files_for_tests(checker, pwd) -> list:
     return true_files
 
 def check_with_mod(checker, pwd) -> (int, int):
-    context = Context(None, "no")
+    context = Context(None, "no", "term_color")
     for file in get_parsed_files_for_tests(checker, pwd):
         info = (0, 3)
         try:
