@@ -69,6 +69,10 @@ def call_argparse():
     parser.add_argument('--only-error', action='store_const',
             dest='only_error', const='yes', default='no',
             help='print only bad files with errors')
+    parser.add_argument('--output', metavar="format",
+            choices=["html", "md", "term_color"], dest='output_format',
+            default="term_color",
+            help='tell which output format to use (in html or md, a file will be created) but there will be some print of the terminal')
     result = parser.parse_args()
     if result.paths == []:
         result.paths.append(os.getcwd())
@@ -108,9 +112,9 @@ def main():
     for path in result.paths:
         curr_ret_code = 0
         if result.configs == "yes":
-            context = Context(os.path.join(path, ".normatrix.json"), result.only_error)
+            context = Context(os.path.join(path, ".normatrix.json"), result.only_error, result.output_format)
         else:
-            context = Context(None, result.only_error)
+            context = Context(None, result.only_error, result.output_format)
         if check_norm_path(path, context, is_plugin_operator, is_preview) != 0:
             curr_ret_code += 1
         if makefile.check(context, path)[0] != 0:

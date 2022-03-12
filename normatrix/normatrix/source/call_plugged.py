@@ -2,10 +2,12 @@ try:
     from normatrix.source import color
     from normatrix.source.context import Context
     from normatrix.source import file_parser
+    from normatrix.source import print_right_format
 except ModuleNotFoundError:
     from normatrix.normatrix.source import color
     from normatrix.normatrix.source.context import Context
     from normatrix.normatrix.source import file_parser
+    from normatrix.normatrix.source import print_right_format
 
 from importlib import import_module
 from inspect import signature
@@ -29,6 +31,7 @@ def get_modules(list_checkers: list) -> list:
 def itter_mod(context: Context, file: file_parser.CFileParse, checkers: list) -> (list, int):
     stats = []
     nb_error = 0
+    list_error = []
     for mod in checkers:
         info = (0, 3)
         try:
@@ -42,6 +45,9 @@ def itter_mod(context: Context, file: file_parser.CFileParse, checkers: list) ->
             if info[0] != 0 and len(info) > 1:
                 errors = [(file.basename, 1, info[1]) for _ in range(info[0])]
                 stats.extend(errors)
+                if len(info) > 2:
+                    list_error.extend(info[2])
+    print_right_format.print_right_format(context, file.filepath, nb_error, list_error)
     return (stats, nb_error)
 
 def call_plugged(context: Context, files: list, list_checkers: list, pwd: str) -> (list, int):
@@ -55,9 +61,6 @@ def call_plugged(context: Context, files: list, list_checkers: list, pwd: str) -
         parse: file_parser.CFileParse = file_parser.parse(file, pwd)
         curr_stat, last_nb_error = itter_mod(context, parse, checkers)
         if last_nb_error != 0:
-            color.print_color("boldred", f" -> nope: {parse.basename} ({last_nb_error})")
             nb_error += last_nb_error
             stats.extend(curr_stat)
-        elif context.only_error == False:
-            color.print_color("green", f" -> yes: {parse.basename}")
     return (stats, nb_error)
