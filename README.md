@@ -138,6 +138,9 @@ positional arguments:
                           remove the operators pluggin (because it print some false positiv for now)
     --preview             add some plugin that are added recently
     --conf                tells if you have a .normatrix config file
+    --only-error          print only bad files with errors
+    --output format       tell which output format to use [html, md, term_color]; for html the file is normatrix-result.htmk; for md the file is
+                          normatrix-result.md
 
 source: https://github.com/Saverio976/NorMatrix
 ```
@@ -161,6 +164,9 @@ positional arguments:
                           remove the operators pluggin (because it print some false positiv for now)
     --preview             add some plugin that are added recently
     --conf                tells if you have a .normatrix config file
+    --only-error          print only bad files with errors
+    --output format       tell which output format to use [html, md, term_color]; for html the file is normatrix-result.htmk; for md the file is
+                          normatrix-result.md
 
 source: https://github.com/Saverio976/NorMatrix
 ```
@@ -185,13 +191,16 @@ positional arguments:
                           remove the operators pluggin (because it print some false positiv for now)
     --preview             add some plugin that are added recently
     --conf                tells if you have a .normatrix config file
+    --only-error          print only bad files with errors
+    --output format       tell which output format to use [html, md, term_color]; for html the file is normatrix-result.htmk; for md the file is
+                          normatrix-result.md
 
 source: https://github.com/Saverio976/NorMatrix
 ```
 </details>
 
 <details>
-  <summary>(only from source) Makefile</summary>
+  <summary>(only from source) Makefile (deprecated)</summary>
 
 ### (only from source) Makefile
 (this file exists only to keep compatibility to older version)

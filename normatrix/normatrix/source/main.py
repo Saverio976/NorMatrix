@@ -1,6 +1,7 @@
 import os
 import sys
 import argparse
+from markdown import Markdown
 
 try:
     from normatrix.source import color
@@ -72,7 +73,7 @@ def call_argparse():
     parser.add_argument('--output', metavar="format",
             choices=["html", "md", "term_color"], dest='output_format',
             default="term_color",
-            help='tell which output format to use (in html or md, a file will be created) but there will be some print of the terminal')
+            help='tell which output format to use [html, md, term_color]; for html the file is normatrix-result.htmk; for md the file is normatrix-result.md')
     result = parser.parse_args()
     if result.paths == []:
         result.paths.append(os.getcwd())
@@ -135,6 +136,10 @@ def main():
             curr_ret_code += 1
         if curr_ret_code != 0:
             ret_code += 1
+    if result.output_format == "html":
+        mark = Markdown()
+        mark.convertFile(input=context.output_file, output=context.output_file.replace(".md", ".html"))
+        os.remove(context.output_file)
     if ret_code != 0:
         if len(result.paths) == 1:
             exit(1)
