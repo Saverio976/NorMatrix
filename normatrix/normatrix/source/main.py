@@ -85,8 +85,14 @@ def check_norm_path(pwd: str, context: Context, plug_operator_activ: bool, previ
     if preview or context.ENABLE_PREVIEW == True:
         list_checkers.extend(plugged.PREVIEW)
 
-    color.print_color("green", "\nNorMatrix!")
-    color.print_color("cyan", f"directory to check: {pwd}\n")
+    if context.output_format in ["html", "md"]:
+        with open(context.output_file, "a") as file:
+            print("\n\n# NorMatrix!", file=file)
+            print(f"## Directory: {pwd}", file=file)
+            print("", file=file)
+    elif context.output_format == "term_color":
+        color.print_color("green", "\nNorMatrix!")
+        color.print_color("cyan", f"directory to check: {pwd}\n")
 
     stats, files_to_check = get_file_to_check.get_file_to_check(pwd)
 
@@ -95,13 +101,21 @@ def check_norm_path(pwd: str, context: Context, plug_operator_activ: bool, previ
     STATS.extend(stats)
     NB_ERROR += len(stats)
 
-    print_stats.print_stats(STATS, files_to_check)
+    print_stats.print_stats(context, STATS, files_to_check)
 
     if NB_ERROR == 0:
-        color.print_color("green", "OK BRO")
+        if context.output_format in ["html", "md"]:
+            with open(context.output_file, "a") as file:
+                print("## Directory: {pwd} is **OK**", file=file)
+        elif context.output_format == "term_color":
+            color.print_color("green", "OK BRO")
         return 0
     else:
-        color.print_color("red", f"DUMB BRO ({NB_ERROR} error{'' if NB_ERROR == 0 else 's'})")
+        if context.output_format in ["html", "md"]:
+            with open(context.output_file, "a") as file:
+                print(f"## Directory: {pwd} is **BAD** with **{NB_ERROR}** error.s", file=file)
+        elif context.output_format == "term_color":
+            color.print_color("red", f"DUMB BRO ({NB_ERROR} error.s)")
         return NB_ERROR
 
 def main():
@@ -124,6 +138,10 @@ def main():
     if ret_code != 0:
         if len(result.paths) == 1:
             exit(1)
-        print(f'\nYou Have {ret_code} folder that dont respect the norm')
+        if context.output_format in ["html", "md"]:
+            with open(context.output_file, "a") as file:
+                print(f"\n# You Have {ret_code} folder.s that dont respect the norm", file=file)
+        elif context.output_format == "term_color":
+            print(f'\nYou Have {ret_code} folder.s that dont respect the norm')
         exit(1)
     exit(0)

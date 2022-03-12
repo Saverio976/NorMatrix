@@ -22,7 +22,7 @@ class Context:
         if output_format in ["html", "md"]:
             self.output_file = "normatrix-result.md"
             file = open(self.output_file, "w")
-            close(file)
+            file.close()
 
     def set_from_file(self, path):
         try:

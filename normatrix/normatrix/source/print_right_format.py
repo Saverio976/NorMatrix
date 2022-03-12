@@ -7,7 +7,7 @@ except ModuleNotFoundError:
 
 def print_right_format(context: Context, filepath: str, nb_total_err: int, list_error: list) -> None:
     if context.output_format in ["html", "md"]:
-        file = open(contex.output_file, "a")
+        file = open(context.output_file, "a")
         print(f"**{filepath} | {nb_total_err} error.s**", file=file)
     for err_line, err_msg in list_error:
         if context.output_format in ["html", "md"]:
@@ -19,3 +19,6 @@ def print_right_format(context: Context, filepath: str, nb_total_err: int, list_
             print_color("red", f"-> nope [{filepath}]:[{nb_total_err} error.s]")
         elif context.only_error == False:
             print_color("green", f"-> yez [{filepath}]")
+    if context.output_format in ["html", "md"]:
+        print("", file=file)
+        file.close()
