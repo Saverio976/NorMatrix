@@ -1,7 +1,6 @@
 import os
 import sys
 import argparse
-from markdown import Markdown
 
 try:
     from normatrix.source import color
@@ -136,17 +135,19 @@ def main():
             curr_ret_code += 1
         if curr_ret_code != 0:
             ret_code += 1
-    if result.output_format == "html":
-        mark = Markdown()
-        mark.convertFile(input=context.output_file, output=context.output_file.replace(".md", ".html"))
-        os.remove(context.output_file)
     if ret_code != 0:
-        if len(result.paths) == 1:
-            exit(1)
         if context.output_format in ["html", "md"]:
             with open(context.output_file, "a") as file:
                 print(f"\n# You Have {ret_code} folder.s that dont respect the norm", file=file)
         elif context.output_format == "term_color":
             print(f'\nYou Have {ret_code} folder.s that dont respect the norm')
-        exit(1)
-    exit(0)
+    if result.output_format == "html":
+        try:
+            from markdown import Markdown
+        except ModuleNotFoundError:
+            print("you should install the markdown package first (pip install markdown)")
+            exit(1)
+        mark = Markdown()
+        mark.convertFile(input=context.output_file, output=context.output_file.replace(".md", ".html"))
+        os.remove(context.output_file)
+    exit(0 if ret_code == 0 else 1)
