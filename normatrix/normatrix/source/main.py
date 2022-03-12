@@ -33,7 +33,7 @@ UPDATE:
 CONFIGS:
     normatrix can read a special json file for configuration.
     -> put a `.normatrix.json` file on the path where tou execute normatrix
-    -> execute normatrix whit `--conf` command line argument
+    -> and execute normatrix like you did it before
 
     default configuration file:
         ```json
@@ -65,7 +65,7 @@ def call_argparse():
             help='add some plugin that are added recently')
     parser.add_argument('--conf', action='store_const',
             dest='configs', const='yes', default='no',
-            help='tells if you have a .normatrix config file')
+            help='[deprecated][check always for the file] tells if you have a .normatrix config file')
     parser.add_argument('--only-error', action='store_const',
             dest='only_error', const='yes', default='no',
             help='print only bad files with errors')
