@@ -39,7 +39,7 @@ def check(context, file: CFileParse) -> (int, int, list):
                 if char == '(' and ll[e - 2] != ' ':
                     found = 0
                     for to_check in list_ok:
-                        if ll[e - len(to_check) - 1:e] == f"{to_check}(":
-                            list_error.append((i + 1, f"need space for {to_check}"))
+                        if ll[e - len(to_check) - 1:e] == f"{to_check}(" and to_check not in ["*", "&"]:
+                            list_error.append((i + 1, f"need space for {to_check} ({ll})"))
                             nb_error += 1
     return (nb_error, 1, list_error)
