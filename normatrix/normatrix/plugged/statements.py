@@ -18,6 +18,6 @@ def check(context, file: CFileParse) -> (int, int):
             ll = re.sub("//.*", '', ll)
             nb = ll.count(';')
             if nb > 1 and 'for' not in ll:
-                list_error.append((i + 1, f"only one statement per line {ll}"))
+                list_error.append((i + 1, f"only one statement per line ({ll})"))
                 nb_error += 1
     return (nb_error, 0, list_error)

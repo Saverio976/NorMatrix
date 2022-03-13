@@ -20,7 +20,7 @@ def check(context, file: CFileParse) -> (int, int, list):
         if line[0] != TypeLine.COMMENT:
             ll = re.sub("\/\/.*", '', line[1])
             if '){' in ll:
-                list_error.append((i + 1, "need a space between '){{'"))
+                list_error.append((i + 1, f"need a space between '){{' ({ll})"))
                 nb_error += 1
         if line[0] == TypeLine.FUNCTION:
             for e, char in enumerate(ll, start=1):

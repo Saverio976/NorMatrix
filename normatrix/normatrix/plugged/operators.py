@@ -35,11 +35,9 @@ def check_regex_operator(filename: str, l_nb: int, conf_op: list, line: str, lis
     new_line = re.sub(f"{get_escape_regex(conf_op[1], False)}{rex}", '', new_line)
     if (new_line.endswith(conf_op[1])):
         new_line = new_line[:-len(conf_op)]
-    try:
-        new_line.index(conf_op[1])
-        list_error.append((l_nb, f"bad space for operator: {conf_op[1]}"))
+    if conf_op[1] in new_line:
+        list_error.append((l_nb, f"bad space for operator: {conf_op[1]} ({new_line})"))
         nb_error += 1
-    except ValueError: pass
     return nb_error
 
 def check(context: Context, file: CFileParse) -> (int, int, list):

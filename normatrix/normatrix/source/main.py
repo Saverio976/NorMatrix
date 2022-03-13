@@ -118,6 +118,27 @@ def check_norm_path(pwd: str, context: Context, plug_operator_activ: bool, previ
             color.print_color("red", f"DUMB BRO ({NB_ERROR} error.s)")
         return NB_ERROR
 
+def transform_to_html(context: Context):
+    try:
+        from markdown import Markdown
+    except ModuleNotFoundError:
+        print("you should install the markdown package first (pip install markdown)")
+        exit(1)
+    to_file = context.output_file.replace(".md", ".html")
+    mark = Markdown()
+    mark.convertFile(input=context.output_file, output=to_file)
+    os.remove(context.output_file)
+    with open(to_file, "r") as file:
+        lines = file.readlines()
+    lines.insert(0, "<!DOCTYPE html>")
+    lines.insert(1, "<head>")
+    lines.insert(2, "<title>NorMatrix Results</title>")
+    lines.insert(3, "</head>")
+    lines.insert(4, "<body>")
+    lines.append("</body>")
+    with open(to_file, "w") as file:
+        file.writelines(lines)
+
 def main():
     result = call_argparse()
     ret_code = 0
@@ -139,12 +160,5 @@ def main():
         elif context.output_format == "term_color":
             print(f'\nYou Have {ret_code} folder.s that dont respect the norm')
     if result.output_format == "html":
-        try:
-            from markdown import Markdown
-        except ModuleNotFoundError:
-            print("you should install the markdown package first (pip install markdown)")
-            exit(1)
-        mark = Markdown()
-        mark.convertFile(input=context.output_file, output=context.output_file.replace(".md", ".html"))
-        os.remove(context.output_file)
+        transform_to_html(context)
     exit(0 if ret_code == 0 else 1)
