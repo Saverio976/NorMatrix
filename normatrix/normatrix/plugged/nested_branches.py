@@ -7,7 +7,9 @@ except ModuleNotFoundError:
 
 import re
 
-def add_if_error(line: str, in_switch: bool, file: CFileParse, list_error: list) -> bool:
+def add_if_error(line: str, in_switch: bool, file: CFileParse, list_error: list, i: int) -> bool:
+    nb_error = 0
+
     if "switch " in line and line.endswith(" {"):
             in_switch = True
     if in_switch and line.endswith(" }"):
@@ -15,19 +17,19 @@ def add_if_error(line: str, in_switch: bool, file: CFileParse, list_error: list)
     condition = line.startswith(" " * 20 if in_switch else " " * 15)
     if condition:
         if line.startswith(" " * 16) and line.endswith(");"):
-            return in_switch
+            return in_switch, nb_error
         if line.endswith(") {") or ") ? " in line:
-            return in_switch
+            return in_switch, nb_error
         if i != 0 and file.real_parsedline[i - 1][1].endswith("\\"):
-            return in_switch
+            return in_switch, nb_error
         if line.endswith(")") and \
                 ("if (" in file.sub_parsedline[i - 1][1] or \
                 "while (" in file.sub_parsedline[i - 1][1] or \
                 "for (" in file.sub_parsedline[i - 1][1]):
-            return in_switch
+            return in_switch, nb_error
         list_error.append((i + 1, f"maybe too many branch ? ({line})"))
         nb_error += 1
-    return in_switch
+    return (in_switch, nb_error)
 
 def check(context, file: CFileParse) -> (int, int, list):
     nb_error = 0
@@ -47,5 +49,6 @@ def check(context, file: CFileParse) -> (int, int, list):
         if is_in_func[0] and line.startswith('{'):
             is_in_func[1] = True
         if is_in_func[1] and not line.startswith('}'):
-            in_switch = add_if_error(line, in_switch, file, list_error)
+            in_switch, is_error = add_if_error(line, in_switch, file, list_error, i)
+            nb_error += is_error
     return (nb_error, 1, list_error)
