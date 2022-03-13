@@ -21,10 +21,16 @@ except:
     from normatrix.normatrix.source.config import TypeLine
     from normatrix.normatrix.source.context import Context
 
-def check(context: Context, file: CFileParse) -> (int, int):
+def check(context: Context, file: CFileParse) -> (int, int, list):
     nb_error = 0
+    list_error = []
     type_error = 1 # this is a minor error
-    return (nb_error, type_error) 
+# if there is an error
+    line_error_happen = 52
+    error_happen_message = "bwa wba bhaaa ..."
+    list_error.append((line_error_happen, error_happen_message))
+# end if there is an error
+    return (nb_error, type_error, list_error)
 ```
 
 ## add the file name without the .py in the list in the file `normatrix/normatrix/plugged/__init__.py`
