@@ -9,6 +9,7 @@ def check(context, file: CFileParse) -> (int, int, list):
     nb_error = 0
     list_error = []
     last_is_no = False
+
     for i in range(len(file.sub_parsedline) - 1):
         if file.sub_parsedline[i][0] not in [TypeLine.COMMENT]:
             if last_is_no and file.sub_parsedline[i][1] == '':

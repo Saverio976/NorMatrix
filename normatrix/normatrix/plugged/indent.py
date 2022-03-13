@@ -8,6 +8,7 @@ except ModuleNotFoundError:
 def check(context, file: CFileParse) -> (int, int, list):
     nb_error = 0
     list_error = []
+
     for i in range(len(file.real_parsedline)):
         line = file.real_parsedline[i]
         if line[0] == TypeLine.COMMENT:

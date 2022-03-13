@@ -94,7 +94,7 @@ def check_norm_path(pwd: str, context: Context, plug_operator_activ: bool, previ
         color.print_color("green", "\nNorMatrix!")
         color.print_color("cyan", f"directory to check: {pwd}\n")
 
-    stats, files_to_check = get_file_to_check.get_file_to_check(pwd)
+    stats, files_to_check = get_file_to_check.get_file_to_check(context, pwd)
 
     STATS, NB_ERROR = call_plugged.call_plugged(context, files_to_check, list_checkers, pwd)
 

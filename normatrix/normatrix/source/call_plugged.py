@@ -47,7 +47,9 @@ def itter_mod(context: Context, file: file_parser.CFileParse, checkers: list) ->
                 stats.extend(errors)
                 if len(info) > 2:
                     list_error.extend(info[2])
-    print_right_format.print_right_format(context, file.filepath, nb_error, list_error)
+    print_right_format.print_right_format(context, file.filepath,
+            nb_error, list_error
+    )
     return (stats, nb_error)
 
 def call_plugged(context: Context, files: list, list_checkers: list, pwd: str) -> (list, int):

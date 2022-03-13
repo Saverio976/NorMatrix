@@ -9,6 +9,7 @@ def check_non_comment_line(file: CFileParse, line: str, i: int, IS_IN_COMMENT: b
                 [chr(k) for k in range(ord('0'), ord('9')+1)]
     line: str = line.split("//")[0]
     line = line.split("/*")
+
     if len(line) == 1:
         line: str = line[0]
         if line.endswith("\\"):
@@ -28,12 +29,15 @@ def check(context, file: CFileParse) -> (int, int, list):
     nb_error = 0
     list_error = []
     filelines = file.sub_filelines
+
+    if file.filepath.endswith("Makefile"):
+        return (nb_error, 1, list_error)
     for i, line in enumerate(filelines):
         if IS_IN_COMMENT:
-            try:
-                line.index('*/')
+            if "*/" in line:
                 IS_IN_COMMENT = False
-            except ValueError: pass
         else:
-            IS_IN_COMMENT, nb_error = check_non_comment_line(file, line, i, IS_IN_COMMENT, nb_error, list_error)
+            IS_IN_COMMENT, nb_error = check_non_comment_line(file, line,
+                    i, IS_IN_COMMENT, nb_error, list_error
+            )
     return (nb_error, 1, list_error)

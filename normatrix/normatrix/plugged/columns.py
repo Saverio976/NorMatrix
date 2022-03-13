@@ -6,6 +6,7 @@ except ModuleNotFoundError:
 def check(context, file: CFileParse) -> (int, int, list):
     nb_error = 0
     list_error = []
+
     for i in range(len(file.real_parsedline)):
         nb_cols = len(file.real_parsedline[i][1])
         if nb_cols > 80:

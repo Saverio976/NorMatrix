@@ -9,6 +9,10 @@ def print_error(line: int) -> (int, int, list):
     return (1, 0, [(line, "bad header")])
 
 def check(context, file: CFileParse) -> (int, int, list):
+    lines = ""
+
+    if file.filepath.endswith("Makefile"):
+        return (0, 0, [])
     lines = file.real_filelines[:]
     if len(lines) < 6:
         return print_error(0)

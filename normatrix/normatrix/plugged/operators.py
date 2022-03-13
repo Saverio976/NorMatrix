@@ -24,30 +24,37 @@ def get_escape_regex(s: str, need: bool) -> str:
         l = f'[{l}]'
     return l
 
-def check_regex_operator(filename: str, l_nb: int, conf_op: list, line: str, list_error: list) -> int:
+def check_regex_operator(l_nb: int, conf_op: list, line: str, list_error: list, preview: bool) -> int:
     nb_error = 0
     new_line = line
+
     if len(conf_op) == 4:
         new_line = re.sub(conf_op[3], '', new_line)
-    rex = get_escape_regex(conf_op[0], True)
-    new_line = re.sub(f"{rex}{get_escape_regex(conf_op[1], False)}", '', new_line)
-    rex = get_escape_regex(conf_op[2], True)
-    new_line = re.sub(f"{get_escape_regex(conf_op[1], False)}{rex}", '', new_line)
+    nb = 2 if preview else 1
+    for _ in range(nb):
+        rex = get_escape_regex(conf_op[0], True)
+        new_line = re.sub(f"{rex}{get_escape_regex(conf_op[1], False)}", '', new_line)
+        rex = get_escape_regex(conf_op[2], True)
+        new_line = re.sub(f"{get_escape_regex(conf_op[1], False)}{rex}", '', new_line)
     if (new_line.endswith(conf_op[1])):
         new_line = new_line[:-len(conf_op)]
     if conf_op[1] in new_line:
-        list_error.append((l_nb, f"bad space for operator: {conf_op[1]} ({new_line})"))
+        list_error.append((l_nb, f"bad space for operator {conf_op[1]} ({new_line})"))
         nb_error += 1
     return nb_error
 
 def check(context: Context, file: CFileParse) -> (int, int, list):
     nb_error = 0
     list_error = []
+
+    if file.filepath.endswith("Makefile"):
+        return (nb_error, 1, list_error)
     for i, line in enumerate(file.sub_parsedline):
         if line[0] == TypeLine.COMMENT:
             continue
         ll = re.sub("'.*?'", '', line[1])
         ll = re.sub("\/\/.*", '', ll)
         for conf in context.OPERATOR_LIST:
-            nb_error += check_regex_operator(file.basename, i + 1, conf, ll, list_error)
+            nb_error += check_regex_operator(i + 1, conf, ll, list_error,
+                    context.ENABLE_PREVIEW)
     return (nb_error, 1, list_error)

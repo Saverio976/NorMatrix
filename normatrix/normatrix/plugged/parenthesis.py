@@ -15,6 +15,7 @@ def check(context, file: CFileParse) -> (int, int, list):
             "-", "/", "*", "%", "=", "&", "|", ":", "?", ",", ";",
             "<", ">", ")"
     ]
+
     for i in range(len(file.sub_parsedline)):
         line = file.sub_parsedline[i]
         if line[0] != TypeLine.COMMENT:
@@ -22,7 +23,7 @@ def check(context, file: CFileParse) -> (int, int, list):
             if '){' in ll:
                 list_error.append((i + 1, f"need a space between '){{' ({ll})"))
                 nb_error += 1
-        if line[0] == TypeLine.FUNCTION:
+        if line[0] == TypeLine.FUNCTION and context.ENABLE_PREVIEW:
             for e, char in enumerate(ll, start=1):
                 if char == '(' and ll[e - 2] == ' ':
                     found = 0

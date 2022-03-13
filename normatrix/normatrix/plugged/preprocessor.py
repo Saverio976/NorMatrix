@@ -8,6 +8,7 @@ def check(context, file: CFileParse) -> (int, int, list):
     list_error = []
     TAB_NB = 0
     filelines = file.sub_filelines
+
     for i, line in enumerate(filelines):
         if " ".join(line.split()).startswith("#if"):
             TAB_NB += 4

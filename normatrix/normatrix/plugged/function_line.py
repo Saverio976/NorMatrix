@@ -11,15 +11,19 @@ def check(context, file: CFileParse) -> (int, int, list):
     nb_line = 0
     line_index_func = 0
     is_in_func = [False, False]
+
     for i in range(len(file.sub_parsedline)):
-        if not is_in_func[0] and file.sub_parsedline[i][0] == TypeLine.FUNCTION:
+        if not is_in_func[0] and \
+                file.sub_parsedline[i][0] == TypeLine.FUNCTION:
             is_in_func[0] = True
             line_index_func = i
         if is_in_func[1] and file.sub_parsedline[i][0] != TypeLine.FUNCTION:
             nb_line -= 1
             if nb_line > 20:
                 nb_error += nb_line - 20
-                list_error.append((line_index_func, f"function number line ({nb_line} > 20)"))
+                list_error.append(
+                        (line_index_func, f"function number line ({nb_line} > 20)")
+                )
             nb_line = 0
             is_in_func[0] = False
             is_in_func[1] = False

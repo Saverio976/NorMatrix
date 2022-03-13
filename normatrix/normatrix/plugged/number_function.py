@@ -8,6 +8,7 @@ except ModuleNotFoundError:
 def check(context, file: CFileParse) -> (int, int, list):
     number_func = 0
     last_is_in_func = False
+
     for line in file.sub_parsedline:
         if not last_is_in_func and line[0] == TypeLine.FUNCTION:
             last_is_in_func = True

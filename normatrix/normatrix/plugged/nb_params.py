@@ -12,12 +12,16 @@ reg = re.compile('^(?!.*=)(\w{1,} {0,1}){2,}\((.*?\n{0,1}){0,}?\) {0,1}\n{0,1}\{
 def get_only_func_decl(rest: str):
     res = reg.match(rest)
     if res != None:
-        return rest[res.start():res.end()]
+        only_decl = rest[res.start():res.end()]
+        if "=" in only_decl:
+            return ''
+        return only_decl
     return ''
 
 def check(context, file: CFileParse) -> (int, int, list):
     nb_error = 0
     list_error = []
+
     if file.basename.endswith('.h'):
         return (0, 0, [])
     for i, line in enumerate(file.sub_parsedline):

@@ -10,6 +10,7 @@ import re
 def check(context, file: CFileParse) -> (int, int):
     nb_error = 0
     list_error = []
+
     for i in range(len(file.sub_parsedline)):
         line = file.sub_parsedline[i]
         if line[0] != TypeLine.COMMENT:
