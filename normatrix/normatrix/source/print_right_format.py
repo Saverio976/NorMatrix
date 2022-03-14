@@ -15,6 +15,7 @@ def print_right_format(context: Context, filepath: str, nb_total_err: int, list_
             print(f"- {err_line}: {err_msg}\n", file=file)
         elif context.output_format == "term_color":
             print(f"{err_line}: {err_msg}")
+            print(f"link : {filepath}:{err_line}")
     if context.output_format == "term_color":
         if nb_total_err != 0:
             print_color("red", f"-> nope [{filepath}]:[{nb_total_err} error.s]")
