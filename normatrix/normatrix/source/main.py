@@ -73,6 +73,9 @@ def call_argparse():
             choices=["html", "md", "term_color"], dest='output_format',
             default="term_color",
             help='tell which output format to use [html, md, term_color]; for html the file is normatrix-result.htmk; for md the file is normatrix-result.md')
+    parser.add_argument('--no-fclean', action='store_const',
+            dest='no_fclean', const=True, default=False,
+            help='if you want normatrix dont do a "make fclean" at the end')
     result = parser.parse_args()
     if result.paths == []:
         result.paths.append(os.getcwd())
@@ -146,7 +149,7 @@ def main():
     is_plugin_operator = result.plug_operator_activ == "yes"
     for path in result.paths:
         curr_ret_code = 0
-        context = Context(path, result.only_error, result.output_format)
+        context = Context(path, result.only_error, result.output_format, result.no_fclean)
         if check_norm_path(path, context, is_plugin_operator, is_preview) != 0:
             curr_ret_code += 1
         if makefile.check(context, path)[0] != 0:

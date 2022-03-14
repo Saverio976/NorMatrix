@@ -32,7 +32,7 @@ def check_funcs(context: Context, exe: str) -> int:
         return 0
     data = ret.stdout.decode("utf-8")
     for func in context.LIBC_BANNED_FUNC:
-        if f" {func}" in data:
+        if f" {func} " in data:
             color.print_color("red", f"{func} found in {exe}")
             if func == "memset":
                 print("maybe you use clang to compile and it use memset for some optimisation")
@@ -41,7 +41,9 @@ def check_funcs(context: Context, exe: str) -> int:
         color.print_color("green", f"ok : {exe}")
     return nb_error
 
-def fclean(path: str):
+def fclean(context: Context, path: str):
+    if context.fclean_after == False:
+        return None
     ret = subprocess.run(["make", "-C", path, "fclean"], capture_output=True);
     if ret.returncode != 0:
         print(ret.stderr.decode("utf-8"))
@@ -57,5 +59,5 @@ def check(contex: Context, path: str) -> (int, int):
         print("exe found :", str(exe))
     for exe in all_exe:
         nb_error += check_funcs(contex, exe)
-    fclean(path)
+    fclean(context, path)
     return (nb_error, 0)

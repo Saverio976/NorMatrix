@@ -11,11 +11,12 @@ import json
 import os
 
 class Context:
-    def __init__(self, path: str, only_error: str, output_format: str):
+    def __init__(self, path: str, only_error: str, output_format: str, no_fclean: bool=False):
         self.LIBC_BANNED_FUNC = LIBC_BANNED_FUNC
         self.BAD_FILE_EXTENSION = BAD_FILE_EXTENSION
         self.OPERATOR_LIST = OPERATOR_LIST
         self.ENABLE_PREVIEW = False
+        self.fclean_after = not no_fclean
         self.only_error = True if only_error == 'yes' else False
         if path != None:
             self.set_from_file(os.path.join(path, ".normatrix.json"))
