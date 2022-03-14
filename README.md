@@ -335,7 +335,7 @@ jobs:
 ```
 
 ## Contribute
-***[more information on [CONTRIBUTNG.md](https://github.com/Saverio976/NorMatrix/blob/python-rewrite/CONTRIBUTING.md)]***
+***[more information on [CONTRIBUTNG.md](https://github.com/Saverio976/NorMatrix/blob/main/CONTRIBUTING.md)]***
 
 ### special thanks
 -    chempa for his sample of file that dont follow the epitech norm
