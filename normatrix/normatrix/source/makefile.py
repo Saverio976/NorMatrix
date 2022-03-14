@@ -59,5 +59,5 @@ def check(contex: Context, path: str) -> (int, int):
         print("exe found :", str(exe))
     for exe in all_exe:
         nb_error += check_funcs(contex, exe)
-    fclean(context, path)
+    fclean(contex, path)
     return (nb_error, 0)
