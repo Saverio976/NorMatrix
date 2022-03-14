@@ -9,6 +9,8 @@ def check(context, file: CFileParse) -> (int, int, list):
     TAB_NB = 0
     filelines = file.sub_filelines
 
+    if file.filepath.endswith("Makefile"):
+        return (nb_error, 1, nb_error)
     for i, line in enumerate(filelines):
         if " ".join(line.split()).startswith("#if"):
             TAB_NB += 4

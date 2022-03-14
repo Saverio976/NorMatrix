@@ -22,7 +22,7 @@ def check(context, file: CFileParse) -> (int, int, list):
     nb_error = 0
     list_error = []
 
-    if file.basename.endswith('.h'):
+    if file.basename.endswith('.h') or file.filepath.endswith("Makefile"):
         return (0, 0, [])
     for i, line in enumerate(file.sub_parsedline):
         if line[0] == TypeLine.COMMENT:

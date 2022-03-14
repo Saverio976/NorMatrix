@@ -37,6 +37,8 @@ def check(context, file: CFileParse) -> (int, int, list):
     is_in_func = [False, False]
     list_error = []
 
+    if file.filepath.endswith("Makefile"):
+        return (nb_error, 1, list_error)
     for i in range(len(file.sub_parsedline)):
         line = file.sub_parsedline[i][1]
         line = re.sub('\/\/.*', '', line)

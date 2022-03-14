@@ -12,6 +12,8 @@ def check(context, file: CFileParse) -> (int, int, list):
     line_index_func = 0
     is_in_func = [False, False]
 
+    if file.filepath.endswith("Makefile"):
+        return (nb_error, 0, list_error)
     for i in range(len(file.sub_parsedline)):
         if not is_in_func[0] and \
                 file.sub_parsedline[i][0] == TypeLine.FUNCTION:

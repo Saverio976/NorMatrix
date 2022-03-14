@@ -9,6 +9,8 @@ def check(context, file: CFileParse) -> (int, int, list):
     number_func = 0
     last_is_in_func = False
 
+    if file.filepath.endswith("Makefile"):
+        return (0, 0, [])
     for line in file.sub_parsedline:
         if not last_is_in_func and line[0] == TypeLine.FUNCTION:
             last_is_in_func = True
