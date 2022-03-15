@@ -25,9 +25,15 @@ check some norm for you
 
 ### with pipy
 #### 1
+- if you want some "stable" version:
 ```bash
 pip install normatrix
 ```
+- if you want the most update to date version:
+```bash
+pip install git+https://github.com/Saverio976/NorMatrix.git
+```
+
 Now you can use it with `python3 -m normatrix` in your terminal
 
 #### 2
