@@ -13,7 +13,7 @@ def get_only_func_decl(rest: str):
     res = reg.match(rest)
     if res != None:
         only_decl = rest[res.start():res.end()]
-        if "=" in only_decl:
+        if "=" in only_decl or ";" in only_decl:
             return ''
         return only_decl
     return ''
