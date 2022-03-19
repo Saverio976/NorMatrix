@@ -18,6 +18,7 @@ __all__ = [
     "newline_at_end_of_file",
     "subscriptor",
     "header",
+    "comments"
 ]
 
 PREVIEW = [
