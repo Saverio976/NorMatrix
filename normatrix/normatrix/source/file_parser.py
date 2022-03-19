@@ -51,7 +51,7 @@ def get_status(lines: str) -> (TypeLine, str):
                 return (type_reg, lines[res.start():res.end()])
     return (TypeLine.NONE, lines.split('\n')[0])
 
-def parse(filepath: str, dirname: str) -> CFileParse:
+def parse(filepath: str, dirname: str) -> (CFileParse, int):
     obj = CFileParse(filepath, dirname)
     obj.get_filelines()
     i = 0
@@ -62,4 +62,4 @@ def parse(filepath: str, dirname: str) -> CFileParse:
             obj.sub_parsedline.append((status, line))
             obj.real_parsedline.append((status, obj.real_filelines[i]))
             i += 1
-    return obj
+    return (obj, len(obj.real_filelines))

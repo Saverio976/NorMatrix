@@ -5,7 +5,7 @@ except ModuleNotFoundError:
     from normatrix.normatrix.source import color
     from normatrix.normatrix.source.context import Context
 
-def print_stats(context: Context, stats: list, files: list) -> None:
+def print_stats(context: Context, stats: list, files: list, nb_line: int) -> None:
     file = ""
     if context.output_format in ["html", "md"]:
         file = open(context.output_file, "a")
@@ -19,9 +19,11 @@ def print_stats(context: Context, stats: list, files: list) -> None:
     nb_minor = len([elem for elem in stats if elem[2] == 1])
     nb_info = len([elem for elem in stats if elem[2] == 2])
     if context.output_format in ["html", "md"]:
-        print(f"\n*number of file checked: {len(files)}*", file=file)
+        print(f"\n*number of files checked: {len(files)}*\n", file=file)
+        print(f"*number of lines checked: {nb_line}*\n", file=file)
     elif context.output_format == "term_color":
-        color.print_color("cyan", f"\nnumber of file checked: {len(files)}")
+        color.print_color("cyan", f"\nnumber of files checked: {len(files)}")
+        color.print_color("cyan", f"number of lines checked: {nb_line}")
     if len(files) != 0:
         average = sum(average_dict.values()) / len(files)
         if context.output_format in ["html", "md"]:

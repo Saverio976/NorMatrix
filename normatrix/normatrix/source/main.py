@@ -99,12 +99,12 @@ def check_norm_path(pwd: str, context: Context, plug_operator_activ: bool, previ
 
     stats, files_to_check = get_file_to_check.get_file_to_check(context, pwd)
 
-    STATS, NB_ERROR = call_plugged.call_plugged(context, files_to_check, list_checkers, pwd)
+    STATS, NB_ERROR, nb_line = call_plugged.call_plugged(context, files_to_check, list_checkers, pwd)
 
     STATS.extend(stats)
     NB_ERROR += len(stats)
 
-    print_stats.print_stats(context, STATS, files_to_check)
+    print_stats.print_stats(context, STATS, files_to_check, nb_line)
 
     if NB_ERROR == 0:
         if context.output_format in ["html", "md"]:

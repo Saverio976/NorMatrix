@@ -52,9 +52,9 @@ def get_parsed_files_for_tests(checker, pwd) -> list:
         files[0] = f"test/bad_code/{files[0]}.c"
     files[1] = f"test/ok_code/{files[1]}.c"
     if os.path.exists(files[0]):
-        true_files.append(file_parser.parse(files[0], pwd))
+        true_files.append(file_parser.parse(files[0], pwd)[0])
     if os.path.exists(files[1]):
-        true_files.append(file_parser.parse(files[1], pwd))
+        true_files.append(file_parser.parse(files[1], pwd)[0])
     return true_files
 
 def check_with_mod(checker, pwd) -> (int, int):
