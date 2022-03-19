@@ -8,8 +8,10 @@
 char *func(void)
 {
     static char buf[] = "  k    ";
+    static char buffer[] = "coucou   \
+battar       ";
 
-    return buf; // b      n
+    return buf;
 }
 // a jf le    m
 /*

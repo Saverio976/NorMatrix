@@ -10,10 +10,11 @@ int abc(
                 int b
         )
 {
-    // if (a == b)
-        // if (b == a)
-            // if (a == b)
-                // if (b == a)
-                    // return a + b;
+    if (a == b)
+        if (b == a)
+            a = a + 1;
+    if (b == a)
+        if (a == b)
+            b = a + 1;
     return a + b;
 }

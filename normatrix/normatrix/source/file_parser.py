@@ -32,9 +32,15 @@ class CFileParse:
     def get_filelines(self):
         with open(self.filepath) as fd:
             lines = fd.read()
-        lines = re.sub('"(.+?\\\n)+?(.+?)"', '"\\\n"', lines)
-        lines = re.sub('".+?"', '""', lines)
         self.real_filelines = lines.split('\n')
+        m = re.search('"(.+?\\\n)+?(.+?)"', lines)
+        while m != None:
+            nb_nl = lines[m.start():m.end()].count("\n")
+            replace = "\n" * nb_nl
+            lines = re.sub('"(.+?\\\n)+?(.+?)"', f'"{replace}"', lines, count=1)
+            m = re.search('"(.+?\\\n)+?(.+?)"', lines)
+        m = re.search('"(.+?\\\n)+?(.+?)"', lines)
+        lines = re.sub('".+?"', '""', lines)
         self.sub_filelines = lines.split('\n')
 
 def get_status(lines: str) -> (TypeLine, str):

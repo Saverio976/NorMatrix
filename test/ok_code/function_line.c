@@ -9,24 +9,24 @@ static char aaaaaaaaaaaaaaa(int a,
         int b,
         int c)
 {
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+    b = c + c;
+    b = c + c;
+    b = c + c;
+    b = c + c;
+    b = c + c;
+    b = c + c;
+    b = c + c;
+    b = c + c;
+    b = c + c;
+    b = c + c;
+    b = c + c;
+    b = c + c;
+    b = c + c;
+    b = c + c;
+    b = c + c;
+    b = c + c;
+    b = c + c;
+    b = c + c;
+    b = c + c;
     return a + b + c;
 }

@@ -20,7 +20,9 @@ def check(context, file: CFileParse) -> (int, int, list):
         while len_l > 0 and nb_space < len_l and line[1][nb_space] == ' ':
             nb_space += 1
         if nb_space % 4 != 0:
-            list_error.append((i + 1, "always four indent in source code"))
+            list_error.append(
+                    (i + 1, f"always four indent in source code ({line[1]})")
+            )
             nb_error += 1
         if not (file.basename.endswith(".c") or file.basename.endswith(".h")):
             continue

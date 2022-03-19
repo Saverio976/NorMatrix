@@ -22,6 +22,6 @@ int func2(int h)
 
 int func3(int a)
 {
-// a,a
+    func(func(a, a), func(a, a));
     return a;
 }
