@@ -32,7 +32,7 @@ def check_funcs(context: Context, exe: str) -> int:
         return 0
     data = ret.stdout.decode("utf-8")
     for func in context.LIBC_BANNED_FUNC:
-        if f" {func} " in data:
+        if f" {func}@" in data or f" {func} " in data:
             color.print_color("red", f"{func} found in {exe}")
             if func == "memset":
                 print("maybe you use clang to compile and it use memset for some optimisation")
