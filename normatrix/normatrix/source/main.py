@@ -66,7 +66,7 @@ def call_argparse():
     parser.add_argument('--conf', action='store_const',
             dest='configs', const='yes', default='no',
             help='[deprecated][check always for the file] tells if you have a .normatrix config file')
-    parser.add_argument('--only-error', action='store_const',
+    parser.add_argument('--only-errors', action='store_const',
             dest='only_error', const='yes', default='no',
             help='print only bad files with errors')
     parser.add_argument('--output', metavar="format",
