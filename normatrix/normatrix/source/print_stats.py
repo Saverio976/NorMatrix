@@ -27,9 +27,9 @@ def print_stats(context: Context, stats: list, files: list, nb_line: int) -> Non
     if len(files) != 0:
         average = sum(average_dict.values()) / len(files)
         if context.output_format in ["html", "md"]:
-            print(f"*average number of error per file: {average}*", file=file)
+            print(f"*average number of error per file: {average:.2f}*", file=file)
         elif context.output_format == "term_color":
-            color.print_color("cyan", f"average number of error per file: {average}")
+            color.print_color("cyan", f"average number of error per file: {average:.2f}")
     if context.output_format in ["html", "md"]:
         print(f"***number of __MAJOR__: {nb_major} = {-3 * nb_major}***", file=file)
         print(f"***number of __MINOR__: {nb_major} = {-1 * nb_minor}***", file=file)
