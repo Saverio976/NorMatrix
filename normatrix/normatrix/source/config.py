@@ -6,7 +6,8 @@ LIBC_BANNED_FUNC = [
         'memset',
         'strcpy',
         'strcat',
-        'calloc'
+        'calloc',
+        'fprintf'
 ]
 
 BAD_FILE_EXTENSION = [
