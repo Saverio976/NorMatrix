@@ -30,7 +30,7 @@ def check(context, file: CFileParse) -> (int, int, list):
         all_lines = file.sub_parsedline[i:]
         rest_lines = "\n".join([x[1] for x in all_lines])
         only_decl = get_only_func_decl(rest_lines)
-        only_decl = re.sub("\(\*\w*?\)\((.|\n)*?\)", "", only_decl)
+        only_decl = re.sub("\((\*)+\w*?\)\((.|\n)*?\)", "", only_decl)
         n = only_decl.count(',') + 1
         if n > 4:
             list_error.append((i + 1, f"too many arguments ({n} > 4)"))
