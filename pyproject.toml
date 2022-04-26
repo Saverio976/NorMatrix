@@ -4,3 +4,10 @@ requires = [
 	"wheel"
 ]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "normatrix"
+version = "0.3.2"
+dependencies = [
+    "markdown"
+]
