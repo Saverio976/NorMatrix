@@ -9,3 +9,8 @@ int abc(int a, char *b, struct ok dd, char const *abc[])
 {
     return (0);
 }
+
+int aa(void)
+{
+    return (4);
+}

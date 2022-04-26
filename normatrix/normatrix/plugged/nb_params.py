@@ -31,6 +31,10 @@ def check(context, file: CFileParse) -> (int, int, list):
         rest_lines = "\n".join([x[1] for x in all_lines])
         only_decl = get_only_func_decl(rest_lines)
         only_decl = re.sub("\((\*)+\w*?\)\((.|\n)*?\)", "", only_decl)
+        if "()" in only_decl:
+            list_error.append(
+                (i + 1, "functions that takes no arguments should have void")
+            )
         n = only_decl.count(',') + 1
         if n > 4:
             list_error.append((i + 1, f"too many arguments ({n} > 4)"))

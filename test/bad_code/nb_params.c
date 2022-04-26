@@ -10,3 +10,8 @@ int abc(char *ab, int ac[], char const *ad, char *const *af[],
 {
     return (0);
 }
+
+int aa()
+{
+    return (4);
+}
