@@ -8,7 +8,8 @@ def check(context, file: CFileParse) -> (int, int, list):
     list_error = []
 
     for i in range(len(file.real_parsedline)):
-        nb_cols = len(file.real_parsedline[i][1])
+        new = file.real_parsedline[i][1].replace('\t', ' ' * 4)
+        nb_cols = len(new);
         if nb_cols > 80:
             list_error.append((i + 1, f"number of columns ({nb_cols} > 80)"))
             nb_error += 1
