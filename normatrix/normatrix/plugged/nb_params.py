@@ -8,6 +8,8 @@ except ModuleNotFoundError:
 import re
 
 reg = re.compile('^(?!.*=)(\w{1,} {0,1}){2,}\((.*?\n{0,1}){0,}?\) {0,1}\n{0,1}\{')
+reg_func_name = re.compile('(?!.*=)(\w{1,} {0,1}){2,}')
+alphabet = re.compile("[A-Z]")
 
 def get_only_func_decl(rest: str):
     res = reg.match(rest)
@@ -17,6 +19,21 @@ def get_only_func_decl(rest: str):
             return ''
         return only_decl
     return ''
+
+def check_snake_case_function(only_decl: str, list_error: list, i: int) -> int:
+    res = reg_func_name.match(only_decl)
+    if res == None:
+        return 0
+    new = only_decl[res.start():res.end()]
+    print(new)
+    if len(new.split(' ')) < 2:
+        return 0
+    if alphabet.match(new.split(' ')[1]) != None:
+        list_error.append(
+            (i + 1, f"function name is in snake case ({new.split(' ')[1]})")
+        )
+        return 1
+    return 0
 
 def check(context, file: CFileParse) -> (int, int, list):
     nb_error = 0
@@ -30,11 +47,13 @@ def check(context, file: CFileParse) -> (int, int, list):
         all_lines = file.sub_parsedline[i:]
         rest_lines = "\n".join([x[1] for x in all_lines])
         only_decl = get_only_func_decl(rest_lines)
+        nb_error += check_snake_case_function(only_decl, list_error, i)
         only_decl = re.sub("\((\*)+\w*?\)\((.|\n)*?\)", "", only_decl)
         if "()" in only_decl:
             list_error.append(
                 (i + 1, "functions that takes no arguments should have void")
             )
+            nb_error += 1
         n = only_decl.count(',') + 1
         if n > 4:
             list_error.append((i + 1, f"too many arguments ({n} > 4)"))

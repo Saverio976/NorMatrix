@@ -15,3 +15,8 @@ int aa()
 {
     return (4);
 }
+
+void Ab_Cringe(void)
+{
+    return;
+}
