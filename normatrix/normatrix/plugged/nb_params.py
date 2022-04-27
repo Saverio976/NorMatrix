@@ -25,7 +25,6 @@ def check_snake_case_function(only_decl: str, list_error: list, i: int) -> int:
     if res == None:
         return 0
     new = only_decl[res.start():res.end()]
-    print(new)
     if len(new.split(' ')) < 2:
         return 0
     if alphabet.match(new.split(' ')[1]) != None:
