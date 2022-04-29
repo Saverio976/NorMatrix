@@ -90,7 +90,7 @@ def print_stats_color(context: Context, stats: list, files: list, nb_line: int) 
 def print_stats(context: Context, stats: list, files: list, nb_line: int) -> None:
     if context.output_format in ["html", "md"]:
         print_stats_md_html(context, stats, files, nb_line)
-    elif context.output_format == "term_rich" or rich_present == True:
+    elif context.output_format == "term_rich" and rich_present == True:
         print_stats_rich(context, stats, files, nb_line)
     else:
         print_stats_color(context, stats, files, nb_line)
