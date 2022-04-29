@@ -18,7 +18,7 @@ classifiers = [
     "Programming Language :: C",
     "Topic :: Software Development :: Quality Assurance"
 ]
-dependencies = [ "markdown", "regex" ]
+dependencies = [ "markdown", "regex", "rich" ]
 
 [tool.setuptools.packages.find]
 where = [ "normatrix" ]
