@@ -23,7 +23,3 @@ dependencies = [ "markdown", "regex" ]
 [tool.setuptools.packages.find]
 where = [ "normatrix" ]
 include = [ "normatrix" ]
-
-[project.scripts]
-cli-name = "normatrix.welcome:welcome"
-
