@@ -9,5 +9,6 @@ build-backend = "setuptools.build_meta"
 name = "normatrix"
 version = "0.3.2"
 dependencies = [
-    "markdown"
+    "markdown",
+    "regex"
 ]
