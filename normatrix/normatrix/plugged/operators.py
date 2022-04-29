@@ -3,11 +3,13 @@ try:
     from normatrix.source.config import TypeLine
     from normatrix.source.context import Context
     from normatrix.source.config import smart_match
+    from normatrix.source.custom_regex import re_sub
 except ModuleNotFoundError:
     from normatrix.normatrix.source.file_parser import CFileParse
     from normatrix.normatrix.source.config import TypeLine
     from normatrix.normatrix.source.context import Context
     from normatrix.normatrix.source.config import smart_match
+    from normatrix.normatrix.source.custom_regex import re_sub
 
 import re
 
@@ -29,13 +31,13 @@ def check_regex_operator(l_nb: int, conf_op: list, line: str, list_error: list, 
     new_line = line
 
     if len(conf_op) == 4:
-        new_line = re.sub(conf_op[3], '', new_line)
+        new_line = re_sub(conf_op[3], '', new_line, timeout=0.1)
     nb = 2 if preview else 1
     for _ in range(nb):
         rex = get_escape_regex(conf_op[0], True)
-        new_line = re.sub(f"{rex}{get_escape_regex(conf_op[1], False)}", '', new_line)
+        new_line = re_sub(f"{rex}{get_escape_regex(conf_op[1], False)}", '', new_line, timeout=0.1)
         rex = get_escape_regex(conf_op[2], True)
-        new_line = re.sub(f"{get_escape_regex(conf_op[1], False)}{rex}", '', new_line)
+        new_line = re_sub(f"{get_escape_regex(conf_op[1], False)}{rex}", '', new_line, timeout=0.1)
     if (new_line.endswith(conf_op[1])):
         new_line = new_line[:-len(conf_op)]
     if conf_op[1] in new_line:
@@ -52,8 +54,8 @@ def check(context: Context, file: CFileParse) -> (int, int, list):
     for i, line in enumerate(file.sub_parsedline):
         if line[0] == TypeLine.COMMENT:
             continue
-        ll = re.sub("'.*?'", '', line[1])
-        ll = re.sub("\/\/.*", '', ll)
+        ll = re_sub("'.*?'", '', line[1], timeout=0.1)
+        ll = re_sub("\/\/.*", '', ll, timeout=0.1)
         for conf in context.OPERATOR_LIST:
             nb_error += check_regex_operator(i + 1, conf, ll, list_error,
                     context.ENABLE_PREVIEW)

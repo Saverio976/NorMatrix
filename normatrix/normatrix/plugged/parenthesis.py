@@ -1,9 +1,11 @@
 try:
     from normatrix.source.file_parser import CFileParse
     from normatrix.source.config import TypeLine
+    from normatrix.source.custom_regex import re_sub
 except ModuleNotFoundError:
     from normatrix.normatrix.source.file_parser import CFileParse
     from normatrix.normatrix.source.config import TypeLine
+    from normatrix.normatrix.source.custom_regex import re_sub
 
 import re
 
@@ -21,7 +23,7 @@ def check(context, file: CFileParse) -> (int, int, list):
     for i in range(len(file.sub_parsedline)):
         line = file.sub_parsedline[i]
         if line[0] != TypeLine.COMMENT:
-            ll = re.sub("\/\/.*", '', line[1])
+            ll = re_sub("\/\/.*", '', line[1], timeout=0.1)
             if '){' in ll:
                 list_error.append((i + 1, f"need a space between '){{' ({ll})"))
                 nb_error += 1

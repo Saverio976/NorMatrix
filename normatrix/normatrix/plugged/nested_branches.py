@@ -1,9 +1,11 @@
 try:
     from normatrix.source.file_parser import CFileParse
     from normatrix.source.config import TypeLine
+    from normatrix.source.custom_regex import re_sub
 except ModuleNotFoundError:
     from normatrix.normatrix.source.file_parser import CFileParse
     from normatrix.normatrix.source.config import TypeLine
+    from normatrix.normatrix.source.custom_regex import re_sub
 
 import re
 
@@ -41,8 +43,8 @@ def check(context, file: CFileParse) -> (int, int, list):
         return (nb_error, 1, list_error)
     for i in range(len(file.sub_parsedline)):
         line = file.sub_parsedline[i][1]
-        line = re.sub('\/\/.*', '', line)
-        line = re.sub("^( )*$", '', line)
+        line = re_sub('\/\/.*', '', line, timeout=0.1)
+        line = re_sub("^( )*$", '', line, timeout=0.1)
         if not is_in_func[0] and file.sub_parsedline[i][0] == TypeLine.FUNCTION:
             is_in_func[0] = True
         if is_in_func[1] and file.sub_parsedline[i][0] != TypeLine.FUNCTION:

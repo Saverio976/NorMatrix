@@ -1,18 +1,18 @@
 try:
     from normatrix.source.file_parser import CFileParse
     from normatrix.source.config import TypeLine
+    from normatrix.source.custom_regex import re_sub, re_match, re_compile
 except ModuleNotFoundError:
     from normatrix.normatrix.source.file_parser import CFileParse
     from normatrix.normatrix.source.config import TypeLine
+    from normatrix.normatrix.source.custom_regex import re_sub, re_match, re_compile
 
-import re
-
-reg = re.compile('^(?!.*=)(\w{1,} {0,1}){2,}\((.*?\n{0,1}){0,}?\) {0,1}\n{0,1}\{')
-reg_func_name = re.compile('(?!.*=)(\w{1,} {0,1}){2,}')
-alphabet = re.compile("[A-Z]")
+reg = re_compile('^(?!.*=)(\w{1,} {0,1}){2,}\((.*?\n{0,1}){0,}?\) {0,1}\n{0,1}\{')
+reg_func_name = re_compile('(?!.*=)(\w{1,} {0,1}){2,}')
+alphabet = re_compile("[A-Z]")
 
 def get_only_func_decl(rest: str):
-    res = reg.match(rest)
+    res = re_match(rest, reg, timeout=0.1)
     if res != None:
         only_decl = rest[res.start():res.end()]
         if "=" in only_decl or ";" in only_decl:
@@ -21,13 +21,13 @@ def get_only_func_decl(rest: str):
     return ''
 
 def check_snake_case_function(only_decl: str, list_error: list, i: int) -> int:
-    res = reg_func_name.match(only_decl)
+    res = re_match(only_decl, reg_func_name, timeout=0.1)
     if res == None:
         return 0
     new = only_decl[res.start():res.end()]
     if len(new.split(' ')) < 2:
         return 0
-    if alphabet.match(new.split(' ')[1]) != None:
+    if re_match(new.split(' ')[1], alphabet) != None:
         list_error.append(
             (i + 1, f"function name is in snake case ({new.split(' ')[1]})")
         )
@@ -47,7 +47,7 @@ def check(context, file: CFileParse) -> (int, int, list):
         rest_lines = "\n".join([x[1] for x in all_lines])
         only_decl = get_only_func_decl(rest_lines)
         nb_error += check_snake_case_function(only_decl, list_error, i)
-        only_decl = re.sub("\((\*)+\w*?\)\((.|\n)*?\)", "", only_decl)
+        only_decl = re_sub("\((\*)+\w*?\)\((.|\n)*?\)", "", only_decl, timeout=0.1)
         if "()" in only_decl:
             list_error.append(
                 (i + 1, "functions that takes no arguments should have void")

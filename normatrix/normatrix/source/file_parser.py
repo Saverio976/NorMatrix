@@ -1,9 +1,11 @@
 try:
     from normatrix.source.config import REG_TYPELINE
     from normatrix.source.config import TypeLine
+    from normatrix.source.custom_regex import re_sub, re_search, re_match
 except ModuleNotFoundError:
     from normatrix.normatrix.source.config import REG_TYPELINE
     from normatrix.normatrix.source.config import TypeLine
+    from normatrix.normatrix.source.custom_regex import re_sub, re_search, re_match
 
 import re
 
@@ -33,20 +35,20 @@ class CFileParse:
         with open(self.filepath) as fd:
             lines = fd.read()
         self.real_filelines = lines.split('\n')
-        m = re.search('"(.+?\\\n)+?(.+?)"', lines)
+        m = re_search('"(.+?\\\n)+?(.+?)"', lines, timeout=0.1)
         while m != None:
             nb_nl = lines[m.start():m.end()].count("\n")
             replace = "\n" * nb_nl
-            lines = re.sub('"(.+?\\\n)+?(.+?)"', f'"{replace}"', lines, count=1)
-            m = re.search('"(.+?\\\n)+?(.+?)"', lines)
-        m = re.search('"(.+?\\\n)+?(.+?)"', lines)
-        lines = re.sub('".+?"', '""', lines)
+            lines = re_sub('"(.+?\\\n)+?(.+?)"', f'"{replace}"', lines, count=1, timeout=0.1)
+            m = re_search('"(.+?\\\n)+?(.+?)"', lines, timeout=1)
+        m = re_search('"(.+?\\\n)+?(.+?)"', lines, timeout=1)
+        lines = re_sub('".+?"', '""', lines)
         self.sub_filelines = lines.split('\n')
 
 def get_status(lines: str) -> (TypeLine, str):
     for type_reg, regex_list in REG_TYPELINE.items():
         for regex in regex_list:
-            res = regex.match(lines)
+            res = re_match(lines, regex)
             if res != None and res.start() <= len(lines.split('\n')[0]):
                 return (type_reg, lines[res.start():res.end()])
     return (TypeLine.NONE, lines.split('\n')[0])
