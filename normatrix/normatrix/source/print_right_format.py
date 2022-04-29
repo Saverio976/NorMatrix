@@ -36,7 +36,7 @@ def print_right_format_rich(context: Context, filepath: str, nb_total_err: int, 
     if nb_total_err == 0:
         return
     table = Table(title=f"[bold magenta]{filepath} [{nb_total_err} error.s]", expand=True)
-    table.add_column("Lines", style="cyan", no_wrap=True)
+    table.add_column("Lines", style="cyan", no_wrap=False)
     table.add_column("Error Message", style="red", no_wrap=True)
     dico = dict()
     for err_line, err_msg in list_error:
