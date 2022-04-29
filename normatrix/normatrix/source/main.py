@@ -49,33 +49,33 @@ CONFIGS:
     for further information read the README.md on
     https://github.com/Saverio976/NorMatrix
 """
+list_options = [
+    ['--no-operators-pluggin', 'plug_operator_activ', 'no', 'yes',
+        'remove the operators pluggin (because it print some false positiv for now)'],
+    ['--preview', 'preview_plugins', 'yes', 'no',
+        'add some plugin that are added recently'],
+    ['--conf', 'configs', 'yes', 'no',
+        '[deprecated][now it check always for the file] tells if you have a .normatrix config file'],
+    ['--only-errors', 'only_error', 'yes', 'no',
+        'print only bad files with errors'],
+    ['--no-fclean', 'no_fclean', True, False,
+        'if you want normatrix dont do a "make fclean" at the end']
+]
 
 def call_argparse():
     parser = argparse.ArgumentParser(prog='python -m normatrix',
             formatter_class=argparse.RawDescriptionHelpFormatter,
             description='The C Epitech Coding Style Norm Checker',
             epilog=FULL_DOC)
+    for options in list_options:
+        parser.add_argument(options[0], action='store_const', dest=options[1],
+            const=options[2], default=options[3], help=options[4])
+    parser.add_argument('--output', metavar="format",
+            choices=["html", "md", "term_color", "term_rich"],
+            dest='output_format', default="term_rich",
+            help='tell which output format to use [html, md, term_color, term_rich]; for html the file is normatrix-result.htlm; for md the file is normatrix-result.md')
     parser.add_argument('paths', metavar='paths', nargs='*',
             help='list of path to check (default: the current working directory)')
-    parser.add_argument('--no-operators-pluggin', action='store_const',
-            dest='plug_operator_activ', const='no', default='yes',
-            help='remove the operators pluggin (because it print some false positiv for now)')
-    parser.add_argument('--preview', action='store_const',
-            dest='preview_plugins', const='yes', default='no',
-            help='add some plugin that are added recently')
-    parser.add_argument('--conf', action='store_const',
-            dest='configs', const='yes', default='no',
-            help='[deprecated][check always for the file] tells if you have a .normatrix config file')
-    parser.add_argument('--only-errors', action='store_const',
-            dest='only_error', const='yes', default='no',
-            help='print only bad files with errors')
-    parser.add_argument('--output', metavar="format",
-            choices=["html", "md", "term_color"], dest='output_format',
-            default="term_color",
-            help='tell which output format to use [html, md, term_color]; for html the file is normatrix-result.htmk; for md the file is normatrix-result.md')
-    parser.add_argument('--no-fclean', action='store_const',
-            dest='no_fclean', const=True, default=False,
-            help='if you want normatrix dont do a "make fclean" at the end')
     result = parser.parse_args()
     if result.paths == []:
         result.paths.append(os.getcwd())
