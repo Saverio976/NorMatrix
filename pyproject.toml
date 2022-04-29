@@ -22,4 +22,4 @@ dependencies = [ "markdown", "regex" ]
 
 [tool.setuptools.packages.find]
 where = [ "normatrix" ]
-include = [ "normatrix" ]
+include = [ "normatrix*" ]
