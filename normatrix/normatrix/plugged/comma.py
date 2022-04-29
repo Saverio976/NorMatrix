@@ -5,7 +5,7 @@ try:
 except ModuleNotFoundError:
     from normatrix.normatrix.source.file_parser import CFileParse
     from normatrix.normatrix.source.config import TypeLine
-    from normatrix.source.custom_regex import re_sub, re_search
+    from normatrix.normatrix.source.custom_regex import re_sub, re_search
 
 import re
 
