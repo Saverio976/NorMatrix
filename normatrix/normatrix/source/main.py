@@ -59,7 +59,9 @@ list_options = [
     ['--only-errors', 'only_error', 'yes', 'no',
         'print only bad files with errors'],
     ['--no-fclean', 'no_fclean', True, False,
-        'if you want normatrix dont do a "make fclean" at the end']
+        'if you want normatrix dont do a "make fclean" at the end'],
+    ['--link-line', 'link_line', True, False,
+        'to have the "link" to the file (in vscode terminal you can click it and it will open the file at the line of the error)']
 ]
 
 def call_argparse():
@@ -149,7 +151,7 @@ def main():
     is_plugin_operator = result.plug_operator_activ == "yes"
     for path in result.paths:
         curr_ret_code = 0
-        context = Context(path, result.only_error, result.output_format, result.no_fclean)
+        context = Context(path, result.only_error, result.output_format, result.no_fclean, result.link_line)
         if check_norm_path(path, context, is_plugin_operator, is_preview) != 0:
             curr_ret_code += 1
         if makefile.check(context, path)[0] != 0:
