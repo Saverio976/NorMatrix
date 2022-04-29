@@ -13,6 +13,8 @@ jobs:
       with:
         python-version: '3.9'
 
+    - name: get requirements
+      run: pip install regex
     - name: NorMatrix
       run: ./main.py test/ok_code/
 
@@ -26,6 +28,8 @@ jobs:
       with:
         python-version: '3.9'
 
+    - name: get requirements
+      run: pip install regex
     - name: Tests
       run: ./exec.sh --tests-run
 
@@ -37,9 +41,10 @@ jobs:
     - name: get repo
       uses: actions/checkout@v2
 
+    - name: get requirements
+      run: pip install regex
     - name: tests ok code
       run: ./exec.sh test/ok_code/
-
     - name: Tests
       run: ./exec.sh --tests-run
 
@@ -61,8 +66,9 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
+      - name: get requirements
+        run: pip install regex
       - name: OK_CODE
         run: python3 ./main.py test/ok_code/
-
       - name: TESTS
         run: python3 ./main.py --tests-run
