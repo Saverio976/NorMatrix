@@ -20,10 +20,10 @@ check some norm for you
 ![GitHub last commit](https://img.shields.io/github/last-commit/Saverio976/NorMatrix?color=red&style=plastic)
 
 ## install
+### with pipy
 <details>
   <summary>With Pipy</summary>
 
-### with pipy
 #### 1
 - if you want some "stable" version:
 ```bash
@@ -64,10 +64,10 @@ pip uninstall normatrix
 ```
 </details>
 
+### from source
 <details>
   <summary>From source</summary>
 
-### from source
 #### 1
 ```bash
 git clone https://github.com/Saverio976/NorMatrix.git
@@ -126,10 +126,10 @@ Delete the folder
 -   [ ] ...
 
 ## doc
+### (if you use pipy) python -m normatrix
 <details>
   <summary>(if you use pipy) python -m normatrix</summary>
 
-### (if you use pipy) python -m normatrix
 ```bash
 usage: python -m normatrix [-h] [--no-operators-pluggin] [--preview] [--conf] [paths ...]
 
@@ -152,10 +152,10 @@ source: https://github.com/Saverio976/NorMatrix
 ```
 </details>
 
+### (only from source) main.py
 <details>
   <summary>(only from source) main.py</summary>
 
-### (only from source) main.py
 ```bash
 usage: python -m normatrix [-h] [--no-operators-pluggin] [--preview] [--conf] [paths ...]
 
@@ -178,10 +178,10 @@ source: https://github.com/Saverio976/NorMatrix
 ```
 </details>
 
+### (only from source) exec.sh
 <details>
   <summary>(only from source) exec.sh</summary>
 
-### (only from source) exec.sh
 (this file exists only to keep compatibility to older version)
 ```bash
 usage: python -m normatrix [-h] [--no-operators-pluggin] [--preview] [--conf] [paths ...]
@@ -205,10 +205,10 @@ source: https://github.com/Saverio976/NorMatrix
 ```
 </details>
 
+### (only from source) Makefile
 <details>
   <summary>(only from source) Makefile (deprecated)</summary>
 
-### (only from source) Makefile
 (this file exists only to keep compatibility to older version)
 (if you can, move to another choice)
 ```bash
@@ -333,10 +333,10 @@ jobs:
         python-version: '3.9'
 
     - name: clone NorMatrix
-      run: git clone https://github.com/Saverio976/NorMatrix.git
+      run: pip install git+https://github.com/Saverio976/NorMatrix.git
 
     - name: NorMatrix
-      run: ./NorMatrix/main.py
+      run: python3 -m normatrix --only-errors
 ' > .github/workflows/normatrix_check.yml
 ```
 
