@@ -25,7 +25,8 @@ def print_right_format_md_html(context: Context, filepath: str, nb_total_err: in
 def print_right_format_color(context: Context, filepath: str, nb_total_err: int, list_error: list) -> None:
     for err_line, err_msg in list_error:
         print(f"{err_line}: {err_msg}")
-        print(f"link : {filepath}:{err_line}")
+        if context.link_line == True:
+            print(f"link : {filepath}:{err_line}")
     if nb_total_err != 0:
         print_color("red", f"-> nope [{filepath}]:[{nb_total_err} error.s]")
     elif context.only_error == False:
@@ -43,11 +44,15 @@ def print_right_format_rich(context: Context, filepath: str, nb_total_err: int, 
             dico[err_line].append(err_msg)
         else:
             dico[err_line] = [err_msg]
-    for line, errors in dico.items():
+    sort_list = sorted(list(dico.items()), key = lambda x: x[0])
+    for line, errors in sort_list:
         for i, err_msg in enumerate(errors):
             table.add_row(f"{line}" if i == 0 else '', f"{err_msg}")
     console = Console()
     console.print(table)
+    if context.link_line == True:
+        for err_line, _ in sort_list:
+            print(f".. link : {filepath}:{err_line}")
 
 def print_right_format(context: Context, filepath: str, nb_total_err: int, list_error: list) -> None:
     if context.output_format in ["html", "md"]:
