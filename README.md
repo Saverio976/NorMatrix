@@ -131,24 +131,27 @@ Delete the folder
   <summary>(if you use pipy) python -m normatrix</summary>
 
 ```bash
-usage: python -m normatrix [-h] [--no-operators-pluggin] [--preview] [--conf] [paths ...]
+usage: python -m normatrix [-h] [--no-operators-pluggin] [--preview] [--conf] [--only-errors] [--no-fclean] [--link-line] [--tests-run]
+                           [--output format]
+                           [paths ...]
 
 The C Epitech Coding Style Norm Checker
 
 positional arguments:
   paths                 list of path to check (default: the current working directory)
 
-  options:
-    -h, --help            show this help message and exit
-    --no-operators-pluggin
-                          remove the operators pluggin (because it print some false positiv for now)
-    --preview             add some plugin that are added recently
-    --conf                [deprecated] tells if you have a .normatrix config file
-    --only-error          print only bad files with errors
-    --output format       tell which output format to use [html, md, term_color]; for html the file is normatrix-result.htmk; for md the file is
-                          normatrix-result.md
-
-source: https://github.com/Saverio976/NorMatrix
+options:
+  -h, --help            show this help message and exit
+  --no-operators-pluggin
+                        remove the operators pluggin (because it print some false positiv for now)
+  --preview             add some plugin that are added recently
+  --conf                [deprecated][now it check always for the file] tells if you have a .normatrix config file
+  --only-errors         print only bad files with errors
+  --no-fclean           if you want normatrix dont do a "make fclean" at the end
+  --link-line           to have the "link" to the file (in vscode terminal you can click it and it will open the file at the line of the error)
+  --tests-run           run the unit tests for normatrix
+  --output format       tell which output format to use [html, md, term_color, term_rich]; for html the file is normatrix-result.htlm; for md the
+                        file is normatrix-result.md
 ```
 </details>
 
@@ -157,24 +160,27 @@ source: https://github.com/Saverio976/NorMatrix
   <summary>(only from source) main.py</summary>
 
 ```bash
-usage: python -m normatrix [-h] [--no-operators-pluggin] [--preview] [--conf] [paths ...]
+usage: ./main.py [-h] [--no-operators-pluggin] [--preview] [--conf] [--only-errors] [--no-fclean] [--link-line] [--tests-run]
+                           [--output format]
+                           [paths ...]
 
 The C Epitech Coding Style Norm Checker
 
 positional arguments:
   paths                 list of path to check (default: the current working directory)
 
-  options:
-    -h, --help            show this help message and exit
-    --no-operators-pluggin
-                          remove the operators pluggin (because it print some false positiv for now)
-    --preview             add some plugin that are added recently
-    --conf                [deprecated] tells if you have a .normatrix config file
-    --only-error          print only bad files with errors
-    --output format       tell which output format to use [html, md, term_color]; for html the file is normatrix-result.htmk; for md the file is
-                          normatrix-result.md
-
-source: https://github.com/Saverio976/NorMatrix
+options:
+  -h, --help            show this help message and exit
+  --no-operators-pluggin
+                        remove the operators pluggin (because it print some false positiv for now)
+  --preview             add some plugin that are added recently
+  --conf                [deprecated][now it check always for the file] tells if you have a .normatrix config file
+  --only-errors         print only bad files with errors
+  --no-fclean           if you want normatrix dont do a "make fclean" at the end
+  --link-line           to have the "link" to the file (in vscode terminal you can click it and it will open the file at the line of the error)
+  --tests-run           run the unit tests for normatrix
+  --output format       tell which output format to use [html, md, term_color, term_rich]; for html the file is normatrix-result.htlm; for md the
+                        file is normatrix-result.md
 ```
 </details>
 
@@ -184,24 +190,27 @@ source: https://github.com/Saverio976/NorMatrix
 
 (this file exists only to keep compatibility to older version)
 ```bash
-usage: python -m normatrix [-h] [--no-operators-pluggin] [--preview] [--conf] [paths ...]
+usage: ./main.py [-h] [--no-operators-pluggin] [--preview] [--conf] [--only-errors] [--no-fclean] [--link-line] [--tests-run]
+                           [--output format]
+                           [paths ...]
 
 The C Epitech Coding Style Norm Checker
 
 positional arguments:
   paths                 list of path to check (default: the current working directory)
 
-  options:
-    -h, --help            show this help message and exit
-    --no-operators-pluggin
-                          remove the operators pluggin (because it print some false positiv for now)
-    --preview             add some plugin that are added recently
-    --conf                [depreacted] tells if you have a .normatrix config file
-    --only-error          print only bad files with errors
-    --output format       tell which output format to use [html, md, term_color]; for html the file is normatrix-result.htmk; for md the file is
-                          normatrix-result.md
-
-source: https://github.com/Saverio976/NorMatrix
+options:
+  -h, --help            show this help message and exit
+  --no-operators-pluggin
+                        remove the operators pluggin (because it print some false positiv for now)
+  --preview             add some plugin that are added recently
+  --conf                [deprecated][now it check always for the file] tells if you have a .normatrix config file
+  --only-errors         print only bad files with errors
+  --no-fclean           if you want normatrix dont do a "make fclean" at the end
+  --link-line           to have the "link" to the file (in vscode terminal you can click it and it will open the file at the line of the error)
+  --tests-run           run the unit tests for normatrix
+  --output format       tell which output format to use [html, md, term_color, term_rich]; for html the file is normatrix-result.htlm; for md the
+                        file is normatrix-result.md
 ```
 </details>
 
@@ -257,7 +266,7 @@ just add inside `[]` the string of what you want
     "no-banned": ["memset"]
 }
 ```
-- to banne my_printf (because you dont want to use it)
+- to ban my_printf (because you dont want to use it)
 ```json
 {
     "banned": ["my_printf"]
@@ -266,13 +275,13 @@ just add inside `[]` the string of what you want
 - to no-banne \*.o file (because you dont need this warning)
 ```json
 {
-    "no-extension": [".o"]
+    "no-extension": ["*.o"]
 }
 ```
-- to banne \*.c file (because you want c fiel banned)
+- to banne \*.c file (because you want c file banned)
 ```json
 {
-    "extension": [".c"]
+    "extension": ["*.c"]
 }
 ```
 - to enable preview check by default
@@ -288,7 +297,7 @@ by default there are somthing like this:
 {
     "banned": ["printf", "memset", "strcpy", "strcat", "calloc"],
     "no-banned": [],
-    "extension": [".a", ".o", ".so", ".gch", "~", "#", ".d"],
+    "extension": ["*.a", "*.o", "*.so", ".gch", "*~", "*#", "*.d"],
     "no-extension": [],
     "enable-preview": false
 }
@@ -304,7 +313,10 @@ it will remove it from the default
 ## example if you run it as a github workflow
 this is not the latest normatrix but :
 
-link : [link](https://github.com/Saverio976/NorMatrix/runs/5523744737?check_suite_focus=true)
+link : [link](https://github.com/Saverio976/NorMatrix/runs/6242624947?check_suite_focus=true)
+
+![example](/assets/example_normatrix.png)
+![example1](/assets/example_normatrix_1.png)
 
 state : [![NorMatrix Check](https://github.com/Saverio976/NorMatrix/actions/workflows/normatrix_check.yml/badge.svg)](https://github.com/Saverio976/NorMatrix/actions/workflows/normatrix_check.yml)
 
