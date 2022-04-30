@@ -13,7 +13,7 @@ except ModuleNotFoundError:
 try:
     from normatrix.source.main import main
 except ModuleNotFoundError:
-    from normatrix.normatrix.source.main import main
+    from src.normatrix.source.main import main
 
 ##############################################################################
 # TESTS
@@ -24,10 +24,10 @@ try:
     from normatrix import plugged
     from normatrix.source.context import Context
 except ModuleNotFoundError:
-    from normatrix.normatrix.source import color
-    from normatrix.normatrix.source import file_parser
-    from normatrix.normatrix.source.context import Context
-    from normatrix.normatrix import plugged
+    from src.normatrix.source import color
+    from src.normatrix.source import file_parser
+    from src.normatrix.source.context import Context
+    from src.normatrix import plugged
 
 from importlib import import_module
 from inspect import signature
