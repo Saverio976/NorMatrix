@@ -17,9 +17,9 @@ try:
     from normatrix.source.config import TypeLine
     from normatrix.source.context import Context
 except:
-    from normatrix.normatrix.source.file_parser import CFilePar
-    from normatrix.normatrix.source.config import TypeLine
-    from normatrix.normatrix.source.context import Context
+    from src.normatrix.source.file_parser import CFilePar
+    from src.normatrix.source.config import TypeLine
+    from src.normatrix.source.context import Context
 
 def check(context: Context, file: CFileParse) -> (int, int, list):
     nb_error = 0
@@ -33,8 +33,8 @@ def check(context: Context, file: CFileParse) -> (int, int, list):
     return (nb_error, type_error, list_error)
 ```
 
-## add the file name without the .py in the list in the file `normatrix/normatrix/plugged/__init__.py`
-`normatrix/normatrix/plugged/__init__.py`
+## add the file name without the .py in the list in the file `src/normatrix/plugged/__init__.py`
+`src/normatrix/plugged/__init__.py`
 ```py
 PREVIEW = [
     ...,
