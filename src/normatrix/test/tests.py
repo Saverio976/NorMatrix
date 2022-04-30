@@ -44,7 +44,8 @@ except ModuleNotFoundError:
 import subprocess
 
 def run_tests():
-    subprocess.call(["python3", "-m", "unittest", exe, "-v"])
+    ret = subprocess.run(["python3", "-m", "unittest", exe, "-v"])
+    return ret.returncode
 
 if __name__ == "__main__":
     unittest.main()
