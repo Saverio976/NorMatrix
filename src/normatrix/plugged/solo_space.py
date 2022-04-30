@@ -18,7 +18,7 @@ def check(context, file: CFileParse) -> (int, int, list):
             if ll.split() != [] and ll.endswith('\t') or ll.endswith(' '):
                 list_error.append((i + 1, "extra space at end of line"))
                 nb_error += 1
-            if ll.split() == [] and (ll.startswith(' ') or ll.startswith('\t')):
+            elif ll.split() == [] and (ll.startswith(' ') or ll.startswith('\t')):
                 list_error.append((i + 1, "extra space at start of line"))
                 nb_error += 1
     return (nb_error, 1, list_error)
