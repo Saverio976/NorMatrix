@@ -1,15 +1,17 @@
 try:
     from normatrix.source import color
     from normatrix.source.context import Context
+    from normatrix.source.custom_regex import re_search
 except ModuleNotFoundError:
     from src.normatrix.source import color
     from src.normatrix.source.context import Context
+    from src.normatrix.source.custom_regex import re_search
 
 import os
 
 def check_is_file_has_bad_extension(context: Context, file: str) -> (bool, str):
     for elem in context.BAD_FILE_EXTENSION:
-        if file.endswith(elem):
+        if re_search(elem.replace("*", ".*"), file) != None:
             return (True, elem)
     return (False, "")
 

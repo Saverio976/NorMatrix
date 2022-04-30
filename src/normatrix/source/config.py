@@ -16,13 +16,13 @@ LIBC_BANNED_FUNC = [
 ]
 
 BAD_FILE_EXTENSION = [
-        '.a',
-        '.o',
-        '.so',
-        '.gch',
-        '~',
-        '#',
-        '.d'
+        '*.a',
+        '*.o',
+        '*.so',
+        '*.gch',
+        '*~',
+        '*#',
+        '*.d'
 ]
 
 smart_match = {

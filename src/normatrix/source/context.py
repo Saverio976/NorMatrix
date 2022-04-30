@@ -47,8 +47,6 @@ class Context:
         for line in data:
             ll = line.strip()
             ll = ll.replace("\n", "")
-            if ll.startswith("*."):
-                ll = ll[1:]
             if self.only_error == False:
                 print(f"ignore bad extension : {ll}")
             if ll in self.BAD_FILE_EXTENSION:
