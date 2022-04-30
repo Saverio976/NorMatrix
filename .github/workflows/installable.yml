@@ -22,7 +22,7 @@ jobs:
         run: ./exec.sh --tests-run
 
       - name: use NorMatrix ok_code
-        run: python3 -m normatrix test/ok_code/
+        run: python3 -m normatrix /src/normatrix/test/truecode/ok_code/
 
       - name: use NorMatrix bad_code
-        run: python3 -m normatrix test/bad_code || exit 0
+        run: python3 -m normatrix src/normatrix/test/truecode/bad_code/ || exit 0
