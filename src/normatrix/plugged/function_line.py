@@ -24,7 +24,7 @@ def check(context, file: CFileParse) -> (int, int, list):
             if nb_line > 20:
                 nb_error += nb_line - 20
                 list_error.append(
-                        (line_index_func, f"function number line ({nb_line} > 20)")
+                    (line_index_func + 1, f"function number line ({nb_line} > 20)")
                 )
             nb_line = 0
             is_in_func[0] = False
