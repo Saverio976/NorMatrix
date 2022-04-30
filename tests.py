@@ -15,6 +15,9 @@ from test.parenthesis.tests import TestParenthesis
 from test.preprocessor.tests import TestPreprocessor
 from test.snake_case.tests import TestSnakeCase
 from test.solo_space.tests import TestSoloSpace
+from test.statements.tests import TestStatements
+from test.trailing_newline.tests import TestTrailingNewline
+from test.two_space.tests import TestTwoSpace
 
 if __name__ == "__main__":
     unittest.main()
