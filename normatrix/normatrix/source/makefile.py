@@ -30,7 +30,7 @@ def compile(path: str) -> bool:
 
 def get_all_exe(path: str) -> list:
     list_of_file = []
-    remove_suffix = [".png", ".jpg"]
+    remove_suffix = [".png", ".jpg", ".sh"]
     for root, dirs, files in walklevel(path, level=2):
         list_of_file.extend([os.path.join(root, cur) for cur in files
             if os.access(os.path.join(path, cur), os.X_OK)])
