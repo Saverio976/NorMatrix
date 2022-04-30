@@ -14,4 +14,4 @@ jobs:
         python-version: '3.9'
 
     - name: NorMatrix
-      run: cd src/nomatrix/test/truecode/ && ./main.py && exit 1 || exit 0
+      run: cd src/normatrix/test/truecode/ && ./main.py && exit 1 || exit 0
