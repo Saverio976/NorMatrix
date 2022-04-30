@@ -21,5 +21,5 @@ classifiers = [
 dependencies = [ "markdown", "regex", "rich" ]
 
 [tool.setuptools.packages.find]
-where = [ "normatrix" ]
+where = [ "src" ]
 include = [ "normatrix*" ]
