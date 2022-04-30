@@ -10,15 +10,25 @@ except ModuleNotFoundError:
 import json
 import os
 
+def check_boolean(b) -> bool:
+    if isinstance(b, bool):
+        return b
+    if isinstance(b, str):
+        if b in ["yes", "y"]:
+            return True
+        else:
+            return False
+    return False
+
 class Context:
     def __init__(self, path: str, only_error: str, output_format: str, no_fclean: bool = False, link_line: bool = False):
         self.LIBC_BANNED_FUNC = LIBC_BANNED_FUNC
         self.BAD_FILE_EXTENSION = BAD_FILE_EXTENSION
         self.OPERATOR_LIST = OPERATOR_LIST
         self.ENABLE_PREVIEW = False
-        self.fclean_after = not no_fclean
-        self.link_line = link_line
-        self.only_error = True if only_error == 'yes' else False
+        self.fclean_after = not check_boolean(no_fclean)
+        self.link_line = check_boolean(link_line)
+        self.only_error = check_boolean(only_error)
         if path != None:
             self.set_from_file(os.path.join(path, ".normatrix.json"))
             self.remove_gitignore(os.path.join(path, ".gitignore"))
@@ -37,7 +47,8 @@ class Context:
         for line in data:
             ll = line.strip()
             ll = ll.replace("\n", "")
-            ll = ll[1:] if ll.startswith("*") else ll
+            if ll.startswith("*."):
+                ll = ll[1:]
             if self.only_error == False:
                 print(f"ignore bad extension : {ll}")
             if ll in self.BAD_FILE_EXTENSION:
