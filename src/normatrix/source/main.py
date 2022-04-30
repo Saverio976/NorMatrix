@@ -10,6 +10,7 @@ try:
     from normatrix.source import call_plugged
     from normatrix.source import makefile
     from normatrix import plugged
+    from normatrix.test.tests import run_tests
 except ModuleNotFoundError:
     from src.normatrix.source import color
     from src.normatrix.source import get_file_to_check
@@ -18,6 +19,7 @@ except ModuleNotFoundError:
     from src.normatrix.source import call_plugged
     from src.normatrix.source import makefile
     from src.normatrix import plugged
+    from src.normatrix.test.tests import run_tests
 
 FULL_DOC = """SOURCE:
     https://github.com/Saverio976/NorMatrix
@@ -49,6 +51,7 @@ CONFIGS:
     for further information read the README.md on
     https://github.com/Saverio976/NorMatrix
 """
+
 list_options = [
     ['--no-operators-pluggin', 'plug_operator_activ', 'no', 'yes',
         'remove the operators pluggin (because it print some false positiv for now)'],
@@ -61,7 +64,9 @@ list_options = [
     ['--no-fclean', 'no_fclean', True, False,
         'if you want normatrix dont do a "make fclean" at the end'],
     ['--link-line', 'link_line', True, False,
-        'to have the "link" to the file (in vscode terminal you can click it and it will open the file at the line of the error)']
+        'to have the "link" to the file (in vscode terminal you can click it and it will open the file at the line of the error)'],
+    ['--jsp', 'pass_test', True, False,
+        'run the unit tests for normatrix']
 ]
 
 def call_argparse():
@@ -146,6 +151,8 @@ def transform_to_html(context: Context):
 
 def main():
     result = call_argparse()
+    if result.pass_test == True:
+        exit(run_tests())
     ret_code = 0
     is_preview = result.preview_plugins == "yes"
     is_plugin_operator = result.plug_operator_activ == "yes"
