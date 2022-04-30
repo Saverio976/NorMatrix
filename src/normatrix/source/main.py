@@ -65,7 +65,7 @@ list_options = [
         'if you want normatrix dont do a "make fclean" at the end'],
     ['--link-line', 'link_line', True, False,
         'to have the "link" to the file (in vscode terminal you can click it and it will open the file at the line of the error)'],
-    ['--jsp', 'pass_test', True, False,
+    ['--tests-run', 'pass_test', True, False,
         'run the unit tests for normatrix']
 ]
 
