@@ -11,8 +11,6 @@ except ModuleNotFoundError:
     from src.normatrix.source.config import smart_match
     from src.normatrix.source.custom_regex import re_sub
 
-import re
-
 def get_escape_regex(s: str, need: bool) -> str:
     l = ""
     for c in s:
