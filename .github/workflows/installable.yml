@@ -1,0 +1,31 @@
+name: Pip Install
+
+on: [push]
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: pip install git+https://github.com/Saverio976/NorMatrix.git
+        run: pip install git+https://github.com/Saverio976/NorMatrix.git
+
+      - name: clone repo
+        uses: actions/checkout@v2
+
+      - name: ./exec.sh --tests-run
+        run: ./exec.sh --tests-run
+
+      - name: cd ..
+        run: cd ..
+
+      - name: use NorMatrix ok_code
+        run: python3 -m normatrix NorMatrix/test/ok_code
+
+      - name: use NorMatrix bad_code
+        run: python3 -m normatrix NorMatrix/test/bad_code; exit 0
