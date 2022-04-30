@@ -11,6 +11,7 @@ from test.nested_branches.tests import TestNestedBranches
 from test.newline_at_end_of_file.tests import TestNewlineAtEndOfFile
 from test.number_function.tests import TestNumberFunction
 from test.operators.tests import TestOperators
+from test.parenthesis.tests import TestParenthesis
 
 if __name__ == "__main__":
     unittest.main()
