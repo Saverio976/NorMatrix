@@ -12,6 +12,8 @@ from test.newline_at_end_of_file.tests import TestNewlineAtEndOfFile
 from test.number_function.tests import TestNumberFunction
 from test.operators.tests import TestOperators
 from test.parenthesis.tests import TestParenthesis
+from test.preprocessor.tests import TestPreprocessor
+from test.snake_case.tests import TestSnakeCase
 
 if __name__ == "__main__":
     unittest.main()
