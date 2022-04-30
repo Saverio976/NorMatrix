@@ -14,6 +14,7 @@ from test.operators.tests import TestOperators
 from test.parenthesis.tests import TestParenthesis
 from test.preprocessor.tests import TestPreprocessor
 from test.snake_case.tests import TestSnakeCase
+from test.solo_space.tests import TestSoloSpace
 
 if __name__ == "__main__":
     unittest.main()
