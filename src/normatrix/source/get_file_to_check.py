@@ -11,7 +11,11 @@ import os
 
 def check_is_file_has_bad_extension(context: Context, file: str) -> (bool, str):
     for elem in context.BAD_FILE_EXTENSION:
-        if re_search(elem.replace("*", ".*"), file) != None:
+        if elem.startswith("*."):
+            elem = elem.replace("*.", ".*\.", 1)
+        elif elem.startswith("*"):
+            elem = elem.replace("*",".*")
+        if re_search(elem, file) != None:
             return (True, elem)
     return (False, "")
 
