@@ -63,7 +63,35 @@ static char aaaaaaaaaaaaaaa(int a,
     abc;
     abc;
     return a + b + c;
-}"""
+}
+
+void apt(int a,
+    __attribute__((unused)) int b)
+{
+    abc;
+    abc;
+    abc;
+    abc;
+    abc;
+    abc;
+    abc;
+    abc;
+    abc;
+    abc;
+    abc;
+    abc;
+    abc;
+    abc;
+    abc;
+    abc;
+    abc;
+    abc;
+    abc;
+    abc;
+    abc;
+    return a + b + c;
+}
+"""
 
 class TestFunctionLine(unittest.TestCase):
 
@@ -102,3 +130,4 @@ class TestFunctionLine(unittest.TestCase):
         nb_error, hight, list_error = check(context, parsed)
         self.assertNotEqual(nb_error, 0)
         self.assertEqual(list_error[0][0], 2)
+        self.assertEqual(list_error[1][0], 29)
