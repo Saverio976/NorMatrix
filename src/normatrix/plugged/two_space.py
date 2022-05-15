@@ -17,7 +17,7 @@ def check_non_comment_line(file: CFileParse, line: str, i: int, IS_IN_COMMENT: b
         e = 0
         while e < len(line) and line[e] not in separator:
             e += 1
-        if "  " in line[e:]:
+        if "  " in line[e:] and "#define " not in line[e:]:
             nb_error += 1
             list_error.append((i + 1, f"two space alone ({line[e:]})"))
     else:
