@@ -49,6 +49,10 @@ else if you are using zsh shell (the `echo` print `/something/like/zsh`):
 ```bash
 echo alias normatrix=\"python3 -m normatrix\" >> $HOME/.zshrc
 ```
+else if you are using fish shell (the `echo` print `/something/like/fish`):
+```bash
+abbr --add 'normatrix' 'python3 -m normatrix'
+```
 else handle this yourself bruh;
 
 #### 3
