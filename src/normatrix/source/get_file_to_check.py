@@ -16,7 +16,7 @@ def check_is_file_has_bad_extension(context: Context, file: str) -> (bool, str):
             elem = elem.replace("*.", r".*\.", 1)
         elif elem.startswith("*"):
             elem = elem.replace("*", ".*")
-        if re_search(elem, file) is None:
+        if re_search(elem, file):
             return (True, elem)
     return (False, "")
 
@@ -32,13 +32,9 @@ def get_file_to_check(context: Context, path: str) -> (list, list):
                 "NorMatrix" in filepath and "NorMatrix" in path
             )
             ignore_folder = (
-                ".git/" not in filepath
-                and ".vscode/" not in filepath
-                and "tests/" not in filepath
+                ".git/" not in filepath and ".vscode/" not in filepath and "tests/" not in filepath
             )
-            is_file_to_check = (
-                file.endswith(".c") or file.endswith(".h") or file == "Makefile"
-            )
+            is_file_to_check = file.endswith(".c") or file.endswith(".h") or file == "Makefile"
             if ignore_normatrix and ignore_folder and is_file_to_check:
                 files_to_check.append(filepath)
             elif ignore_normatrix and ignore_folder:
