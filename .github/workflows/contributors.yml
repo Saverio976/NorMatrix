@@ -1,6 +1,8 @@
 name: Contributing to the Contributors
 
-on: [push]
+on:
+  push:
+    branch: [main]
 
 jobs:
   build:
