@@ -3,9 +3,11 @@ import sys
 
 try:
     import regex
+
+    regex.cache_all()
 except ModuleNotFoundError:
-    import sys
     import subprocess
+
     subprocess.run(["python3", "-m", "pip", "install", "regex"])
     p = subprocess.run([*sys.argv])
     exit(p.returncode)

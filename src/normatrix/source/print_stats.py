@@ -7,11 +7,13 @@ except ModuleNotFoundError:
 
 rich_present = False
 try:
-    from rich.table import Table
     from rich.console import Console
+    from rich.table import Table
+
     rich_present = True
-except:
+except ModuleNotFoundError:
     rich_present = False
+
 
 def get_average_dict(stats: list) -> dict:
     average_dict = {}
@@ -22,13 +24,17 @@ def get_average_dict(stats: list) -> dict:
             average_dict[elem[0]] += elem[1]
     return average_dict
 
+
 def get_nb_error_categories(stats: list) -> (float, float, float):
     nb_major = len([elem for elem in stats if elem[2] == 0])
     nb_minor = len([elem for elem in stats if elem[2] == 1])
     nb_info = len([elem for elem in stats if elem[2] == 2])
     return (nb_major, nb_minor, nb_info)
 
-def print_stats_md_html(context: Context, stats: list, files: list, nb_line: int) -> None:
+
+def print_stats_md_html(
+    context: Context, stats: list, files: list, nb_line: int
+) -> None:
     file = open(context.output_file, "a")
     average_dict = get_average_dict(stats)
     print(f"\n*number of files checked: {len(files)}*\n", file=file)
@@ -41,10 +47,11 @@ def print_stats_md_html(context: Context, stats: list, files: list, nb_line: int
     print(f"***number of __INFO__: {nb_info} = -0***", file=file)
     note = -3 * nb_major + -1 * nb_minor
     if note == 0 or note == -0:
-        print(f"**__note: -0__**", file=file)
+        print("**__note: -0__**", file=file)
     else:
         print(f"**__note: {note}__**", file=file)
     file.close()
+
 
 def print_stats_rich(context: Context, stats: list, files: list, nb_line: int) -> None:
     average_dict = get_average_dict(stats)
@@ -54,6 +61,7 @@ def print_stats_rich(context: Context, stats: list, files: list, nb_line: int) -
     table.add_row(f"[cyan]{len(files)}", "files checked")
     table.add_row(f"[cyan]{nb_line}", "lines checked")
     average = sum(average_dict.values()) / len(files) if len(files) != 0 else 1
+
     def get_color(x: float):
         if average == 0:
             return "[green]"
@@ -61,6 +69,7 @@ def print_stats_rich(context: Context, stats: list, files: list, nb_line: int) -
             return "[yellow]"
         else:
             return "[red]"
+
     table.add_row(f"{get_color(average)}{average:.2f}", "errors per file")
     nb_major, nb_minor, nb_info = get_nb_error_categories(stats)
     table.add_row(f"{get_color(nb_major)}{nb_major}", "major.s")
@@ -70,6 +79,7 @@ def print_stats_rich(context: Context, stats: list, files: list, nb_line: int) -
     table.add_row(f"{get_color(note)}{note}", "to remove from your note")
     console = Console()
     console.print(table)
+
 
 def print_stats_color(context: Context, stats: list, files: list, nb_line: int) -> None:
     average_dict = get_average_dict(stats)
@@ -87,10 +97,11 @@ def print_stats_color(context: Context, stats: list, files: list, nb_line: int) 
     else:
         color.print_color("red", f"note : {note}")
 
+
 def print_stats(context: Context, stats: list, files: list, nb_line: int) -> None:
     if context.output_format in ["html", "md"]:
         print_stats_md_html(context, stats, files, nb_line)
-    elif context.output_format == "term_rich" and rich_present == True:
+    elif context.output_format == "term_rich" and rich_present is True:
         print_stats_rich(context, stats, files, nb_line)
     else:
         print_stats_color(context, stats, files, nb_line)

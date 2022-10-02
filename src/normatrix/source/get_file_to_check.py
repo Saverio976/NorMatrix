@@ -9,15 +9,17 @@ except ModuleNotFoundError:
 
 import os
 
+
 def check_is_file_has_bad_extension(context: Context, file: str) -> (bool, str):
     for elem in context.BAD_FILE_EXTENSION:
         if elem.startswith("*."):
-            elem = elem.replace("*.", ".*\.", 1)
+            elem = elem.replace("*.", r".*\.", 1)
         elif elem.startswith("*"):
-            elem = elem.replace("*",".*")
-        if re_search(elem, file) != None:
+            elem = elem.replace("*", ".*")
+        if re_search(elem, file) is None:
             return (True, elem)
     return (False, "")
+
 
 def get_file_to_check(context: Context, path: str) -> (list, list):
     stats = []
@@ -26,13 +28,17 @@ def get_file_to_check(context: Context, path: str) -> (list, list):
     for root, _, files in os.walk(path):
         for file in files:
             filepath = os.path.join(root, file)
-            ignore_normatrix = 'NorMatrix' not in filepath or \
-                    ('NorMatrix' in filepath and 'NorMatrix' in path)
-            ignore_folder = '.git/' not in filepath and \
-                    '.vscode/' not in filepath and \
-                    'tests/' not in filepath
-            is_file_to_check = file.endswith('.c') or file.endswith('.h') or \
-                    file == "Makefile"
+            ignore_normatrix = "NorMatrix" not in filepath or (
+                "NorMatrix" in filepath and "NorMatrix" in path
+            )
+            ignore_folder = (
+                ".git/" not in filepath
+                and ".vscode/" not in filepath
+                and "tests/" not in filepath
+            )
+            is_file_to_check = (
+                file.endswith(".c") or file.endswith(".h") or file == "Makefile"
+            )
             if ignore_normatrix and ignore_folder and is_file_to_check:
                 files_to_check.append(filepath)
             elif ignore_normatrix and ignore_folder:

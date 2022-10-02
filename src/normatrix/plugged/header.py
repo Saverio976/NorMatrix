@@ -1,12 +1,12 @@
 try:
     from normatrix.source.file_parser import CFileParse
-    from normatrix.source.config import TypeLine
 except ModuleNotFoundError:
     from src.normatrix.source.file_parser import CFileParse
-    from src.normatrix.source.config import TypeLine
+
 
 def print_error(line: int) -> (int, int, list):
     return (1, 0, [(line, "bad header")])
+
 
 def check(context, file: CFileParse) -> (int, int, list):
     lines = ""

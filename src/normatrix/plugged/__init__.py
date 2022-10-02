@@ -19,7 +19,7 @@ __all__ = [
     "subscriptor",
     "header",
     "comments",
-    "nb_params"
+    "nb_params",
 ]
 
 PREVIEW = []

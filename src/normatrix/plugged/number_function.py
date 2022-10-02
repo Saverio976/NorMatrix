@@ -1,9 +1,10 @@
 try:
-    from normatrix.source.file_parser import CFileParse
     from normatrix.source.config import TypeLine
+    from normatrix.source.file_parser import CFileParse
 except ModuleNotFoundError:
-    from src.normatrix.source.file_parser import CFileParse
     from src.normatrix.source.config import TypeLine
+    from src.normatrix.source.file_parser import CFileParse
+
 
 def check(context, file: CFileParse) -> (int, int, list):
     number_func = 0
