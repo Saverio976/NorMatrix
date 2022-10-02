@@ -19,6 +19,17 @@ classifiers = [
     "Topic :: Software Development :: Quality Assurance"
 ]
 dependencies = [ "markdown", "regex", "rich" ]
+requires-python = ">=3.7"
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "pre-commit>=2.20.0",
+    "black>=22.8.0",
+    "flake8>=5.0.4",
+]
+
+[tool.black]
+line-length = 100
 
 [tool.setuptools.packages.find]
 where = [ "src" ]
