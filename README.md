@@ -2,21 +2,16 @@
 check some norm for you
 
 [![PyPI version](https://badge.fury.io/py/normatrix.svg)](https://badge.fury.io/py/normatrix)
-
 ![python-version](https://img.shields.io/badge/python-%3E%3D3.7-green)
 
 ![windows+ubuntu+macos;3.9,3.10](https://github.com/Saverio976/NorMatrix/actions/workflows/hallo_doctor.yml/badge.svg?event=push)
-
 [![NorMatrix Check](https://github.com/Saverio976/NorMatrix/actions/workflows/normatrix_check.yml/badge.svg)](https://github.com/Saverio976/NorMatrix/actions/workflows/normatrix_check.yml)
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/2ca7ba5d6a9e4619bd0cab7ae82ae7e1)](https://www.codacy.com/gh/Saverio976/NorMatrix/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Saverio976/NorMatrix&amp;utm_campaign=Badge_Grade)
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/Saverio976/NorMatrix?style=plastic)
-
 ![GitHub language count](https://img.shields.io/github/languages/count/Saverio976/NorMatrix?style=plastic)
-
 ![GitHub top language](https://img.shields.io/github/languages/top/Saverio976/NorMatrix?style=plastic)
-
 ![GitHub last commit](https://img.shields.io/github/last-commit/Saverio976/NorMatrix?color=red&style=plastic)
 
 ## install
@@ -314,7 +309,8 @@ or you can put `*.o` in a `.gitignore`
 
 it will remove it from the default
 
-## example if you run it as a github workflow
+## Run as a **github workflow**
+
 this is not the latest normatrix but :
 
 link : [link](https://github.com/Saverio976/NorMatrix/runs/6242624947?check_suite_focus=true)
@@ -326,8 +322,7 @@ state : [![NorMatrix Check](https://github.com/Saverio976/NorMatrix/actions/work
 
 (N.B. : this workflow pass well, but it will not if you copy the code below)
 
-## run it as a **github workflow**
-in the repo root :
+1. **in the repo root :**
 ```bash
 mkdir .github
 mkdir .github/workflows
@@ -355,13 +350,21 @@ jobs:
       run: python3 -m normatrix --only-errors
 ' > .github/workflows/normatrix_check.yml
 ```
+2. **you can push the modification to github**
 
 ## Contribute
 ***[more information on [CONTRIBUTNG.md](https://github.com/Saverio976/NorMatrix/blob/main/CONTRIBUTING.md)]***
 
-### special thanks
+## Alternatives
+
+- [crNormz](https://github.com/CustomEntity/crNormz)
+- [Abricot-Norminette](https://github.com/Just1truc/Abricot-Norminette)
+- [jankun_norme](https://github.com/LeoSarochar/jankun_norme)
+- [Bubulle-Norminette](https://github.com/aureliancnx/Bubulle-Norminette)
+- [NormEZ](https://github.com/ronanboiteau/NormEZ)
+
+## Thanks
 -    chempa for his sample of file that dont follow the epitech norm
 -    and invisble testers that says **"bha baah normatrix have a bug"**
 
-### contributors
-![Contributor](https://badges.pufler.dev/contributors/Saverio976/NorMatrix?size=50&padding=5&bots=true)
+## Contributors
