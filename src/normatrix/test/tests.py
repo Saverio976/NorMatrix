@@ -24,7 +24,7 @@ try:
 
     exe = "normatrix.test.tests"
 except ModuleNotFoundError:
-    from normatrix.test.unittests.function_line.tests import TestFunctionLine
+    from src.normatrix.test.unittests.function_line.tests import TestFunctionLine
     from src.normatrix.test.unittests.columns.tests import TestColumns
     from src.normatrix.test.unittests.comma.tests import TestComma
     from src.normatrix.test.unittests.function_line.tests import TestFunctionLine

@@ -4,7 +4,7 @@ import sys
 try:
     import regex
 
-    regex.cache_all()
+    regex.cache_all(True)
 except ModuleNotFoundError:
     import subprocess
 
