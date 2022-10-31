@@ -14,6 +14,11 @@ check some norm for you
 ![GitHub top language](https://img.shields.io/github/languages/top/Saverio976/NorMatrix?style=plastic)
 ![GitHub last commit](https://img.shields.io/github/last-commit/Saverio976/NorMatrix?color=red&style=plastic)
 
+# Updates
+- Project is moved to https://github.com/X-R-G-B/norma2
+- not as good as this repo for now to detect errors, but pretty good good
+- but updated with latest norm and new flag option (like explain a certain norm error (like C-01))
+
 ## install
 ### with pipy
 <details>
